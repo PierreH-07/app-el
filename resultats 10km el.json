@@ -82239,7 +82239,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -82268,7 +82268,7 @@
             null
           ],
           "vitesses_tour": [
-            1.486,
+            1.4802,
             null,
             null,
             null,
@@ -82285,22 +82285,22 @@
           {
             "pct": 0,
             "pos_moy": 16.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.525,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5221,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 16.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.525,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5221,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 16.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.525,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5221,
             "n_courses": 2
           },
           {
@@ -83081,7 +83081,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -83110,7 +83110,7 @@
             null
           ],
           "vitesses_tour": [
-            1.491,
+            1.4859,
             null,
             null,
             null,
@@ -83127,22 +83127,22 @@
           {
             "pct": 0,
             "pos_moy": 8.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.535,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5324,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 8.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.535,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5324,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 8.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.535,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5324,
             "n_courses": 2
           },
           {
@@ -84075,7 +84075,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -84104,7 +84104,7 @@
             null
           ],
           "vitesses_tour": [
-            1.477,
+            1.4712,
             null,
             null,
             null,
@@ -84121,22 +84121,22 @@
           {
             "pct": 0,
             "pos_moy": 48.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5045,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5016,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 48.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5045,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5016,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 48.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5045,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5016,
             "n_courses": 2
           },
           {
@@ -84862,7 +84862,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -84891,7 +84891,7 @@
             null
           ],
           "vitesses_tour": [
-            1.496,
+            1.4911,
             null,
             null,
             null,
@@ -84986,22 +84986,22 @@
           {
             "pct": 0,
             "pos_moy": 9.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.496,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4911,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 9.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.496,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4911,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 9.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.496,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4911,
             "n_courses": 1
           }
         ]
@@ -85570,7 +85570,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -85599,7 +85599,7 @@
             null
           ],
           "vitesses_tour": [
-            1.479,
+            1.4721,
             null,
             null,
             null,
@@ -85616,22 +85616,22 @@
           {
             "pct": 0,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5155,
+            "nb_moy": 64.0,
+            "vz_norm": 1.512,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5155,
+            "nb_moy": 64.0,
+            "vz_norm": 1.512,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5155,
+            "nb_moy": 64.0,
+            "vz_norm": 1.512,
             "n_courses": 2
           },
           {
@@ -86120,7 +86120,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -86149,7 +86149,7 @@
             null
           ],
           "vitesses_tour": [
-            1.492,
+            1.4878,
             null,
             null,
             null,
@@ -86166,22 +86166,22 @@
           {
             "pct": 0,
             "pos_moy": 12.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.492,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4878,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 12.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.492,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4878,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 12.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.492,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4878,
             "n_courses": 1
           }
         ]
@@ -86709,7 +86709,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -86738,7 +86738,7 @@
             null
           ],
           "vitesses_tour": [
-            1.493,
+            1.4882,
             null,
             null,
             null,
@@ -86755,22 +86755,22 @@
           {
             "pct": 0,
             "pos_moy": 11.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.493,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4882,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 11.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.493,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4882,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 11.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.493,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4882,
             "n_courses": 1
           }
         ]
@@ -87090,7 +87090,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -87119,7 +87119,7 @@
             null
           ],
           "vitesses_tour": [
-            1.485,
+            1.48,
             null,
             null,
             null,
@@ -87136,22 +87136,22 @@
           {
             "pct": 0,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.524,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5215,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.524,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5215,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.524,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5215,
             "n_courses": 2
           },
           {
@@ -87619,7 +87619,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -87648,7 +87648,7 @@
             null
           ],
           "vitesses_tour": [
-            1.464,
+            1.4596,
             null,
             null,
             null,
@@ -87665,22 +87665,22 @@
           {
             "pct": 0,
             "pos_moy": 53.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4985,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4963,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 53.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4985,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4963,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 53.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4985,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4963,
             "n_courses": 2
           },
           {
@@ -88765,7 +88765,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -88794,7 +88794,7 @@
             null
           ],
           "vitesses_tour": [
-            1.459,
+            1.4544,
             null,
             null,
             null,
@@ -88811,22 +88811,22 @@
           {
             "pct": 0,
             "pos_moy": 49.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.498,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4957,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 49.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.498,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4957,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 49.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.498,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4957,
             "n_courses": 2
           },
           {
@@ -89194,7 +89194,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -89223,7 +89223,7 @@
             null
           ],
           "vitesses_tour": [
-            1.484,
+            1.4783,
             null,
             null,
             null,
@@ -89240,22 +89240,22 @@
           {
             "pct": 0,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5255,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5227,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5255,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5227,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 17.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5255,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5227,
             "n_courses": 2
           },
           {
@@ -90418,7 +90418,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -90447,7 +90447,7 @@
             null
           ],
           "vitesses_tour": [
-            1.506,
+            1.5039,
             null,
             null,
             null,
@@ -90463,22 +90463,22 @@
           {
             "pct": 0,
             "pos_moy": 2.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.506,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5039,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 2.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.506,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5039,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 2.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.506,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5039,
             "n_courses": 1
           }
         ],
@@ -90947,7 +90947,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -90976,7 +90976,7 @@
             null
           ],
           "vitesses_tour": [
-            1.479,
+            1.4728,
             null,
             null,
             null,
@@ -90993,22 +90993,22 @@
           {
             "pct": 0,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5185,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5154,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5185,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5154,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5185,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5154,
             "n_courses": 2
           },
           {
@@ -91826,7 +91826,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -91855,7 +91855,7 @@
             null
           ],
           "vitesses_tour": [
-            1.473,
+            1.4676,
             null,
             null,
             null,
@@ -91872,22 +91872,22 @@
           {
             "pct": 0,
             "pos_moy": 48.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.505,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5023,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 48.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.505,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5023,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 48.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.505,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5023,
             "n_courses": 2
           },
           {
@@ -92197,7 +92197,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -92226,7 +92226,7 @@
             null
           ],
           "vitesses_tour": [
-            1.48,
+            1.4742,
             null,
             null,
             null,
@@ -92243,22 +92243,22 @@
           {
             "pct": 0,
             "pos_moy": 35.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.51,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5071,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 35.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.51,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5071,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 35.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.51,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5071,
             "n_courses": 2
           },
           {
@@ -92445,7 +92445,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -92474,7 +92474,7 @@
             null
           ],
           "vitesses_tour": [
-            1.477,
+            1.4713,
             null,
             null,
             null,
@@ -92491,22 +92491,22 @@
           {
             "pct": 0,
             "pos_moy": 45.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.506,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5031,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 45.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.506,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5031,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 45.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.506,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5031,
             "n_courses": 2
           },
           {
@@ -92872,7 +92872,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -92894,19 +92894,19 @@
           "rang": 41,
           "positions_tour": [
             41,
-            null,
-            null,
-            null,
-            null,
-            null
+            37,
+            40,
+            38,
+            41,
+            3
           ],
           "vitesses_tour": [
-            1.476,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.4707,
+            1.4862,
+            1.4823,
+            1.474,
+            1.4581,
+            1.4367
           ],
           "rv": null,
           "di": null
@@ -92918,79 +92918,79 @@
           {
             "pct": 0,
             "pos_moy": 38.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5095,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5069,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 38.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5095,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5069,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 38.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5095,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5069,
             "n_courses": 2
           },
           {
             "pct": 30,
-            "pos_moy": 58.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.498,
-            "n_courses": 1
+            "pos_moy": 47.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4921,
+            "n_courses": 2
           },
           {
             "pct": 40,
-            "pos_moy": 58.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.498,
-            "n_courses": 1
+            "pos_moy": 47.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4921,
+            "n_courses": 2
           },
           {
             "pct": 50,
-            "pos_moy": 55.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.47,
-            "n_courses": 1
+            "pos_moy": 47.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4762,
+            "n_courses": 2
           },
           {
             "pct": 60,
-            "pos_moy": 53.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.427,
-            "n_courses": 1
+            "pos_moy": 45.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4505,
+            "n_courses": 2
           },
           {
             "pct": 70,
-            "pos_moy": 53.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.427,
-            "n_courses": 1
+            "pos_moy": 45.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4505,
+            "n_courses": 2
           },
           {
             "pct": 80,
-            "pos_moy": 52.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.393,
-            "n_courses": 1
+            "pos_moy": 46.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4255,
+            "n_courses": 2
           },
           {
             "pct": 90,
-            "pos_moy": 52.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.393,
-            "n_courses": 1
+            "pos_moy": 46.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4255,
+            "n_courses": 2
           },
           {
             "pct": 100,
-            "pos_moy": 51.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.392,
-            "n_courses": 1
+            "pos_moy": 27.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4143,
+            "n_courses": 2
           }
         ]
       }
@@ -94633,7 +94633,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -94662,7 +94662,7 @@
             null
           ],
           "vitesses_tour": [
-            1.498,
+            1.4938,
             null,
             null,
             null,
@@ -94678,22 +94678,22 @@
           {
             "pct": 0,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5335,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5314,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5335,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5314,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5335,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5314,
             "n_courses": 2
           },
           {
@@ -95347,7 +95347,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -95376,7 +95376,7 @@
             null
           ],
           "vitesses_tour": [
-            1.488,
+            1.4829,
             null,
             null,
             null,
@@ -95393,22 +95393,22 @@
           {
             "pct": 0,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5165,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5165,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5165,
             "n_courses": 2
           },
           {
@@ -96270,7 +96270,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -96299,7 +96299,7 @@
             null
           ],
           "vitesses_tour": [
-            1.475,
+            1.4699,
             null,
             null,
             null,
@@ -96316,22 +96316,22 @@
           {
             "pct": 0,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5059,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5059,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5059,
             "n_courses": 2
           },
           {
@@ -96477,7 +96477,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -96506,7 +96506,7 @@
             null
           ],
           "vitesses_tour": [
-            1.481,
+            1.4754,
             null,
             null,
             null,
@@ -96523,22 +96523,22 @@
           {
             "pct": 0,
             "pos_moy": 37.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5062,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 37.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5062,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 37.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5062,
             "n_courses": 2
           },
           {
@@ -96839,7 +96839,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -96868,7 +96868,7 @@
             null
           ],
           "vitesses_tour": [
-            1.475,
+            1.47,
             null,
             null,
             null,
@@ -96885,22 +96885,22 @@
           {
             "pct": 0,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
@@ -98070,7 +98070,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -98099,7 +98099,7 @@
             null
           ],
           "vitesses_tour": [
-            1.479,
+            1.4733,
             null,
             null,
             null,
@@ -98116,22 +98116,22 @@
           {
             "pct": 0,
             "pos_moy": 21.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.523,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5202,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 21.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.523,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5202,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 21.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.523,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5202,
             "n_courses": 2
           },
           {
@@ -98693,7 +98693,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -98722,7 +98722,7 @@
             null
           ],
           "vitesses_tour": [
-            1.492,
+            1.4875,
             null,
             null,
             null,
@@ -98739,22 +98739,22 @@
           {
             "pct": 0,
             "pos_moy": 11.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5272,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 11.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5272,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 11.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5272,
             "n_courses": 2
           },
           {
@@ -98932,7 +98932,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -98961,7 +98961,7 @@
             null
           ],
           "vitesses_tour": [
-            1.497,
+            1.4915,
             null,
             null,
             null,
@@ -98978,22 +98978,22 @@
           {
             "pct": 0,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5345,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5318,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5345,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5318,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 7.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5345,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5318,
             "n_courses": 2
           },
           {
@@ -100018,7 +100018,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -100047,7 +100047,7 @@
             null
           ],
           "vitesses_tour": [
-            1.488,
+            1.483,
             null,
             null,
             null,
@@ -100064,22 +100064,22 @@
           {
             "pct": 0,
             "pos_moy": 19.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5195,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 19.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5195,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 19.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5195,
             "n_courses": 2
           },
           {
@@ -100791,7 +100791,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -100820,7 +100820,7 @@
             null
           ],
           "vitesses_tour": [
-            1.483,
+            1.477,
             null,
             null,
             null,
@@ -100837,22 +100837,22 @@
           {
             "pct": 0,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5135,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5135,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 27.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5135,
             "n_courses": 2
           },
           {
@@ -102285,7 +102285,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -102314,7 +102314,7 @@
             null
           ],
           "vitesses_tour": [
-            1.48,
+            1.4734,
             null,
             null,
             null,
@@ -102331,22 +102331,22 @@
           {
             "pct": 0,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.509,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
@@ -102483,7 +102483,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -102512,7 +102512,7 @@
             null
           ],
           "vitesses_tour": [
-            1.468,
+            1.4631,
             null,
             null,
             null,
@@ -102529,22 +102529,22 @@
           {
             "pct": 0,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 37.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.512,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5095,
             "n_courses": 2
           },
           {
@@ -104133,7 +104133,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -104162,7 +104162,7 @@
             null
           ],
           "vitesses_tour": [
-            1.498,
+            1.493,
             null,
             null,
             null,
@@ -104179,22 +104179,22 @@
           {
             "pct": 0,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.527,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.527,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5295,
+            "nb_moy": 64.0,
+            "vz_norm": 1.527,
             "n_courses": 2
           },
           {
@@ -104717,7 +104717,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -104746,7 +104746,7 @@
             null
           ],
           "vitesses_tour": [
-            1.484,
+            1.4784,
             null,
             null,
             null,
@@ -104763,22 +104763,22 @@
           {
             "pct": 0,
             "pos_moy": 15.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.527,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5242,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 15.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.527,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5242,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 15.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.527,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5242,
             "n_courses": 2
           },
           {
@@ -105438,7 +105438,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -105467,7 +105467,7 @@
             null
           ],
           "vitesses_tour": [
-            1.47,
+            1.465,
             null,
             null,
             null,
@@ -105484,22 +105484,22 @@
           {
             "pct": 0,
             "pos_moy": 34.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.515,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5125,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 34.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.515,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5125,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 34.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.515,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5125,
             "n_courses": 2
           },
           {
@@ -105645,7 +105645,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -105674,7 +105674,7 @@
             null
           ],
           "vitesses_tour": [
-            1.479,
+            1.4728,
             null,
             null,
             null,
@@ -105691,22 +105691,22 @@
           {
             "pct": 0,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5189,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5189,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 23.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.522,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5189,
             "n_courses": 2
           },
           {
@@ -106876,7 +106876,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -106905,7 +106905,7 @@
             null
           ],
           "vitesses_tour": [
-            1.499,
+            1.4952,
             null,
             null,
             null,
@@ -106921,22 +106921,22 @@
           {
             "pct": 0,
             "pos_moy": 3.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.54,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5381,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 3.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.54,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5381,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 3.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.54,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5381,
             "n_courses": 2
           },
           {
@@ -108745,7 +108745,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -108774,7 +108774,7 @@
             null
           ],
           "vitesses_tour": [
-            1.478,
+            1.472,
             null,
             null,
             null,
@@ -108791,22 +108791,22 @@
           {
             "pct": 0,
             "pos_moy": 28.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.516,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 28.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.516,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 28.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.519,
+            "nb_moy": 64.0,
+            "vz_norm": 1.516,
             "n_courses": 2
           },
           {
@@ -109092,7 +109092,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -109121,7 +109121,7 @@
             null
           ],
           "vitesses_tour": [
-            1.498,
+            1.4928,
             null,
             null,
             null,
@@ -109138,22 +109138,22 @@
           {
             "pct": 0,
             "pos_moy": 29.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.517,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 29.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.517,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 29.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.517,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
@@ -110093,7 +110093,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -110122,7 +110122,7 @@
             null
           ],
           "vitesses_tour": [
-            1.453,
+            1.4492,
             null,
             null,
             null,
@@ -110139,22 +110139,22 @@
           {
             "pct": 0,
             "pos_moy": 58.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4885,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4866,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 58.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4885,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4866,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 58.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.4885,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4866,
             "n_courses": 2
           },
           {
@@ -110537,7 +110537,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -110566,7 +110566,7 @@
             null
           ],
           "vitesses_tour": [
-            1.482,
+            1.4758,
             null,
             null,
             null,
@@ -110583,22 +110583,22 @@
           {
             "pct": 0,
             "pos_moy": 26.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5175,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 26.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5175,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 26.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5175,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5144,
             "n_courses": 2
           },
           {
@@ -111143,7 +111143,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -111172,7 +111172,7 @@
             null
           ],
           "vitesses_tour": [
-            1.482,
+            1.4758,
             null,
             null,
             null,
@@ -111267,22 +111267,22 @@
           {
             "pct": 0,
             "pos_moy": 26.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.482,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4758,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 26.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.482,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4758,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 26.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.482,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4758,
             "n_courses": 1
           }
         ]
@@ -112406,7 +112406,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -112428,19 +112428,19 @@
           "rang": 46,
           "positions_tour": [
             46,
-            null,
-            null,
-            null,
-            null,
-            null
+            31,
+            36,
+            26,
+            27,
+            1
           ],
           "vitesses_tour": [
-            1.474,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.4685,
+            1.4903,
+            1.4837,
+            1.4762,
+            1.4738,
+            1.4746
           ],
           "rv": null,
           "di": null
@@ -112452,79 +112452,79 @@
           {
             "pct": 0,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 41.5,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5085,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5057,
             "n_courses": 2
           },
           {
             "pct": 30,
-            "pos_moy": 34.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.541,
-            "n_courses": 1
+            "pos_moy": 32.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5156,
+            "n_courses": 2
           },
           {
             "pct": 40,
-            "pos_moy": 34.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.541,
-            "n_courses": 1
+            "pos_moy": 32.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5156,
+            "n_courses": 2
           },
           {
             "pct": 50,
-            "pos_moy": 47.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.491,
-            "n_courses": 1
+            "pos_moy": 41.5,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4874,
+            "n_courses": 2
           },
           {
             "pct": 60,
-            "pos_moy": 42.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.5,
-            "n_courses": 1
+            "pos_moy": 34.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4881,
+            "n_courses": 2
           },
           {
             "pct": 70,
-            "pos_moy": 42.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.5,
-            "n_courses": 1
+            "pos_moy": 34.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4881,
+            "n_courses": 2
           },
           {
             "pct": 80,
-            "pos_moy": 39.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.467,
-            "n_courses": 1
+            "pos_moy": 33.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4704,
+            "n_courses": 2
           },
           {
             "pct": 90,
-            "pos_moy": 39.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.467,
-            "n_courses": 1
+            "pos_moy": 33.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4704,
+            "n_courses": 2
           },
           {
             "pct": 100,
-            "pos_moy": 33.0,
-            "nb_moy": 67.0,
-            "vz_norm": 1.415,
-            "n_courses": 1
+            "pos_moy": 17.0,
+            "nb_moy": 64.0,
+            "vz_norm": 1.4448,
+            "n_courses": 2
           }
         ]
       }
@@ -113024,7 +113024,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -113053,7 +113053,7 @@
             null
           ],
           "vitesses_tour": [
-            1.487,
+            1.4822,
             null,
             null,
             null,
@@ -113070,22 +113070,22 @@
           {
             "pct": 0,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5305,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5281,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5305,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5281,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 11.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5305,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5281,
             "n_courses": 2
           },
           {
@@ -114299,7 +114299,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -114328,7 +114328,7 @@
             null
           ],
           "vitesses_tour": [
-            1.478,
+            1.4719,
             null,
             null,
             null,
@@ -114345,22 +114345,22 @@
           {
             "pct": 0,
             "pos_moy": 42.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5075,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5044,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 42.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5075,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5044,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 42.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5075,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5044,
             "n_courses": 2
           },
           {
@@ -115366,7 +115366,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -115395,7 +115395,7 @@
             null
           ],
           "vitesses_tour": [
-            1.507,
+            1.5061,
             null,
             null,
             null,
@@ -115411,22 +115411,22 @@
           {
             "pct": 0,
             "pos_moy": 1.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.507,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5061,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 1.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.507,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5061,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 1.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.507,
+            "nb_moy": 61.0,
+            "vz_norm": 1.5061,
             "n_courses": 1
           }
         ],
@@ -116508,7 +116508,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -116537,7 +116537,7 @@
             null
           ],
           "vitesses_tour": [
-            1.473,
+            1.4681,
             null,
             null,
             null,
@@ -116554,22 +116554,22 @@
           {
             "pct": 0,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5141,
             "n_courses": 2
           },
           {
             "pct": 10,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5141,
             "n_courses": 2
           },
           {
             "pct": 20,
             "pos_moy": 32.0,
-            "nb_moy": 62.0,
-            "vz_norm": 1.5165,
+            "nb_moy": 64.0,
+            "vz_norm": 1.5141,
             "n_courses": 2
           },
           {
@@ -117186,7 +117186,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -117215,7 +117215,7 @@
             null
           ],
           "vitesses_tour": [
-            1.502,
+            1.4987,
             null,
             null,
             null,
@@ -117231,22 +117231,22 @@
           {
             "pct": 0,
             "pos_moy": 3.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.502,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4987,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 3.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.502,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4987,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 3.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.502,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4987,
             "n_courses": 1
           }
         ],
@@ -117550,7 +117550,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -117579,7 +117579,7 @@
             null
           ],
           "vitesses_tour": [
-            1.48,
+            1.4734,
             null,
             null,
             null,
@@ -117596,22 +117596,22 @@
           {
             "pct": 0,
             "pos_moy": 31.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.48,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4734,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 31.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.48,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4734,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 31.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.48,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4734,
             "n_courses": 1
           }
         ]
@@ -118059,7 +118059,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -118088,7 +118088,7 @@
             null
           ],
           "vitesses_tour": [
-            1.485,
+            1.4797,
             null,
             null,
             null,
@@ -118105,22 +118105,22 @@
           {
             "pct": 0,
             "pos_moy": 21.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.485,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4797,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 21.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.485,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4797,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 21.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.485,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4797,
             "n_courses": 1
           }
         ]
@@ -118502,7 +118502,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -118531,7 +118531,7 @@
             null
           ],
           "vitesses_tour": [
-            1.476,
+            1.4703,
             null,
             null,
             null,
@@ -118548,22 +118548,22 @@
           {
             "pct": 0,
             "pos_moy": 42.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.476,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4703,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 42.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.476,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4703,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 42.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.476,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4703,
             "n_courses": 1
           }
         ]
@@ -118628,7 +118628,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -118657,7 +118657,7 @@
             null
           ],
           "vitesses_tour": [
-            1.474,
+            1.469,
             null,
             null,
             null,
@@ -118674,22 +118674,22 @@
           {
             "pct": 0,
             "pos_moy": 45.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.474,
+            "nb_moy": 61.0,
+            "vz_norm": 1.469,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 45.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.474,
+            "nb_moy": 61.0,
+            "vz_norm": 1.469,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 45.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.474,
+            "nb_moy": 61.0,
+            "vz_norm": 1.469,
             "n_courses": 1
           }
         ]
@@ -120390,7 +120390,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -120419,7 +120419,7 @@
             null
           ],
           "vitesses_tour": [
-            1.483,
+            1.4773,
             null,
             null,
             null,
@@ -120436,22 +120436,22 @@
           {
             "pct": 0,
             "pos_moy": 24.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.483,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4773,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 24.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.483,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4773,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 24.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.483,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4773,
             "n_courses": 1
           }
         ]
@@ -120567,7 +120567,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -120589,19 +120589,19 @@
           "rang": 10,
           "positions_tour": [
             10,
-            null,
-            null,
-            null,
-            null,
-            null
+            7,
+            15,
+            14,
+            32,
+            2
           ],
           "vitesses_tour": [
-            1.495,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.4903,
+            1.4973,
+            1.4872,
+            1.4779,
+            1.4729,
+            1.4608
           ],
           "rv": null,
           "di": null
@@ -120613,22 +120613,78 @@
           {
             "pct": 0,
             "pos_moy": 10.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.495,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4903,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 10.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.495,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4903,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 10.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.495,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4903,
+            "n_courses": 1
+          },
+          {
+            "pct": 30,
+            "pos_moy": 7.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4973,
+            "n_courses": 1
+          },
+          {
+            "pct": 40,
+            "pos_moy": 7.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4973,
+            "n_courses": 1
+          },
+          {
+            "pct": 50,
+            "pos_moy": 15.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4872,
+            "n_courses": 1
+          },
+          {
+            "pct": 60,
+            "pos_moy": 14.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4779,
+            "n_courses": 1
+          },
+          {
+            "pct": 70,
+            "pos_moy": 14.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4779,
+            "n_courses": 1
+          },
+          {
+            "pct": 80,
+            "pos_moy": 32.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4729,
+            "n_courses": 1
+          },
+          {
+            "pct": 90,
+            "pos_moy": 32.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4729,
+            "n_courses": 1
+          },
+          {
+            "pct": 100,
+            "pos_moy": 2.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4608,
             "n_courses": 1
           }
         ]
@@ -121098,7 +121154,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -121120,19 +121176,19 @@
           "rang": 56,
           "positions_tour": [
             56,
-            null,
-            null,
-            null,
-            null,
-            null
+            59,
+            61,
+            56,
+            55,
+            5
           ],
           "vitesses_tour": [
-            1.436,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.4321,
+            1.3979,
+            1.387,
+            1.3687,
+            1.352,
+            1.3497
           ],
           "rv": null,
           "di": null
@@ -121144,22 +121200,78 @@
           {
             "pct": 0,
             "pos_moy": 56.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.436,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4321,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 56.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.436,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4321,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 56.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.436,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4321,
+            "n_courses": 1
+          },
+          {
+            "pct": 30,
+            "pos_moy": 59.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3979,
+            "n_courses": 1
+          },
+          {
+            "pct": 40,
+            "pos_moy": 59.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3979,
+            "n_courses": 1
+          },
+          {
+            "pct": 50,
+            "pos_moy": 61.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.387,
+            "n_courses": 1
+          },
+          {
+            "pct": 60,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3687,
+            "n_courses": 1
+          },
+          {
+            "pct": 70,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3687,
+            "n_courses": 1
+          },
+          {
+            "pct": 80,
+            "pos_moy": 55.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.352,
+            "n_courses": 1
+          },
+          {
+            "pct": 90,
+            "pos_moy": 55.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.352,
+            "n_courses": 1
+          },
+          {
+            "pct": 100,
+            "pos_moy": 5.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3497,
             "n_courses": 1
           }
         ]
@@ -149796,7 +149908,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -149825,7 +149937,7 @@
             null
           ],
           "vitesses_tour": [
-            1.472,
+            1.4664,
             null,
             null,
             null,
@@ -149842,22 +149954,22 @@
           {
             "pct": 0,
             "pos_moy": 49.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.472,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4664,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 49.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.472,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4664,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 49.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.472,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4664,
             "n_courses": 1
           }
         ]
@@ -150772,7 +150884,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -150801,7 +150913,7 @@
             null
           ],
           "vitesses_tour": [
-            1.479,
+            1.4726,
             null,
             null,
             null,
@@ -150818,22 +150930,22 @@
           {
             "pct": 0,
             "pos_moy": 35.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.479,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4726,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 35.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.479,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4726,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 35.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.479,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4726,
             "n_courses": 1
           }
         ]
@@ -150857,7 +150969,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -150886,7 +150998,7 @@
             null
           ],
           "vitesses_tour": [
-            1.486,
+            1.481,
             null,
             null,
             null,
@@ -150903,22 +151015,22 @@
           {
             "pct": 0,
             "pos_moy": 18.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.486,
+            "nb_moy": 61.0,
+            "vz_norm": 1.481,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 18.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.486,
+            "nb_moy": 61.0,
+            "vz_norm": 1.481,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 18.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.486,
+            "nb_moy": 61.0,
+            "vz_norm": 1.481,
             "n_courses": 1
           }
         ]
@@ -150960,7 +151072,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -150982,19 +151094,19 @@
           "rang": 57,
           "positions_tour": [
             57,
-            null,
-            null,
-            null,
-            null,
-            null
+            56,
+            56,
+            55,
+            56,
+            4
           ],
           "vitesses_tour": [
-            1.434,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.43,
+            1.399,
+            1.3887,
+            1.3691,
+            1.3519,
+            1.3502
           ],
           "rv": null,
           "di": null
@@ -151006,22 +151118,78 @@
           {
             "pct": 0,
             "pos_moy": 57.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.434,
+            "nb_moy": 61.0,
+            "vz_norm": 1.43,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 57.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.434,
+            "nb_moy": 61.0,
+            "vz_norm": 1.43,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 57.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.434,
+            "nb_moy": 61.0,
+            "vz_norm": 1.43,
+            "n_courses": 1
+          },
+          {
+            "pct": 30,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.399,
+            "n_courses": 1
+          },
+          {
+            "pct": 40,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.399,
+            "n_courses": 1
+          },
+          {
+            "pct": 50,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3887,
+            "n_courses": 1
+          },
+          {
+            "pct": 60,
+            "pos_moy": 55.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3691,
+            "n_courses": 1
+          },
+          {
+            "pct": 70,
+            "pos_moy": 55.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3691,
+            "n_courses": 1
+          },
+          {
+            "pct": 80,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3519,
+            "n_courses": 1
+          },
+          {
+            "pct": 90,
+            "pos_moy": 56.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3519,
+            "n_courses": 1
+          },
+          {
+            "pct": 100,
+            "pos_moy": 4.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3502,
             "n_courses": 1
           }
         ]
@@ -151063,7 +151231,7 @@
           "type": "CDM",
           "format": "10km",
           "manche": "Finale",
-          "nb_nageurs": 57,
+          "nb_nageurs": 61,
           "date": "24/04/2026",
           "dists": [
             1666,
@@ -151085,19 +151253,19 @@
           "rang": 55,
           "positions_tour": [
             55,
-            null,
-            null,
-            null,
-            null,
-            null
+            58,
+            59,
+            61,
+            60,
+            6
           ],
           "vitesses_tour": [
-            1.443,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.4398,
+            1.3981,
+            1.3873,
+            1.3669,
+            1.351,
+            1.3468
           ],
           "rv": null,
           "di": null
@@ -151109,22 +151277,78 @@
           {
             "pct": 0,
             "pos_moy": 55.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.443,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4398,
             "n_courses": 1
           },
           {
             "pct": 10,
             "pos_moy": 55.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.443,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4398,
             "n_courses": 1
           },
           {
             "pct": 20,
             "pos_moy": 55.0,
-            "nb_moy": 57.0,
-            "vz_norm": 1.443,
+            "nb_moy": 61.0,
+            "vz_norm": 1.4398,
+            "n_courses": 1
+          },
+          {
+            "pct": 30,
+            "pos_moy": 58.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3981,
+            "n_courses": 1
+          },
+          {
+            "pct": 40,
+            "pos_moy": 58.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3981,
+            "n_courses": 1
+          },
+          {
+            "pct": 50,
+            "pos_moy": 59.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3873,
+            "n_courses": 1
+          },
+          {
+            "pct": 60,
+            "pos_moy": 61.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3669,
+            "n_courses": 1
+          },
+          {
+            "pct": 70,
+            "pos_moy": 61.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3669,
+            "n_courses": 1
+          },
+          {
+            "pct": 80,
+            "pos_moy": 60.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.351,
+            "n_courses": 1
+          },
+          {
+            "pct": 90,
+            "pos_moy": 60.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.351,
+            "n_courses": 1
+          },
+          {
+            "pct": 100,
+            "pos_moy": 6.0,
+            "nb_moy": 61.0,
+            "vz_norm": 1.3468,
             "n_courses": 1
           }
         ]
@@ -216146,7 +216370,7 @@
         8333,
         10000
       ],
-      "nb": 57,
+      "nb": 61,
       "groupes": [
         [
           {
@@ -216259,15 +216483,369 @@
               "PITTLIK Zsigmond Gabor",
               "ALVAREZ GONZALEZ Unai"
             ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 67.2,
+            "membres": [
+              "CACIK Rastislav"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 93.8,
+            "membres": [
+              "URBAN Richard"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 122.2,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 129.0,
+            "membres": [
+              "SOBRIE Gautier"
+            ]
           }
         ],
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+          {
+            "n": 1,
+            "ecart_fin": 0.0,
+            "membres": [
+              "KARPATI Mate"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 10.4,
+            "membres": [
+              "PARKER Ethan"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 16.7,
+            "membres": [
+              "JACOBS Colin"
+            ]
+          },
+          {
+            "n": 4,
+            "ecart_fin": 158.3,
+            "membres": [
+              "ALVAREZ GONZALEZ Unai",
+              "CACIK Rastislav",
+              "FERNANDEZ ALPERI H.",
+              "PITTLIK Zsigmond Gabor"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 240.0,
+            "membres": [
+              "URBAN Richard"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 266.2,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 271.8,
+            "membres": [
+              "SOBRIE Gautier"
+            ]
+          }
+        ],
+        [
+          {
+            "n": 1,
+            "ecart_fin": 0.0,
+            "membres": [
+              "KARPATI Mate"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 7.9,
+            "membres": [
+              "PARKER Ethan"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 11.0,
+            "membres": [
+              "JACOBS Colin"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 239.1,
+            "membres": [
+              "ALVAREZ GONZALEZ Unai",
+              "CACIK Rastislav"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 242.9,
+            "membres": [
+              "FERNANDEZ ALPERI H.",
+              "PITTLIK Zsigmond Gabor"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 378.4,
+            "membres": [
+              "URBAN Richard"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 407.1,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 409.7,
+            "membres": [
+              "SOBRIE Gautier"
+            ]
+          }
+        ],
+        [
+          {
+            "n": 1,
+            "ecart_fin": 0.0,
+            "membres": [
+              "KARPATI Mate"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 4.9,
+            "membres": [
+              "PARKER Ethan"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 11.7,
+            "membres": [
+              "JACOBS Colin"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 359.8,
+            "membres": [
+              "ALVAREZ GONZALEZ Unai",
+              "PITTLIK Zsigmond Gabor"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 366.3,
+            "membres": [
+              "CACIK Rastislav",
+              "FERNANDEZ ALPERI H."
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 512.5,
+            "membres": [
+              "URBAN Richard"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 531.9,
+            "membres": [
+              "SOBRIE Gautier"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 538.6,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          }
+        ],
+        [
+          {
+            "n": 1,
+            "ecart_fin": 0.0,
+            "membres": [
+              "PARKER Ethan"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 3.4,
+            "membres": [
+              "KARPATI Mate"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 61.1,
+            "membres": [
+              "JACOBS Colin"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 509.9,
+            "membres": [
+              "PITTLIK Zsigmond Gabor",
+              "ALVAREZ GONZALEZ Unai"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 515.7,
+            "membres": [
+              "FERNANDEZ ALPERI H.",
+              "CACIK Rastislav"
+            ]
+          },
+          {
+            "n": 2,
+            "ecart_fin": 624.2,
+            "membres": [
+              "URBAN Richard",
+              "SOBRIE Gautier"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 687.3,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          }
+        ],
+        [
+          {
+            "n": 1,
+            "ecart_fin": 0.0,
+            "membres": [
+              "PARKER Ethan"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 64.0,
+            "membres": [
+              "KARPATI Mate"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 178.8,
+            "membres": [
+              "JACOBS Colin"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 624.7,
+            "membres": [
+              "ALVAREZ GONZALEZ Unai"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 627.4,
+            "membres": [
+              "PITTLIK Zsigmond Gabor"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 643.6,
+            "membres": [
+              "FERNANDEZ ALPERI H."
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 750.7,
+            "membres": [
+              "URBAN Richard"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 760.5,
+            "membres": [
+              "CACIK Rastislav"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 772.1,
+            "membres": [
+              "SOBRIE Gautier"
+            ]
+          },
+          {
+            "n": 1,
+            "ecart_fin": 925.8,
+            "membres": [
+              "NEVADO RUIZ Hugo"
+            ]
+          }
+        ]
       ],
       "nageurs": [
+        {
+          "nom": "PARKER Ethan",
+          "noc": "FRA",
+          "rang": 1,
+          "pos": [
+            46,
+            31,
+            36,
+            26,
+            27,
+            1
+          ],
+          "ecart": [
+            28.3,
+            10.4,
+            7.9,
+            4.9,
+            0.0,
+            0.0
+          ],
+          "vit": [
+            1.4685,
+            1.4903,
+            1.4837,
+            1.4762,
+            1.4738,
+            1.4746
+          ],
+          "rv": null,
+          "di": null
+        },
         {
           "nom": "BETLEHEM David",
           "noc": "HUN",
@@ -216289,12 +216867,43 @@
             null
           ],
           "vit": [
-            1.507,
+            1.5061,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "KARPATI Mate",
+          "noc": "HUN",
+          "rang": 2,
+          "pos": [
+            10,
+            7,
+            15,
+            14,
+            32,
+            2
+          ],
+          "ecart": [
+            11.7,
+            0.0,
+            0.0,
+            0.0,
+            3.4,
+            64.0
+          ],
+          "vit": [
+            1.4903,
+            1.4973,
+            1.4872,
+            1.4779,
+            1.4729,
+            1.4608
           ],
           "rv": null,
           "di": null
@@ -216320,12 +216929,43 @@
             null
           ],
           "vit": [
-            1.506,
+            1.5039,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "JACOBS Colin",
+          "noc": "USA",
+          "rang": 3,
+          "pos": [
+            41,
+            37,
+            40,
+            38,
+            41,
+            3
+          ],
+          "ecart": [
+            26.6,
+            16.7,
+            11.0,
+            11.7,
+            61.1,
+            178.8
+          ],
+          "vit": [
+            1.4707,
+            1.4862,
+            1.4823,
+            1.474,
+            1.4581,
+            1.4367
           ],
           "rv": null,
           "di": null
@@ -216351,12 +216991,43 @@
             null
           ],
           "vit": [
-            1.502,
+            1.4987,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "ALVAREZ GONZALEZ Unai",
+          "noc": "ESP",
+          "rang": 4,
+          "pos": [
+            57,
+            56,
+            56,
+            55,
+            56,
+            4
+          ],
+          "ecart": [
+            58.8,
+            156.4,
+            238.3,
+            358.4,
+            509.9,
+            624.7
+          ],
+          "vit": [
+            1.43,
+            1.399,
+            1.3887,
+            1.3691,
+            1.3519,
+            1.3502
           ],
           "rv": null,
           "di": null
@@ -216382,12 +217053,43 @@
             null
           ],
           "vit": [
-            1.499,
+            1.4952,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "PITTLIK Zsigmond Gabor",
+          "noc": "HUN",
+          "rang": 5,
+          "pos": [
+            56,
+            59,
+            61,
+            56,
+            55,
+            5
+          ],
+          "ecart": [
+            57.1,
+            158.3,
+            242.9,
+            359.8,
+            509.6,
+            627.4
+          ],
+          "vit": [
+            1.4321,
+            1.3979,
+            1.387,
+            1.3687,
+            1.352,
+            1.3497
           ],
           "rv": null,
           "di": null
@@ -216413,12 +217115,43 @@
             null
           ],
           "vit": [
-            1.498,
+            1.4938,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "FERNANDEZ ALPERI H.",
+          "noc": "ESP",
+          "rang": 6,
+          "pos": [
+            55,
+            58,
+            59,
+            61,
+            60,
+            6
+          ],
+          "ecart": [
+            50.9,
+            158.0,
+            241.9,
+            366.3,
+            513.9,
+            643.6
+          ],
+          "vit": [
+            1.4398,
+            1.3981,
+            1.3873,
+            1.3669,
+            1.351,
+            1.3468
           ],
           "rv": null,
           "di": null
@@ -216444,12 +217177,43 @@
             null
           ],
           "vit": [
-            1.498,
+            1.493,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "URBAN Richard",
+          "noc": "SVK",
+          "rang": 7,
+          "pos": [
+            64,
+            64,
+            64,
+            64,
+            63,
+            7
+          ],
+          "ecart": [
+            93.8,
+            240.0,
+            378.4,
+            512.5,
+            622.9,
+            750.7
+          ],
+          "vit": [
+            1.3883,
+            1.3516,
+            1.3367,
+            1.3271,
+            1.3276,
+            1.3277
           ],
           "rv": null,
           "di": null
@@ -216475,12 +217239,43 @@
             null
           ],
           "vit": [
-            1.498,
+            1.4928,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "CACIK Rastislav",
+          "noc": "SVK",
+          "rang": 8,
+          "pos": [
+            60,
+            57,
+            57,
+            60,
+            62,
+            8
+          ],
+          "ecart": [
+            67.2,
+            157.0,
+            239.1,
+            364.6,
+            515.7,
+            760.5
+          ],
+          "vit": [
+            1.4198,
+            1.3987,
+            1.3884,
+            1.3673,
+            1.3506,
+            1.3259
           ],
           "rv": null,
           "di": null
@@ -216506,12 +217301,43 @@
             null
           ],
           "vit": [
-            1.497,
+            1.4915,
             null,
             null,
             null,
             null,
             null
+          ],
+          "rv": null,
+          "di": null
+        },
+        {
+          "nom": "SOBRIE Gautier",
+          "noc": "BEL",
+          "rang": 9,
+          "pos": [
+            66,
+            67,
+            66,
+            65,
+            64,
+            9
+          ],
+          "ecart": [
+            129.0,
+            271.8,
+            409.7,
+            531.9,
+            624.2,
+            772.1
+          ],
+          "vit": [
+            1.3488,
+            1.3344,
+            1.3256,
+            1.322,
+            1.3273,
+            1.3239
           ],
           "rv": null,
           "di": null
@@ -216537,7 +217363,7 @@
             null
           ],
           "vit": [
-            1.496,
+            1.4911,
             null,
             null,
             null,
@@ -216548,32 +217374,32 @@
           "di": null
         },
         {
-          "nom": "KARPATI Mate",
-          "noc": "HUN",
+          "nom": "NEVADO RUIZ Hugo",
+          "noc": "ESP",
           "rang": 10,
           "pos": [
-            10,
-            null,
-            null,
-            null,
-            null,
-            null
+            65,
+            65,
+            65,
+            67,
+            66,
+            10
           ],
           "ecart": [
-            11.7,
-            null,
-            null,
-            null,
-            null,
-            null
+            122.2,
+            266.2,
+            407.1,
+            538.6,
+            687.3,
+            925.8
           ],
           "vit": [
-            1.495,
-            null,
-            null,
-            null,
-            null,
-            null
+            1.3562,
+            1.3374,
+            1.3265,
+            1.3202,
+            1.3141,
+            1.2975
           ],
           "rv": null,
           "di": null
@@ -216599,7 +217425,7 @@
             null
           ],
           "vit": [
-            1.493,
+            1.4882,
             null,
             null,
             null,
@@ -216630,7 +217456,7 @@
             null
           ],
           "vit": [
-            1.492,
+            1.4878,
             null,
             null,
             null,
@@ -216661,7 +217487,7 @@
             null
           ],
           "vit": [
-            1.492,
+            1.4875,
             null,
             null,
             null,
@@ -216692,7 +217518,7 @@
             null
           ],
           "vit": [
-            1.491,
+            1.4859,
             null,
             null,
             null,
@@ -216723,7 +217549,7 @@
             null
           ],
           "vit": [
-            1.488,
+            1.483,
             null,
             null,
             null,
@@ -216754,7 +217580,7 @@
             null
           ],
           "vit": [
-            1.488,
+            1.4829,
             null,
             null,
             null,
@@ -216785,7 +217611,7 @@
             null
           ],
           "vit": [
-            1.487,
+            1.4822,
             null,
             null,
             null,
@@ -216816,7 +217642,7 @@
             null
           ],
           "vit": [
-            1.486,
+            1.481,
             null,
             null,
             null,
@@ -216847,7 +217673,7 @@
             null
           ],
           "vit": [
-            1.486,
+            1.4802,
             null,
             null,
             null,
@@ -216878,7 +217704,7 @@
             null
           ],
           "vit": [
-            1.485,
+            1.48,
             null,
             null,
             null,
@@ -216909,7 +217735,7 @@
             null
           ],
           "vit": [
-            1.485,
+            1.4797,
             null,
             null,
             null,
@@ -216940,7 +217766,7 @@
             null
           ],
           "vit": [
-            1.484,
+            1.4784,
             null,
             null,
             null,
@@ -216971,7 +217797,7 @@
             null
           ],
           "vit": [
-            1.484,
+            1.4783,
             null,
             null,
             null,
@@ -217002,7 +217828,7 @@
             null
           ],
           "vit": [
-            1.483,
+            1.4773,
             null,
             null,
             null,
@@ -217033,7 +217859,7 @@
             null
           ],
           "vit": [
-            1.483,
+            1.477,
             null,
             null,
             null,
@@ -217064,7 +217890,7 @@
             null
           ],
           "vit": [
-            1.482,
+            1.4758,
             null,
             null,
             null,
@@ -217095,7 +217921,7 @@
             null
           ],
           "vit": [
-            1.482,
+            1.4758,
             null,
             null,
             null,
@@ -217126,7 +217952,7 @@
             null
           ],
           "vit": [
-            1.481,
+            1.4754,
             null,
             null,
             null,
@@ -217157,7 +217983,7 @@
             null
           ],
           "vit": [
-            1.48,
+            1.4742,
             null,
             null,
             null,
@@ -217188,7 +218014,7 @@
             null
           ],
           "vit": [
-            1.48,
+            1.4734,
             null,
             null,
             null,
@@ -217219,7 +218045,7 @@
             null
           ],
           "vit": [
-            1.48,
+            1.4734,
             null,
             null,
             null,
@@ -217250,7 +218076,7 @@
             null
           ],
           "vit": [
-            1.479,
+            1.4733,
             null,
             null,
             null,
@@ -217281,7 +218107,7 @@
             null
           ],
           "vit": [
-            1.479,
+            1.4728,
             null,
             null,
             null,
@@ -217312,7 +218138,7 @@
             null
           ],
           "vit": [
-            1.479,
+            1.4728,
             null,
             null,
             null,
@@ -217343,7 +218169,7 @@
             null
           ],
           "vit": [
-            1.479,
+            1.4726,
             null,
             null,
             null,
@@ -217374,7 +218200,7 @@
             null
           ],
           "vit": [
-            1.479,
+            1.4721,
             null,
             null,
             null,
@@ -217405,7 +218231,7 @@
             null
           ],
           "vit": [
-            1.478,
+            1.472,
             null,
             null,
             null,
@@ -217436,7 +218262,7 @@
             null
           ],
           "vit": [
-            1.478,
+            1.4719,
             null,
             null,
             null,
@@ -217467,7 +218293,7 @@
             null
           ],
           "vit": [
-            1.477,
+            1.4713,
             null,
             null,
             null,
@@ -217498,38 +218324,7 @@
             null
           ],
           "vit": [
-            1.477,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "rv": null,
-          "di": null
-        },
-        {
-          "nom": "JACOBS Colin",
-          "noc": "USA",
-          "rang": 41,
-          "pos": [
-            41,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "ecart": [
-            26.6,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "vit": [
-            1.476,
+            1.4712,
             null,
             null,
             null,
@@ -217560,7 +218355,7 @@
             null
           ],
           "vit": [
-            1.476,
+            1.4703,
             null,
             null,
             null,
@@ -217591,7 +218386,7 @@
             null
           ],
           "vit": [
-            1.475,
+            1.47,
             null,
             null,
             null,
@@ -217622,7 +218417,7 @@
             null
           ],
           "vit": [
-            1.475,
+            1.4699,
             null,
             null,
             null,
@@ -217653,38 +218448,7 @@
             null
           ],
           "vit": [
-            1.474,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "rv": null,
-          "di": null
-        },
-        {
-          "nom": "PARKER Ethan",
-          "noc": "FRA",
-          "rang": 46,
-          "pos": [
-            46,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "ecart": [
-            28.0,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "vit": [
-            1.474,
+            1.469,
             null,
             null,
             null,
@@ -217715,7 +218479,7 @@
             null
           ],
           "vit": [
-            1.473,
+            1.4681,
             null,
             null,
             null,
@@ -217746,7 +218510,7 @@
             null
           ],
           "vit": [
-            1.473,
+            1.4676,
             null,
             null,
             null,
@@ -217777,7 +218541,7 @@
             null
           ],
           "vit": [
-            1.472,
+            1.4664,
             null,
             null,
             null,
@@ -217808,7 +218572,7 @@
             null
           ],
           "vit": [
-            1.47,
+            1.465,
             null,
             null,
             null,
@@ -217839,7 +218603,7 @@
             null
           ],
           "vit": [
-            1.468,
+            1.4631,
             null,
             null,
             null,
@@ -217870,7 +218634,7 @@
             null
           ],
           "vit": [
-            1.464,
+            1.4596,
             null,
             null,
             null,
@@ -217901,7 +218665,7 @@
             null
           ],
           "vit": [
-            1.459,
+            1.4544,
             null,
             null,
             null,
@@ -217932,100 +218696,7 @@
             null
           ],
           "vit": [
-            1.453,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "rv": null,
-          "di": null
-        },
-        {
-          "nom": "FERNANDEZ ALPERI H.",
-          "noc": "ESP",
-          "rang": 55,
-          "pos": [
-            55,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "ecart": [
-            50.9,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "vit": [
-            1.443,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "rv": null,
-          "di": null
-        },
-        {
-          "nom": "PITTLIK Zsigmond Gabor",
-          "noc": "HUN",
-          "rang": 56,
-          "pos": [
-            56,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "ecart": [
-            57.1,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "vit": [
-            1.436,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "rv": null,
-          "di": null
-        },
-        {
-          "nom": "ALVAREZ GONZALEZ Unai",
-          "noc": "ESP",
-          "rang": 57,
-          "pos": [
-            57,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "ecart": [
-            58.8,
-            null,
-            null,
-            null,
-            null,
-            null
-          ],
-          "vit": [
-            1.434,
+            1.4492,
             null,
             null,
             null,
