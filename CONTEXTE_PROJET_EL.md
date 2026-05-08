@@ -14,7 +14,7 @@ Application web d'analyse de natation en eau libre, développée pour le Centre 
 
 **Stack technique :**
 - HTML / CSS / JS vanilla (pas de framework)
-- Thème sombre "marine" (voir palette ci-dessous)
+- Thème "marine" (voir palette ci-dessous)
 - Données : fichiers JSON externes chargés via `fetch()` depuis la branche `data`
 - Hébergement : GitHub Pages (dépôt `pierreh-07/app-el`)
 
@@ -56,15 +56,13 @@ app-el/  (branche data)
 
 ### Règle fondamentale d'architecture
 
-Les fichiers HTML chargent les JSON via `fetch()` **directement depuis la branche `data`** sur GitHub raw. Cela fonctionne sur GitHub Pages et en local avec un serveur HTTP. **Ne fonctionne pas en `file://`.**
+Les fichiers HTML chargent les JSON via `fetch()` **directement depuis la branche `data`** sur GitHub raw. **Ne fonctionne pas en `file://`.**
 
 ```js
 // Pattern standard de chargement — pointe vers la branche data
 fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_el.json')
   .then(r => r.json())
-  .then(json => {
-    // ... tout le code JS
-  })
+  .then(json => { /* ... */ })
   .catch(e => {
     document.body.innerHTML = '<p style="color:red;padding:2rem">Erreur chargement : ' + e + '</p>';
   });
@@ -133,20 +131,11 @@ Exemples : golfo26_f · ibiza26_h · singapour25_f · starigrad25_h
 **Structure d'un nageur dans `KO_HF` / `KO_HH` :**
 ```json
 "FABIAN Bettina": [
-  {
-    "l": "CdM Ibiza 2026",
-    "d": "2026",
-    "t": "CDM",
-    "r": 4,
-    "n": 48,
-    "rv": 13,
-    "di": 12
-  }
+  { "l": "CdM Ibiza 2026", "d": "2026", "t": "CDM", "r": 4, "n": 48, "rv": 13, "di": 12 }
 ]
 ```
 
 **⚠️ Point critique — Correspondance des noms :**
-Les clés dans `KO_HF`/`KO_HH` doivent correspondre **exactement** au champ `nom` dans le ponton. Problèmes fréquents :
 - PDF tronque les prénoms : `BRANDT DE MACEDO L.` → compléter
 - Doublons de clés : `DE VALDES Maria` et `de VALDES Maria` peuvent coexister
 
@@ -154,124 +143,178 @@ Les clés dans `KO_HF`/`KO_HH` doivent correspondre **exactement** au champ `nom
 
 ### 3.2 `resultats_10km_el.json`
 
-**Structure réelle de premier niveau (vérifiée mai 2026) :**
+**Structure réelle de premier niveau :**
 ```json
 {
-  "CF":        { ... },   // courses femmes 10km (29 courses en mai 2026)
-  "CH":        { ... },   // courses hommes 10km (28 courses en mai 2026)
-  "DATA_F":    [...],     // liste des nageuses avec profil + historique
-  "DATA_H":    [...],     // liste des nageurs avec profil + historique
+  "CF":        { ... },   // courses femmes 10km (une clé par course)
+  "CH":        { ... },   // courses hommes 10km (une clé par course)
+  "DATA_F":    [...],     // liste des nageuses avec profil + historique (pour pontons)
+  "DATA_H":    [...],     // liste des nageurs avec profil + historique (pour pontons)
   "NOC_FLAGS": { ... }    // emojis drapeaux par NOC
 }
 ```
 
 #### Structure d'une course dans `CF` / `CH`
 
-Clé = identifiant de course (`CDM_GolfoAranci24`, `JO_Paris24`, `golfo26_h`...) :
+Clé = identifiant de course (`CDM_Ibiza25`, `golfo26_h`, `JO_Paris24`…) :
 
 ```json
-"golfo26_h": {
-  "sheet":      "golfo26_h",
-  "label":      "CdM Golfo Aranci 2026",
+"CDM_Ibiza25": {
+  "sheet":      "CDM_Ibiza25",
+  "label":      "CdM Ibiza 2025",
   "type":       "CDM",
-  "date":       "01/05/2026",
-  "conditions": "22°C · Vent NE 12 km/h",
+  "date":       "27/04/2025",
+  "conditions": "16.4°C · Vent NNO ...",
   "nb_tours":   6,
-  "dists":      [1666, 1667, 1667, 1666, 1667, 1667],
-  "dist_cumul": [1666, 3333, 5000, 6666, 8333, 10000],
-  "nb":         67,
-  "groupes": [
-    [ {"n":12, "ecart_fin":0.0, "membres":["NOM Prenom", ...]}, ... ],
-    ...
-  ],
-  "nageurs": [
-    {
-      "nom":   "FONTAINE Logan",
-      "noc":   "FRA",
-      "rang":  1,
-      "pos":   [3, 2, 1, 1, 1, 1],
-      "ecart": [2.1, 0.8, 0.0, 0.0, 0.0, 0.0],
-      "vit":   [1.58, 1.61, 1.63, 1.62, 1.60, 1.64],
-      "rv":    2,
-      "di":    1
-    }
-  ]
+  "dists":      [1574, 1666, 1666, 1666, 1666, 1758],
+  "dist_cumul": [1574, 3240, 4906, 6572, 8238, 9996],
+  "nb":         68,
+  "groupes":    [ [...], [...], ... ],
+  "nageurs":    [ {...}, ... ]
 }
 ```
 
-**Champs nageur dans `CF`/`CH` :**
+**Structure d'un nageur dans `CF`/`CH` :**
+```json
+{
+  "nom":   "FILADELLI Andrea",
+  "noc":   "ITA",
+  "rang":  1,
+  "pos":   [21, 10, 9, 11, 11, 1],
+  "ecart": [11.3, 7.6, 13.3, 7.3, 7.4, 0.0],
+  "vit":   [1.5107, 1.5058, 1.5023, 1.5041, 1.5063, 1.5198],
+  "rv":    null,
+  "di":    null
+}
+```
 
 | Champ | Description |
 |-------|-------------|
-| `pos` | Position au classement à chaque tour (tableau de `nb_tours` valeurs) |
+| `pos` | Position au classement à chaque tour |
 | `ecart` | Écart cumulé sur le leader en secondes à chaque tour |
-| `vit` | Vitesse moyenne en m/s à chaque tour |
+| `vit` | Vitesse cumulative = `dist_cumul[i] / cumul_s[i]` (4 décimales) |
 | `rv` | Rang vitesse piscine (1500m) — peut être `null` |
 | `di` | Indice EL = `rv − rang` · positif = meilleur en course qu'en piscine |
 
-**Champs `groupes[t][i]` :**
+**Structure d'un groupe dans `groupes[tour]` :**
+```json
+{"n": 12, "ecart_fin": 7.3, "membres": ["NOM Prenom", "NOM2 Prenom2", ...]}
+```
 
-| Champ | Description |
-|-------|-------------|
-| `n` | Nombre de nageurs dans le groupe |
-| `ecart_fin` | Écart interne du groupe à la fin du tour (secondes) |
-| `membres` | Liste des noms dans le groupe |
+**⚠️ Règle de regroupement (seuil = 3 secondes) :**  
+Si l'écart entre le nageur `[i]` et le nageur `[i+1]` dépasse **3 secondes**, on coupe et on ouvre un nouveau groupe. **Ce calcul est fait en Python lors de la génération du JSON, il n'y a aucun seuil dans le JS.** `renderGroupes()` lit `c.groupes[]` directement.
+
+---
 
 #### Structure d'un nageur dans `DATA_F` / `DATA_H`
 
 ```json
 {
-  "bib":         5,
-  "nom":         "FONTAINE Logan",
-  "noc":         "FRA",
-  "annee":       1999,
-  "t400":        "3:46.2",
-  "t800":        "7:55.1",
-  "t1500":       "14:52.3",
-  "v400":        1.7671,
-  "v1500":       1.6812,
-  "experience":  18,
-  "respiration": "Gauche",
+  "bib":           1,
+  "nom":           "FILADELLI Andrea",
+  "noc":           "ITA",
+  "annee":         1999,
+  "experience":    12,
+  "t400":          248.86,
+  "t800":          517.33,
+  "t1500":         987.39,
+  "v400":          null,
+  "v800":          null,
+  "v1500":         1.521,
+  "respiration":   "bilatérale",
+  "resultats_cdm": { ... },
+  "resultats_chm": { ... },
   "courses": [
     {
-      "sheet":          "CdM_Ibiza26",
-      "label":          "CdM Ibiza 2026",
+      "sheet":          "CDM_Ibiza25",
+      "label":          "CdM Ibiza 2025",
       "type":           "CDM",
-      "date":           "24/04/2026",
       "format":         "10km",
-      "nb_nageurs":     48,
+      "manche":         "Finale",
+      "nb_nageurs":     68,
+      "date":           "27/04/2025",
+      "dists":          [1574, 1666, ...],
+      "dist_cumul":     [1574, 3240, ...],
       "nb_tours":       6,
-      "rang":           3,
-      "rv":             2,
-      "di":             -1,
-      "dists":          [1666, 1667, 1667, 1666, 1667, 1667],
-      "dist_cumul":     [1666, 3333, 5000, 6666, 8333, 10000],
-      "positions_tour": [4, 3, 3, 3, 3, 3],
-      "vitesses_tour":  [1.58, 1.61, 1.63, 1.62, 1.60, 1.64]
+      "rang":           1,
+      "rv":             null,
+      "di":             null,
+      "positions_tour": [21, 10, 9, 11, 11, 1],
+      "vitesses_tour":  [1.5107, 1.5058, ...]
     }
   ],
   "strategie": {
-    "top5":  [ {"pct":20, "pos_moy":2.1, "nb_moy":18, "vz_norm":0.72, "n_courses":5}, ... ],
-    "hors5": [ {"pct":20, "pos_moy":7.4, "nb_moy":22, "vz_norm":0.61, "n_courses":3}, ... ]
+    "top5":  [ {"pct":0, "pos_moy":3.2, "nb_moy":65.0, "vz_norm":1.512, "n_courses":5}, ... ],
+    "hors5": [ ... ]
   }
 }
 ```
 
-**Champs strategie `top5`/`hors5` :**
+**⚠️ Règle de synchronisation critique :**  
+`positions_tour` dans `DATA_H/F` est une **copie exacte** de `pos[]` du même nageur dans `CH/CF` pour la même course. Idem pour `vitesses_tour` = `vit[]`. Ces deux paires doivent toujours être synchronisées.
+
+**Champs `t400`/`t800`/`t1500` :** temps en **secondes numériques** (pas de chaîne `"3:46.2"`).  
+`v400`/`v800` peuvent être `null` si non disponibles.
+
+**Champs `strategie.top5` / `strategie.hors5` :**
 
 | Champ | Description |
 |-------|-------------|
-| `pct` | Point de la course en % (20, 40, 60, 80, 100) |
-| `pos_moy` | Position moyenne du nageur dans le peloton |
-| `nb_moy` | Taille moyenne du peloton à ce point |
-| `vz_norm` | Vitesse normalisée du peloton (0=lent, 1=rapide) |
+| `pct` | Jalon de la course en % — valeurs : 0, 10, 20, …, 100 |
+| `pos_moy` | Position moyenne du nageur dans le peloton à ce jalon |
+| `nb_moy` | Taille moyenne du peloton (= `nb_nageurs` des courses du groupe) |
+| `vz_norm` | Vitesse moyenne du peloton à ce jalon (m/s, non normalisée malgré le nom) |
 | `n_courses` | Nombre de courses ayant servi au calcul |
+
+Règles :
+- `top5` = courses où `rang <= 5`, `hors5` = courses où `rang > 5`
+- Jalons calculés à **0, 10, 20, …, 100%** de la distance totale
+- Le JS lit `strategie` directement depuis le JSON — **aucun calcul côté client**
 
 ---
 
-## 4. Les fichiers d'analyse
+## 4. Sources de données et calcul des champs
 
-### 4.1 `Analyse_KO_Eau_libre.html`
+### Sources
+
+| Donnée | Source |
+|--------|--------|
+| Temps par tour | Excel : `Donnees_EL_Hommes.xlsx` / `Donnees_EL_Femmes.xlsx` — feuille = clé de la course |
+| Métadonnées (label, date, conditions) | Saisie manuelle depuis les PDFs officiels World Aquatics |
+| `rv` et `di` | Saisie manuelle — classement mondial World Aquatics au moment de la course |
+
+**Rôle de Claude vs Claude Code :**
+- **Claude** lit les Excel et PDFs (extraction des données brutes)
+- **Claude Code** écrit le JSON (calcul et insertion)
+
+### Formules de calcul depuis les temps bruts
+
+```
+cumul_s[i]  = somme des temps de tour 1 à i (en secondes)
+ecart[i]    = round(cumul_s[i] - min(cumuls_valides[i]), 1)
+vit[i]      = round(dist_cumul[i] / cumul_s[i], 4)
+pos[i]      = rang du nageur parmi tous les cumuls valides au tour i
+```
+
+Un nageur est considéré **DNF** si son temps est absent ou nul pour un tour avant le dernier.
+
+### Variantes de colonnes Excel — hommes
+
+| Champ | Variantes connues |
+|-------|-----------------|
+| Nom | `Nom` ou `Nom_complet` |
+| NOC | `Nation` ou `NOC` |
+| Temps de tour | `Tour1` … `TourN` |
+| Distances | `Distance_tour1` … `Distance_tourN` |
+| À ignorer | `Distance_tour5.1` (doublon parasite) |
+
+Certaines feuilles ont **5 tours** (courses 5km ou parcours court), d'autres **6 ou 7**. Toujours lire `nb_tours` depuis la feuille, ne pas supposer.
+
+---
+
+## 5. Les fichiers d'analyse
+
+### 5.1 `Analyse_KO_Eau_libre.html`
 
 Outil d'analyse des courses KO (3km Sprint). Charge `resultats_ko_el.json` depuis la branche `data`.
 
@@ -285,7 +328,7 @@ var FLAGS = json.KO_FLAGS;
 
 ---
 
-### 4.2 `analyse_course_el.html` (583 lignes)
+### 5.2 `analyse_course_el.html` (583 lignes)
 
 Outil d'analyse des courses 10km. Charge `resultats_10km_el.json` depuis la branche `data`.
 
@@ -313,14 +356,14 @@ function courses(){ return G==='f' ? CF : CH; }
 
 **Ce que chaque vue lit dans le JSON :**
 
-- **Groupes** : `c.groupes[t][i].n`, `.ecart_fin`, `.membres` — **les groupes sont pré-calculés dans le JSON, aucun seuil dans le JS**
-- **Indice EL** : `ng.rv` (rang vitesse piscine) et `ng.di` (indice EL) dans `c.nageurs[]`
-- **Positions** : `ng.pos[]` (position à chaque tour) dans `c.nageurs[]`
-- **Focus** : `ng.vit[]` (vitesses), `ng.ecart[]` (écarts), `ng.rang`, `ng.noc`
+- **Groupes** : `c.groupes[t][i].n`, `.ecart_fin`, `.membres` — groupes pré-calculés en Python
+- **Indice EL** : `ng.rv` et `ng.di` dans `c.nageurs[]`
+- **Positions** : `ng.pos[]` dans `c.nageurs[]`
+- **Focus** : `ng.vit[]`, `ng.ecart[]`, `ng.rang`, `ng.noc`
 
 ---
 
-### 4.3 `Ponton10km.html` (1176 lignes)
+### 5.3 `Ponton10km.html` (1176 lignes)
 
 Ponton pour les courses 10km. Charge `resultats_10km_el.json` depuis la branche `data`.
 
@@ -349,29 +392,22 @@ const data = () => G==='f' ? DATA_F : DATA_H;
 | `renderStrategie(ng)` | 499 | Graphique ovales stratégie cigare |
 | `switchGender(g)` | 824 | Bascule F/H |
 
-**Ce que `renderCourseDetail` lit :**
+**⚠️ `renderCourseDetail` ligne 720 — crash si `positions_tour` absent :**
 ```js
-// Cherche la course dans ng.courses[] par son sheet
-const c = ng.courses.find(x => x.sheet === sheet);
-// Lit directement :
-c.positions_tour   // ⚠️ crash si absent (pas de vérification null)
-c.vitesses_tour
-c.dists
-c.nb_nageurs
-c.nb_tours
-c.rang
+const nb = c.positions_tour.length;  // TypeError si null/undefined
 ```
-
-**Ce que `renderStrategie` lit :**
+Fix à appliquer :
 ```js
-const strat = ng.strategie;
-// Lit : strat.top5[], strat.hors5[]
-// Chaque entrée : {pct, pos_moy, nb_moy, vz_norm, n_courses}
+if (!c.positions_tour || !c.positions_tour.length) {
+  document.getElementById('fiche-content').innerHTML =
+    '<div class="fiche"><div class="empty-r">Positions par tour non disponibles.</div></div>';
+  return;
+}
 ```
 
 ---
 
-## 5. Les fichiers pontons KO
+## 6. Les fichiers pontons KO
 
 ### `ponton_ko_ibiza2026.html`
 
@@ -385,9 +421,7 @@ Modèle de ponton pour les courses KO. Charge `resultats_ko_el.json`.
 
 ---
 
-## 6. Palette de couleurs commune
-
-Tous les fichiers utilisent le même thème "marine" :
+## 7. Palette de couleurs commune
 
 ```css
 --bg:       #f4f7fb;
@@ -402,55 +436,71 @@ Tous les fichiers utilisent le même thème "marine" :
 
 ---
 
-## 7. Workflow de mise à jour
+## 8. Workflow de mise à jour
 
 ### Après une course KO
 
 1. Ouvrir `resultats_ko_el.json` (branche `data`)
 2. Ajouter la course dans `KO_DATA`
 3. Ajouter les entrées dans `KO_HF` ou `KO_HH`
-4. `git push` sur la branche `data` → GitHub Pages se met à jour en 1-2 min
+4. `git push` sur la branche `data`
 
-### Après une course 10km
+### Checklist — ajouter une course 10km
 
-1. Ouvrir `resultats_10km_el.json` (branche `data`)
-2. Ajouter la course dans `CF` (femmes) ou `CH` (hommes) avec :
+1. **Ajouter l'entrée dans `CH` ou `CF`** avec :
+   - `groupes[][]` calculés (seuil 3s entre nageurs consécutifs)
    - `nageurs[]` avec `pos`, `ecart`, `vit`, `rv`, `di`
-   - `groupes[][]` avec `n`, `ecart_fin`, `membres` (calculé par le script Python)
-3. Ajouter les courses dans `DATA_F` ou `DATA_H` (chaque nageur) avec :
-   - `positions_tour[]`, `vitesses_tour[]`
-4. Recalculer `strategie.top5` et `strategie.hors5` pour les nageurs concernés
+2. **Mettre à jour `DATA_H` ou `DATA_F`** pour chaque nageur de la course :
+   - Ajouter ou mettre à jour son entrée avec `positions_tour`, `vitesses_tour`, `rang`, `nb_nageurs`
+   - `positions_tour` doit être identique à `pos[]` de l'entrée `CH`/`CF`
+3. **Recalculer `strategie`** pour tous les nageurs impactés (jalons 0–100% par 10%)
+4. **Valider le JSON :**
+   ```bash
+   python3 -c "import json; json.load(open('resultats_10km_el.json')); print('OK')"
+   ```
 5. `git push` sur la branche `data`
+
+### Avant un nouveau ponton
+
+1. Extraire la startlist du PDF officiel World Aquatics
+2. Vérifier la correspondance exacte des noms avec `DATA_F`/`DATA_H` (⚠️ prénoms tronqués !)
+3. Mettre à jour `CONFIG`, `STARTLIST_F/H` dans le fichier ponton
+4. Récupérer la météo sur Open-Meteo et remplir `METEO_F/H`
+5. Tester en local avec Live Server
+6. `git push` sur `main`
+
+**Source météo recommandée :** Open-Meteo (gratuit, sans clé API)
+```
+https://api.open-meteo.com/v1/forecast?latitude=41.00&longitude=9.63
+  &hourly=temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m
+  &timezone=Europe/Rome&forecast_days=1
+```
 
 ### Test en local
 
 ```bash
-# Option 1 — VS Code Live Server
-# Clic droit sur index.html → Open with Live Server
-
-# Option 2 — Python
 python3 -m http.server 8000
 # puis ouvrir http://localhost:8000
 ```
 
-**⚠️ Le fetch pointe vers GitHub raw, pas localhost.** En local, modifier temporairement l'URL du fetch pour pointer vers `data/resultats_10km_el.json` si un fichier local est disponible.
+**⚠️ Le fetch pointe vers GitHub raw**, pas localhost. En local, modifier temporairement l'URL du fetch pour pointer vers un fichier local.
 
 ---
 
-## 8. Bugs connus et diagnostic (mai 2026)
+## 9. Bugs connus et diagnostic (mai 2026)
 
-### 8.1 Hommes non fonctionnels dans `analyse_course_el.html` et `Ponton10km.html`
+### 9.1 Hommes non fonctionnels dans `analyse_course_el.html` et `Ponton10km.html`
 
 **Diagnostic complet effectué le 08/05/2026.**
 
-La branche `data` contient bien 28 courses dans `CH` et 28 nageurs dans `DATA_H`, mais **le script Python de génération n'a traité complètement que `golfo26_h`**. Pour les 27 autres courses hommes :
+La branche `data` contient bien 28 courses dans `CH` et des nageurs dans `DATA_H`, mais **le script Python de génération n'a traité complètement que `golfo26_h`**. Pour les 27 autres courses hommes :
 
 | Problème | Portée | Symptôme visible |
 |----------|--------|-----------------|
 | `CH[x].groupes` vide `[]` | 27/28 courses | Onglet Groupes : SVG blanc |
 | `CH[x].nageurs[i].rv` = null | 27/28 courses | Onglet Indice EL : "Données non disponibles" |
 | `CH[x].nageurs[i].di` = null | 27/28 courses | Indice EL absent |
-| `DATA_H[i].courses[c].positions_tour` absent | 27/28 courses + 5 sheets inconnus | **Crash JS** dans `renderCourseDetail` |
+| `DATA_H[i].courses[c].positions_tour` absent | 27/28 courses | **Crash JS** dans `renderCourseDetail` |
 | `DATA_H[i].strategie` vide | 100% nageurs H | Onglet Stratégie : "Pas assez de données" |
 | `DATA_F[i].strategie` vide | 100% nageurs F | Idem côté femmes |
 | `CH['CdM_Ibiza26']` absent | 1 course | Course manquante dans le sélecteur H |
@@ -458,43 +508,21 @@ La branche `data` contient bien 28 courses dans `CH` et 28 nageurs dans `DATA_H`
 **Sheets présents dans `DATA_H` mais absents de `CH`** (à régulariser) :
 `golfo25_h`, `ibiza25_h`, `ibiza26_h`, `meet4_25_h`, `singapour25_h`, `starigrad25_h`
 
-**Cause racine :** le script Python de génération du JSON n'a pas exécuté les étapes suivantes pour les courses hommes historiques :
-- calcul des groupes par tour (seuil à vérifier dans le script Python)
-- croisement avec les données piscine (`rv`, `di`)
-- calcul des `positions_tour` / `vitesses_tour` dans `DATA_H`
-- calcul de `strategie.top5` / `strategie.hors5`
+### 9.2 Autres points de vigilance
 
-### 8.2 Crash JS dans `renderCourseDetail` (Ponton10km)
-
-```js
-// Ligne 720 — pas de vérification null
-const nb = c.positions_tour.length;  // ← TypeError si positions_tour absent
-```
-
-**Fix à appliquer :**
-```js
-if (!c.positions_tour || !c.positions_tour.length) {
-  document.getElementById('fiche-content').innerHTML =
-    '<div class="fiche"><div class="empty-r">Positions par tour non disponibles.</div></div>';
-  return;
-}
-```
-
-### 8.3 Autres points de vigilance
-
-- **Noms tronqués dans les PDF** : toujours compléter les prénoms avant insertion dans le JSON.
-- **Correspondance des noms** : la moindre différence (espace, tiret, majuscule) entre le nom dans la startlist du ponton et la clé dans `DATA_F`/`DATA_H` empêche l'affichage de l'historique.
+- **Noms tronqués dans les PDF** : compléter les prénoms avant insertion dans le JSON.
+- **Correspondance des noms** : moindre différence (espace, tiret, majuscule) → historique absent dans le ponton.
 - **fetch() en `file://`** : impossible. Toujours tester avec un serveur local.
-- **Groupes calculés côté Python, pas JS** : `renderGroupes` lit `c.groupes[]` directement, aucun seuil dans le HTML. Le seuil de séparation des groupes est dans le script Python.
+- **Groupes calculés côté Python** : le seuil de 3s est dans le script Python, pas dans le JS.
 
 ---
 
-## 9. Backlog / Évolutions prévues
+## 10. Backlog / Évolutions prévues
 
 ### Correctifs prioritaires
 - [ ] Régénérer `resultats_10km_el.json` : remplir `CH.groupes`, `rv`/`di`, `positions_tour`, `vitesses_tour` et `strategie` pour les 27 courses hommes manquantes
 - [ ] Ajouter `CH['CdM_Ibiza26']`
-- [ ] Ajouter guard null dans `renderCourseDetail` (ligne 720)
+- [ ] Ajouter guard null dans `renderCourseDetail` ligne 720
 - [ ] Régulariser les 6 sheets `_h` présents dans `DATA_H` mais absents de `CH`
 
 ### Applis analyse
@@ -504,5 +532,5 @@ if (!c.positions_tour || !c.positions_tour.length) {
 - [ ] Automatiser la récupération de la météo via l'API Open-Meteo au chargement
 
 ### Maintenance JSON
+- [ ] Script Python : documenter et vérifier le seuil de regroupement (confirmé à 3s)
 - [ ] Script Python pour extraire automatiquement les résultats depuis les PDF World Aquatics
-- [ ] Script Python : vérifier et documenter le seuil de regroupement utilisé pour `groupes[]`
