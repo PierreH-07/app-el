@@ -2,7 +2,7 @@
 
 > Document de référence à placer dans les fichiers du projet.  
 > À partager avec Claude en début de chat pour reprendre le développement sans perte de contexte.  
-> Dernière mise à jour : 01/05/2026
+> Dernière mise à jour : 08/05/2026
 
 ---
 
@@ -15,43 +15,55 @@ Application web d'analyse de natation en eau libre, développée pour le Centre 
 **Stack technique :**
 - HTML / CSS / JS vanilla (pas de framework)
 - Thème sombre "marine" (voir palette ci-dessous)
-- Données : fichiers JSON externes chargés via `fetch()`
+- Données : fichiers JSON externes chargés via `fetch()` depuis la branche `data`
 - Hébergement : GitHub Pages (dépôt `pierreh-07/app-el`)
 
 ---
 
 ## 2. Architecture des fichiers
 
+### Structure des branches
+
+Le dépôt utilise **deux branches distinctes** avec des rôles séparés :
+
+| Branche | Contenu | Rôle |
+|---------|---------|------|
+| `main` | Fichiers HTML, README, documentation | Code source de l'application |
+| `data` | Fichiers JSON de résultats uniquement | Source de vérité des données |
+
+**⚠️ Il n'y a pas de dossier `data/` dans `main`.** Les JSON sont exclusivement dans la branche `data`.
+
+### Branche `main`
+
 ```
-app-el/
+app-el/  (branche main)
 ├── index.html                      ← page d'accueil, liens vers toutes les applis
 ├── Analyse_KO_Eau_libre.html       ← analyse résultats courses KO (3km Sprint)
 ├── analyse_course_el.html          ← analyse résultats courses 10km
 ├── Ponton10km.html                 ← ponton startlist 10km (avec météo)
 ├── ponton_ko_ibiza2026.html        ← ponton startlist KO Ibiza 2026 (modèle)
-├── video_analyse_el.html           ← outil tagging vidéo (bureau)
-├── observer_el.html                ← outil observation terrain (mobile)
-├── data/
-│   ├── resultats_ko_el.json        ← SOURCE DE VÉRITÉ courses KO
-│   └── resultats_10km_el.json      ← SOURCE DE VÉRITÉ courses 10km
-└── startlists/
-    └── startlist_golfo26_h.json    ← exemple format startlist
+├── README.md
+└── CONTEXTE_PROJET_EL.md
+```
+
+### Branche `data`
+
+```
+app-el/  (branche data)
+├── resultats_10km_el.json          ← SOURCE DE VÉRITÉ courses 10km
+└── resultats_ko_el.json            ← SOURCE DE VÉRITÉ courses KO
 ```
 
 ### Règle fondamentale d'architecture
 
-Les fichiers HTML **ne contiennent plus de données embarquées**. Ils chargent les JSON via `fetch()` au chargement de la page. Cela ne fonctionne qu'avec un serveur HTTP (GitHub Pages ✓, Live Server VS Code ✓). **Ne fonctionne pas en `file://`.**
+Les fichiers HTML chargent les JSON via `fetch()` **directement depuis la branche `data`** sur GitHub raw. Cela fonctionne sur GitHub Pages et en local avec un serveur HTTP. **Ne fonctionne pas en `file://`.**
 
 ```js
-// Pattern standard de chargement dans tous les fichiers HTML
-fetch('data/resultats_ko_el.json')
+// Pattern standard de chargement — pointe vers la branche data
+fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_el.json')
   .then(r => r.json())
   .then(json => {
-    var DATA  = json.KO_DATA;
-    var HF    = json.KO_HF;
-    var HH    = json.KO_HH;
-    var FLAGS = json.KO_FLAGS;
-    // ... tout le code JS qui utilise ces variables
+    // ... tout le code JS
   })
   .catch(e => {
     document.body.innerHTML = '<p style="color:red;padding:2rem">Erreur chargement : ' + e + '</p>';
@@ -62,15 +74,15 @@ fetch('data/resultats_ko_el.json')
 
 ## 3. Les deux fichiers JSON — Sources de vérité
 
-### 3.1 `data/resultats_ko_el.json`
+### 3.1 `resultats_ko_el.json`
 
 Structure de premier niveau :
 ```json
 {
-  "KO_DATA": { ... },   // résultats de chaque course KO
-  "KO_HF":  { ... },   // historique individuel femmes
-  "KO_HH":  { ... },   // historique individuel hommes
-  "KO_FLAGS": { ... }  // emojis drapeaux par NOC
+  "KO_DATA":  { ... },   // résultats de chaque course KO
+  "KO_HF":   { ... },   // historique individuel femmes
+  "KO_HH":   { ... },   // historique individuel hommes
+  "KO_FLAGS": { ... }   // emojis drapeaux par NOC
 }
 ```
 
@@ -87,26 +99,16 @@ Exemples : golfo26_f · ibiza26_h · singapour25_f · starigrad25_h
   "label": "CdM Ibiza 2026",
   "date": "25/04/2026",
   "genre": "F",
-  "type": "CDM",           // CDM | CHM | CHE | JO
+  "type": "CDM",
   "nb_series": 2,
   "nq_par_serie": 10,
   "fastest_serie": 2,
-  "stats_series": {
-    "1": {
-      "1er": "18:20.1",
-      "dernier_q": "18:25.6",
-      "premier_elim": "18:26.6",
-      "ecart_1_q": 5.5,
-      "marge_coupure": 1.0,
-      "nb_starts": 28,
-      "nb_qualifies": 10
-    }
-  },
-  "series": { "1": [ /* nageurs */ ], "2": [ /* nageurs */ ] },
-  "placement_demi": [ /* ordre de départ */ ],
-  "demi": [ /* résultats */ ],
-  "placement_finale": [ /* ordre de départ */ ],
-  "finale": [ /* résultats */ ]
+  "stats_series": { "1": { ... } },
+  "series": { "1": [...], "2": [...] },
+  "placement_demi": [...],
+  "demi": [...],
+  "placement_finale": [...],
+  "finale": [...]
 }
 ```
 
@@ -120,11 +122,11 @@ Exemples : golfo26_f · ibiza26_h · singapour25_f · starigrad25_h
   "temps_s": 1100.1,
   "ecart_s": 0.0,
   "qualifie": true,
-  "t1500": 987.39,    // temps 1er tour en secondes (optionnel)
-  "t800": 517.33,     // temps tour 800m en secondes (optionnel)
-  "t400": 248.86,     // temps tour 400m en secondes (optionnel)
-  "rv": 13,           // rang virtuel (classement mondial au moment de la course)
-  "di": 12            // delta index = rv - rang obtenu (positif = surperformance)
+  "t1500": 987.39,
+  "t800": 517.33,
+  "t400": 248.86,
+  "rv": 13,
+  "di": 12
 }
 ```
 
@@ -132,59 +134,138 @@ Exemples : golfo26_f · ibiza26_h · singapour25_f · starigrad25_h
 ```json
 "FABIAN Bettina": [
   {
-    "l": "CdM Ibiza 2026",   // label lisible
-    "d": "2026",              // année
-    "t": "CDM",               // type : CDM | CHM | CHE | JO
-    "r": 4,                   // rang final (finale, ou série si pas de finale)
-    "n": 48,                  // nombre total de participants
-    "rv": 13,                 // rang virtuel
-    "di": 12                  // delta index
+    "l": "CdM Ibiza 2026",
+    "d": "2026",
+    "t": "CDM",
+    "r": 4,
+    "n": 48,
+    "rv": 13,
+    "di": 12
   }
 ]
 ```
 
 **⚠️ Point critique — Correspondance des noms :**
-Les clés dans `KO_HF`/`KO_HH` doivent correspondre **exactement** au champ `nom` de la startlist pour que l'historique s'affiche dans le ponton. Problèmes fréquents :
-- PDF tronque les prénoms : `BRANDT DE MACEDO L.` → compléter en `BRANDT DE MACEDO Leonard`
-- Doublons de clés : `DE VALDES Maria` et `de VALDES Maria` peuvent coexister → vérifier
-- Accents et tirets : vérifier la cohérence entre les sources
+Les clés dans `KO_HF`/`KO_HH` doivent correspondre **exactement** au champ `nom` dans le ponton. Problèmes fréquents :
+- PDF tronque les prénoms : `BRANDT DE MACEDO L.` → compléter
+- Doublons de clés : `DE VALDES Maria` et `de VALDES Maria` peuvent coexister
 
 ---
 
-### 3.2 `data/resultats_10km_el.json`
+### 3.2 `resultats_10km_el.json`
 
-Structure analogue au JSON KO. Les sections principales sont (à confirmer selon la structure exacte du fichier généré) :
-
+**Structure réelle de premier niveau (vérifiée mai 2026) :**
 ```json
 {
-  "DATA_F": { ... },   // résultats par course 10km femmes
-  "DATA_H": { ... },   // résultats par course 10km hommes
-  "HF": { ... },       // historique individuel femmes 10km
-  "HH": { ... }        // historique individuel hommes 10km
+  "CF":        { ... },   // courses femmes 10km (29 courses en mai 2026)
+  "CH":        { ... },   // courses hommes 10km (28 courses en mai 2026)
+  "DATA_F":    [...],     // liste des nageuses avec profil + historique
+  "DATA_H":    [...],     // liste des nageurs avec profil + historique
+  "NOC_FLAGS": { ... }    // emojis drapeaux par NOC
 }
 ```
 
-**Convention de nommage des clés :** même convention que le KO (`golfo26_h`, etc.)
+#### Structure d'une course dans `CF` / `CH`
 
-**Structure d'un nageur dans une course 10km :**
+Clé = identifiant de course (`CDM_GolfoAranci24`, `JO_Paris24`, `golfo26_h`...) :
+
 ```json
-{
-  "rang": 1,
-  "nom": "VELLY Sacha",
-  "noc": "FRA",
-  "temps": "1:49:07.5",
-  "temps_s": 6547.5,
-  "ecart_s": 0.0,
-  "t_1666": 1061.5,   // temps cumulé au passage 1666m en secondes
-  "t_3333": 2148.4,
-  "t_5000": 3262.9,
-  "t_6666": 4373.6,
-  "t_8333": 5463.3,
-  "rv": null,         // rang virtuel (peut être null si non renseigné)
-  "di": null,         // delta index (peut être null)
-  "statut": "FIN"     // FIN | DNF | DNS | DSQ
+"golfo26_h": {
+  "sheet":      "golfo26_h",
+  "label":      "CdM Golfo Aranci 2026",
+  "type":       "CDM",
+  "date":       "01/05/2026",
+  "conditions": "22°C · Vent NE 12 km/h",
+  "nb_tours":   6,
+  "dists":      [1666, 1667, 1667, 1666, 1667, 1667],
+  "dist_cumul": [1666, 3333, 5000, 6666, 8333, 10000],
+  "nb":         67,
+  "groupes": [
+    [ {"n":12, "ecart_fin":0.0, "membres":["NOM Prenom", ...]}, ... ],
+    ...
+  ],
+  "nageurs": [
+    {
+      "nom":   "FONTAINE Logan",
+      "noc":   "FRA",
+      "rang":  1,
+      "pos":   [3, 2, 1, 1, 1, 1],
+      "ecart": [2.1, 0.8, 0.0, 0.0, 0.0, 0.0],
+      "vit":   [1.58, 1.61, 1.63, 1.62, 1.60, 1.64],
+      "rv":    2,
+      "di":    1
+    }
+  ]
 }
 ```
+
+**Champs nageur dans `CF`/`CH` :**
+
+| Champ | Description |
+|-------|-------------|
+| `pos` | Position au classement à chaque tour (tableau de `nb_tours` valeurs) |
+| `ecart` | Écart cumulé sur le leader en secondes à chaque tour |
+| `vit` | Vitesse moyenne en m/s à chaque tour |
+| `rv` | Rang vitesse piscine (1500m) — peut être `null` |
+| `di` | Indice EL = `rv − rang` · positif = meilleur en course qu'en piscine |
+
+**Champs `groupes[t][i]` :**
+
+| Champ | Description |
+|-------|-------------|
+| `n` | Nombre de nageurs dans le groupe |
+| `ecart_fin` | Écart interne du groupe à la fin du tour (secondes) |
+| `membres` | Liste des noms dans le groupe |
+
+#### Structure d'un nageur dans `DATA_F` / `DATA_H`
+
+```json
+{
+  "bib":         5,
+  "nom":         "FONTAINE Logan",
+  "noc":         "FRA",
+  "annee":       1999,
+  "t400":        "3:46.2",
+  "t800":        "7:55.1",
+  "t1500":       "14:52.3",
+  "v400":        1.7671,
+  "v1500":       1.6812,
+  "experience":  18,
+  "respiration": "Gauche",
+  "courses": [
+    {
+      "sheet":          "CdM_Ibiza26",
+      "label":          "CdM Ibiza 2026",
+      "type":           "CDM",
+      "date":           "24/04/2026",
+      "format":         "10km",
+      "nb_nageurs":     48,
+      "nb_tours":       6,
+      "rang":           3,
+      "rv":             2,
+      "di":             -1,
+      "dists":          [1666, 1667, 1667, 1666, 1667, 1667],
+      "dist_cumul":     [1666, 3333, 5000, 6666, 8333, 10000],
+      "positions_tour": [4, 3, 3, 3, 3, 3],
+      "vitesses_tour":  [1.58, 1.61, 1.63, 1.62, 1.60, 1.64]
+    }
+  ],
+  "strategie": {
+    "top5":  [ {"pct":20, "pos_moy":2.1, "nb_moy":18, "vz_norm":0.72, "n_courses":5}, ... ],
+    "hors5": [ {"pct":20, "pos_moy":7.4, "nb_moy":22, "vz_norm":0.61, "n_courses":3}, ... ]
+  }
+}
+```
+
+**Champs strategie `top5`/`hors5` :**
+
+| Champ | Description |
+|-------|-------------|
+| `pct` | Point de la course en % (20, 40, 60, 80, 100) |
+| `pos_moy` | Position moyenne du nageur dans le peloton |
+| `nb_moy` | Taille moyenne du peloton à ce point |
+| `vz_norm` | Vitesse normalisée du peloton (0=lent, 1=rapide) |
+| `n_courses` | Nombre de courses ayant servi au calcul |
 
 ---
 
@@ -192,262 +273,159 @@ Structure analogue au JSON KO. Les sections principales sont (à confirmer selon
 
 ### 4.1 `Analyse_KO_Eau_libre.html`
 
-Outil d'analyse des courses KO (3km Sprint). Charge `data/resultats_ko_el.json`.
+Outil d'analyse des courses KO (3km Sprint). Charge `resultats_ko_el.json` depuis la branche `data`.
 
-**Variables JS utilisées après le fetch :**
+**Variables JS après le fetch :**
 ```js
-var DATA  = json.KO_DATA;   // données de toutes les courses
-var HF    = json.KO_HF;     // historique femmes
-var HH    = json.KO_HH;     // historique hommes
-var FLAGS = json.KO_FLAGS;  // drapeaux
-var GENRE = 'F';            // genre actif ('F' ou 'H')
-var COMP  = null;           // course sélectionnée
+var DATA  = json.KO_DATA;
+var HF    = json.KO_HF;
+var HH    = json.KO_HH;
+var FLAGS = json.KO_FLAGS;
 ```
-
-**Fonctionnalités :**
-- Sélecteur genre F/H
-- Sélecteur de course (liste des clés de `KO_DATA`)
-- Affichage des résultats séries / demi / finale
-- Profil nageur au clic : historique personnel, rang virtuel, delta index
-- Barres visuelles de comparaison des temps
 
 ---
 
-### 4.2 `analyse_course_el.html`
+### 4.2 `analyse_course_el.html` (583 lignes)
 
-Outil d'analyse des courses 10km. Charge `data/resultats_10km_el.json`.
+Outil d'analyse des courses 10km. Charge `resultats_10km_el.json` depuis la branche `data`.
 
-**Fonctionnalités :**
-- Sélecteur genre F/H
-- Sélecteur de course
-- Affichage des résultats avec temps de passage par tour
-- Stratégie "cigare" : analyse de la régularité des tours (variance des vitesses)
-- Profil nageur : historique + graphique des vitesses par tour
+**Variables JS après le fetch :**
+```js
+const CF = json.CF;
+const CH = json.CH || {};
+```
+
+**Fonction de routage genre :**
+```js
+function courses(){ return G==='f' ? CF : CH; }
+```
+
+**Fonctions JS principales :**
+
+| Fonction | Ligne | Rôle |
+|----------|-------|------|
+| `setGender(g)` | 168 | Bascule F/H, reconstruit le sélecteur |
+| `buildCourseSelector()` | 178 | Peuple le `<select>` depuis `CF` ou `CH` |
+| `renderGroupes(c)` | 248 | Affiche les groupes par tour (SVG) |
+| `renderIndice(c)` | 350 | Affiche le nuage rang-vitesse + tableau indice EL |
+| `renderPositions(c)` | 408 | Affiche l'évolution des positions tour/tour |
+| `renderFocus(c)` | 475 | Fiche détaillée d'un nageur |
+
+**Ce que chaque vue lit dans le JSON :**
+
+- **Groupes** : `c.groupes[t][i].n`, `.ecart_fin`, `.membres` — **les groupes sont pré-calculés dans le JSON, aucun seuil dans le JS**
+- **Indice EL** : `ng.rv` (rang vitesse piscine) et `ng.di` (indice EL) dans `c.nageurs[]`
+- **Positions** : `ng.pos[]` (position à chaque tour) dans `c.nageurs[]`
+- **Focus** : `ng.vit[]` (vitesses), `ng.ecart[]` (écarts), `ng.rang`, `ng.noc`
 
 ---
 
-## 5. Les fichiers pontons
+### 4.3 `Ponton10km.html` (1176 lignes)
 
-### 5.1 Rôle des pontons
+Ponton pour les courses 10km. Charge `resultats_10km_el.json` depuis la branche `data`.
 
-Les pontons sont des pages utilisées **la veille et le jour de la course** pour visualiser la startlist, les profils des nageurs, la météo prévue et la carte du plan d'eau.
-
-### 5.2 `Ponton10km.html`
-
-Ponton pour les courses 10km. Charge `data/resultats_10km_el.json` pour afficher l'historique de chaque nageur.
-
-**Structure de la startlist locale (embarquée dans le HTML) :**
+**Variables JS après le fetch :**
 ```js
-var STARTLIST_F = [
-  { bib: 1, nom: "JOHNSON Moesha", noc: "AUS", couloir: 1 },
-  { bib: 2, nom: "TADDEUCCI Ginevra", noc: "ITA", couloir: 2 },
-  // ...
-];
-var STARTLIST_H = [ /* idem */ ];
+var NOC_FLAGS = json.NOC_FLAGS;
+var DATA_F    = json.DATA_F;
+var DATA_H    = json.DATA_H;
 ```
 
-**Météo (embarquée dans le HTML, à mettre à jour manuellement avant chaque course) :**
+**Fonction de routage genre :**
 ```js
-var METEO_F = [
-  { h: "09h", t: 18.5, v: 12.3, r: 28.6, dir: "NE" },
-  // une entrée par heure, de -3h à +3h autour du départ
-];
-var METEO_H = [ /* idem */ ];
+const data = () => G==='f' ? DATA_F : DATA_H;
 ```
 
-| Champ | Description | Unité |
-|-------|-------------|-------|
-| `h` | Heure | `"10h"` |
-| `t` | Température | °C |
-| `v` | Vitesse vent | km/h |
-| `r` | Rafales | km/h |
-| `dir` | Direction | points cardinaux |
+**Fonctions JS principales :**
 
-**Source météo recommandée :** Open-Meteo (gratuit, sans clé API)
-```
-https://api.open-meteo.com/v1/forecast?latitude=41.00&longitude=9.63
-  &hourly=temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m
-  &timezone=Europe/Rome&forecast_days=1
-```
+| Fonction | Ligne | Rôle |
+|----------|-------|------|
+| `renderHist()` | 346 | Histogramme vitesses piscine (SVG) |
+| `tap(bib)` | 452 | Clic sur un nageur, ouvre le panel |
+| `renderProfil(ng)` | 612 | Fiche profil : temps piscine, stats EL |
+| `renderCoursesList(ng)` | 662 | Liste des courses du nageur |
+| `selectCourse(sheet)` | 697 | Sélectionne une course pour le détail |
+| `renderCourseDetail(ng, sheet)` | 705 | Graphique positions + vitesses par tour |
+| `renderStrategie(ng)` | 499 | Graphique ovales stratégie cigare |
+| `switchGender(g)` | 824 | Bascule F/H |
 
-**Config de la compétition (embarquée dans le HTML) :**
+**Ce que `renderCourseDetail` lit :**
 ```js
-var CONFIG = {
-  titre: "Ponton 10km · Golfo Aranci 2026",
-  date_f: "1er mai 2026",
-  heure_f: "12h00",
-  date_h: "1er mai 2026",
-  heure_h: "09h00",
-  lieu: "Golfo Aranci, Sardaigne",
-};
+// Cherche la course dans ng.courses[] par son sheet
+const c = ng.courses.find(x => x.sheet === sheet);
+// Lit directement :
+c.positions_tour   // ⚠️ crash si absent (pas de vérification null)
+c.vitesses_tour
+c.dists
+c.nb_nageurs
+c.nb_tours
+c.rang
 ```
 
-**Fonctionnalités affichées :**
-- Visualisation du ponton (position des nageurs sur le ponton de départ)
-- Profil individuel au clic : historique des courses, indices EL, stratégie cigare
-- Météo heure par heure (différenciée F/H selon les heures de départ)
-- Carte du plan d'eau
-
-**Indices EL et stratégie cigare :**
-- **Indice EL** : calculé à partir du champ `di` (delta index) de l'historique. Mesure la capacité à sur/sous-performer par rapport au classement mondial.
-- **Stratégie cigare** : analyse des vitesses par tour (`t_1666`, `t_3333`, etc.). Calcule la variance pour déterminer si le nageur est régulier (cigare fermé) ou irrégulier (cigare ouvert). Nécessite que les données de passage soient disponibles dans le JSON.
+**Ce que `renderStrategie` lit :**
+```js
+const strat = ng.strategie;
+// Lit : strat.top5[], strat.hors5[]
+// Chaque entrée : {pct, pos_moy, nb_moy, vz_norm, n_courses}
+```
 
 ---
 
-### 5.3 `ponton_ko_ibiza2026.html`
+## 5. Les fichiers pontons KO
 
-Modèle de ponton pour les courses KO. Même structure que `Ponton10km.html` mais charge `data/resultats_ko_el.json` et utilise les données KO (séries, qualifiés, temps de passage à 400/800/1500m).
+### `ponton_ko_ibiza2026.html`
+
+Modèle de ponton pour les courses KO. Charge `resultats_ko_el.json`.
 
 **Pour créer un nouveau ponton KO :**
 1. Dupliquer ce fichier
-2. Renommer selon la convention : `ponton_ko_{ville}{annee}.html`
+2. Renommer : `ponton_ko_{ville}{annee}.html`
 3. Mettre à jour `CONFIG`, `STARTLIST_F`, `STARTLIST_H`, `METEO_F`, `METEO_H`
 4. Vérifier la correspondance des noms avec les clés du JSON
 
 ---
 
-## 6. Les applis de terrain
+## 6. Palette de couleurs commune
 
-### 6.1 `video_analyse_el.html` — Outil bureau (tagging vidéo)
-
-Utilisé sur laptop en parallèle d'une vidéo de course. Permet de tagger des événements (passage bouée, leader, position, ravito...) avec un chrono synchronisé.
-
-**Architecture :** fichier HTML autonome, tout en mémoire JS, pas de fetch. Export/import JSON.
-
-**Layout 3 colonnes :**
-```
-| COL GAUCHE (280px)     | COL CENTRE (flex)      | COL DROITE (320px)   |
-| Chrono + Config course | Boutons d'action       | Log des événements   |
-| Config tours/bouées    | Contexte passage actuel|                      |
-| Import nageurs JSON    | Analyse + Export       |                      |
-```
-
-**Format startlist attendu à l'import :**
-```json
-[{ "bib": 5, "nom": "FONTAINE Logan", "noc": "FRA", "couloir": 5 }]
-```
-
-**Format export JSON de session :**
-```json
-{
-  "version": "1.0",
-  "generated": "2026-05-01T09:00:00Z",
-  "course": { "nom": "CdM Golfo Aranci 2026", "genre": "H", "type": "CDM" },
-  "tour_config": { "1": { "pts": [{"lbl":"T1-B1","dist":"500"}] } },
-  "nageurs": [...],
-  "events": [...],
-  "duree_totale_ms": 6547000
-}
-```
-
-**Types d'événements taguables :**
-
-| Type JS | Libellé | Modal |
-|---------|---------|-------|
-| `passage` | Passage bouée | Non |
-| `leader` | Nouveau leader | Oui |
-| `leader_confirm` | Confirmer leader | Oui |
-| `position` | Changement position | Oui (1/2/3/4/5/>5/?) |
-| `pointes` | 2 pointes | Oui |
-| `formation` | Quinquonce / En ligne | Non |
-| `ravito` | Ravitaillement | Non |
-| `interet` | Point d'intérêt | Oui |
-
----
-
-### 6.2 `observer_el.html` — Outil mobile (observation terrain)
-
-Utilisé sur téléphone par des observateurs en bord de plan d'eau. Chaque observateur suit 1 ou 2 nageurs. **Nécessite un hébergement HTTP** (GitHub Pages) pour le système de partage par URL.
-
-**Flux d'utilisation :**
-1. Analyste configure l'appli (course + tours + startlist) → génère un lien
-2. Envoie le lien aux observateurs (WhatsApp, SMS)
-3. Observateur ouvre le lien, choisit ses nageurs, démarre au coup de pistolet
-4. Fin de course : chaque observateur exporte son JSON
-5. Analyste fusionne les exports
-
-**Système de partage par URL :**
-- Encode en `base64` un objet `{cfg, nageurs, ts}` dans le paramètre `?d=` de l'URL
-- L'URL contient toute la config : le destinataire n'a qu'à choisir son nom et ses nageurs
-
-**3 écrans : `[SETUP]` → `[OBSERVATION]` → `[ANALYSE]`**
-
-**Boutons disponibles en observation :**
-
-| Bouton | Type | Comportement |
-|--------|------|-------------|
-| 👑 Leader | `leader` | Modal confirmation |
-| 📍 Position | `position` | Sélecteur 2/3/4/5/top5/peloton |
-| 🔵 Bouée | `bouee` | Incrémente auto tour + bouée |
-| 👥 Peloton | `peloton` | Sélection formation + position |
-| 💧 Début ravito | `ravito_debut` | — |
-| ✓ Fin ravito | `ravito_fin` | Calcule durée auto |
-
-**Format export :**
-```json
-{
-  "version": "1.0",
-  "course": { "nom": "CdM Golfo Aranci 2026", "genre": "H", "tours": 6 },
-  "observateur": "JD",
-  "duree_totale_ms": 6547000,
-  "nageurs": [
-    {
-      "nageur": { "nom": "FONTAINE Logan", "noc": "FRA", "bib": 5, "color": "#e8a020" },
-      "events": [...]
-    }
-  ]
-}
-```
-
----
-
-## 7. Palette de couleurs commune
-
-Tous les fichiers utilisent le même thème sombre "marine" :
+Tous les fichiers utilisent le même thème "marine" :
 
 ```css
---bg-dark:    #07101c;
---bg-medium:  #0d1520;
---bg-light:   #1a2535;
---blue-dark:  #003087;
---blue-light: #1560d4;
---red:        #C8102E;
---gold-dark:  #b8860b;
---gold-light: #e8a020;
---green-dark: #1a7a3c;
---green-light:#10b060;
---text:       #e8edf2;
---text-muted: #8899aa;
+--bg:       #f4f7fb;
+--blue:     #003087;
+--red:      #C8102E;
+--gold:     #b8860b;
+--green:    #1a7a3c;
+--border:   #c8d8ea;
+--txt:      #1a2a4a;
+--txt-dim:  #5a7a9e;
 ```
 
 ---
 
-## 8. Workflow de mise à jour
+## 7. Workflow de mise à jour
 
 ### Après une course KO
 
-1. Ouvrir `data/resultats_ko_el.json`
-2. Ajouter la course dans `KO_DATA` (clé `{ville}{annee}_{genre}`) avec séries / demi / finale
-3. Pour chaque nageur classé, ajouter une entrée dans `KO_HF` ou `KO_HH`
-4. `git commit` + `git push` → GitHub Pages se met à jour en 1-2 min
+1. Ouvrir `resultats_ko_el.json` (branche `data`)
+2. Ajouter la course dans `KO_DATA`
+3. Ajouter les entrées dans `KO_HF` ou `KO_HH`
+4. `git push` sur la branche `data` → GitHub Pages se met à jour en 1-2 min
 
 ### Après une course 10km
 
-Même principe avec `data/resultats_10km_el.json`.
-
-### Avant un nouveau ponton
-
-1. Extraire la startlist du PDF officiel World Aquatics
-2. Vérifier la correspondance exacte des noms avec les clés JSON (⚠️ prénoms tronqués !)
-3. Mettre à jour `CONFIG`, `STARTLIST_F/H` dans le fichier ponton
-4. Récupérer la météo sur Open-Meteo et remplir `METEO_F/H`
-5. Tester en local avec Live Server
-6. `git push`
+1. Ouvrir `resultats_10km_el.json` (branche `data`)
+2. Ajouter la course dans `CF` (femmes) ou `CH` (hommes) avec :
+   - `nageurs[]` avec `pos`, `ecart`, `vit`, `rv`, `di`
+   - `groupes[][]` avec `n`, `ecart_fin`, `membres` (calculé par le script Python)
+3. Ajouter les courses dans `DATA_F` ou `DATA_H` (chaque nageur) avec :
+   - `positions_tour[]`, `vitesses_tour[]`
+4. Recalculer `strategie.top5` et `strategie.hors5` pour les nageurs concernés
+5. `git push` sur la branche `data`
 
 ### Test en local
 
 ```bash
-# Option 1 — VS Code Live Server (recommandé)
+# Option 1 — VS Code Live Server
 # Clic droit sur index.html → Open with Live Server
 
 # Option 2 — Python
@@ -455,30 +433,76 @@ python3 -m http.server 8000
 # puis ouvrir http://localhost:8000
 ```
 
----
-
-## 9. Bugs connus / Points de vigilance
-
-- **Noms tronqués dans les PDF** : les PDF World Aquatics tronquent parfois les prénoms longs. Toujours compléter avant d'insérer dans le JSON. Ex : `BRANDT DE MACEDO L.` → `BRANDT DE MACEDO Leonard`.
-- **Indices EL et stratégie cigare** : nécessitent que les données de passage par tour soient présentes dans le JSON. Si `rv` ou `di` sont `null`, l'indice ne s'affiche pas. Si les temps de passage sont absents, la stratégie affiche "Pas assez de données".
-- **Correspondance des noms** : la moindre différence (espace, tiret, majuscule) entre le nom dans la startlist du ponton et la clé dans `KO_HF/HH` ou `HF/HH` empêche l'affichage de l'historique.
-- **fetch() en file://** : impossible. Toujours tester avec un serveur local.
-- **Doublons de clés** : certains nageurs ont des variantes de noms dans le JSON historique (`DE VALDES Maria` et `de VALDES Maria`). Consolider avant usage.
+**⚠️ Le fetch pointe vers GitHub raw, pas localhost.** En local, modifier temporairement l'URL du fetch pour pointer vers `data/resultats_10km_el.json` si un fichier local est disponible.
 
 ---
 
-## 10. Backlog / Évolutions prévues
+## 8. Bugs connus et diagnostic (mai 2026)
+
+### 8.1 Hommes non fonctionnels dans `analyse_course_el.html` et `Ponton10km.html`
+
+**Diagnostic complet effectué le 08/05/2026.**
+
+La branche `data` contient bien 28 courses dans `CH` et 28 nageurs dans `DATA_H`, mais **le script Python de génération n'a traité complètement que `golfo26_h`**. Pour les 27 autres courses hommes :
+
+| Problème | Portée | Symptôme visible |
+|----------|--------|-----------------|
+| `CH[x].groupes` vide `[]` | 27/28 courses | Onglet Groupes : SVG blanc |
+| `CH[x].nageurs[i].rv` = null | 27/28 courses | Onglet Indice EL : "Données non disponibles" |
+| `CH[x].nageurs[i].di` = null | 27/28 courses | Indice EL absent |
+| `DATA_H[i].courses[c].positions_tour` absent | 27/28 courses + 5 sheets inconnus | **Crash JS** dans `renderCourseDetail` |
+| `DATA_H[i].strategie` vide | 100% nageurs H | Onglet Stratégie : "Pas assez de données" |
+| `DATA_F[i].strategie` vide | 100% nageurs F | Idem côté femmes |
+| `CH['CdM_Ibiza26']` absent | 1 course | Course manquante dans le sélecteur H |
+
+**Sheets présents dans `DATA_H` mais absents de `CH`** (à régulariser) :
+`golfo25_h`, `ibiza25_h`, `ibiza26_h`, `meet4_25_h`, `singapour25_h`, `starigrad25_h`
+
+**Cause racine :** le script Python de génération du JSON n'a pas exécuté les étapes suivantes pour les courses hommes historiques :
+- calcul des groupes par tour (seuil à vérifier dans le script Python)
+- croisement avec les données piscine (`rv`, `di`)
+- calcul des `positions_tour` / `vitesses_tour` dans `DATA_H`
+- calcul de `strategie.top5` / `strategie.hors5`
+
+### 8.2 Crash JS dans `renderCourseDetail` (Ponton10km)
+
+```js
+// Ligne 720 — pas de vérification null
+const nb = c.positions_tour.length;  // ← TypeError si positions_tour absent
+```
+
+**Fix à appliquer :**
+```js
+if (!c.positions_tour || !c.positions_tour.length) {
+  document.getElementById('fiche-content').innerHTML =
+    '<div class="fiche"><div class="empty-r">Positions par tour non disponibles.</div></div>';
+  return;
+}
+```
+
+### 8.3 Autres points de vigilance
+
+- **Noms tronqués dans les PDF** : toujours compléter les prénoms avant insertion dans le JSON.
+- **Correspondance des noms** : la moindre différence (espace, tiret, majuscule) entre le nom dans la startlist du ponton et la clé dans `DATA_F`/`DATA_H` empêche l'affichage de l'historique.
+- **fetch() en `file://`** : impossible. Toujours tester avec un serveur local.
+- **Groupes calculés côté Python, pas JS** : `renderGroupes` lit `c.groupes[]` directement, aucun seuil dans le HTML. Le seuil de séparation des groupes est dans le script Python.
+
+---
+
+## 9. Backlog / Évolutions prévues
+
+### Correctifs prioritaires
+- [ ] Régénérer `resultats_10km_el.json` : remplir `CH.groupes`, `rv`/`di`, `positions_tour`, `vitesses_tour` et `strategie` pour les 27 courses hommes manquantes
+- [ ] Ajouter `CH['CdM_Ibiza26']`
+- [ ] Ajouter guard null dans `renderCourseDetail` (ligne 720)
+- [ ] Régulariser les 6 sheets `_h` présents dans `DATA_H` mais absents de `CH`
 
 ### Applis analyse
-- [ ] Couplage avec résultats officiels pour afficher les positions de **tous** les nageurs aux points de passage (pas seulement celui sélectionné)
+- [ ] Couplage avec résultats officiels pour afficher les positions de tous les nageurs aux points de passage
 
 ### Pontons
-- [ ] Automatiser la récupération de la météo via l'API Open-Meteo au chargement (au lieu de l'embarquer manuellement)
-
-### Appli mobile (`observer_el.html`)
-- [ ] Fusion automatique de plusieurs exports JSON côté analyste
-- [ ] Vue comparée multi-observateurs sur un même nageur
-- [ ] Synchronisation temps réel (nécessiterait un backend Firebase)
+- [ ] Automatiser la récupération de la météo via l'API Open-Meteo au chargement
 
 ### Maintenance JSON
-- [ ] Script Python pour extraire automatiquement les résultats depuis les PDF World Aquatics et mettre à jour les JSON (partiellement développé)
+- [ ] Script Python pour extraire automatiquement les résultats depuis les PDF World Aquatics
+- [ ] Script Python : vérifier et documenter le seuil de regroupement utilisé pour `groupes[]`
