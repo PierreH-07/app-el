@@ -244,7 +244,7 @@ Si l'écart entre le nageur `[i]` et le nageur `[i+1]` dépasse **3 secondes**, 
     }
   ],
   "strategie": {
-    "top5":  [ {"pct":0, "pos_moy":3.2, "nb_moy":65.0, "vz_norm":1.512, "n_courses":5}, ... ],
+    "top5":  [ {"pct":20, "pos_moy":3.2, "nb_moy":65.0, "vz_norm":1.512, "n_courses":5}, ... ],
     "hors5": [ ... ]
   }
 }
@@ -256,20 +256,27 @@ Si l'écart entre le nageur `[i]` et le nageur `[i+1]` dépasse **3 secondes**, 
 **Champs `t400`/`t800`/`t1500` :** temps en **secondes numériques** (pas de chaîne `"3:46.2"`).  
 `v400`/`v800` peuvent être `null` si non disponibles.
 
-**Champs `strategie.top5` / `strategie.hors5` :**
+**Champs `strategie.top5` / `strategie.hors5` — valeurs exactes attendues par le JS :**
 
 | Champ | Description |
 |-------|-------------|
-| `pct` | Jalon de la course en % — valeurs : 0, 10, 20, …, 100 |
+| `pct` | Jalon de la course en % — valeurs exactes : **20, 40, 60, 80, 100** |
 | `pos_moy` | Position moyenne du nageur dans le peloton à ce jalon |
 | `nb_moy` | Taille moyenne du peloton (= `nb_nageurs` des courses du groupe) |
-| `vz_norm` | Vitesse moyenne du peloton à ce jalon (m/s, non normalisée malgré le nom) |
+| `vz_norm` | Vitesse moyenne du peloton à ce jalon (m/s) |
 | `n_courses` | Nombre de courses ayant servi au calcul |
 
 Règles :
 - `top5` = courses où `rang <= 5`, `hors5` = courses où `rang > 5`
-- Jalons calculés à **0, 10, 20, …, 100%** de la distance totale
+- **Jalons : 20, 40, 60, 80, 100%** — définis dans le JS par `const JALONS=[20,40,60,80,100]`
+- Le JS cherche chaque jalon par `rowData.find(r => r.pct === pct)` — si `pct` ne correspond pas exactement, l'ovale s'affiche vide
 - Le JS lit `strategie` directement depuis le JSON — **aucun calcul côté client**
+
+**Valeur de `strategie` quand vide :**  
+`strategie = null` (pas `{}` ni `[]`). Le garde-fou JS `if (!strat || ...)` intercepte correctement `null`.  
+Ne jamais mettre `{"top5": [], "hors5": []}` — cela passerait le garde-fou et afficherait un graphique vide.
+
+**La stratégie cigare n'existe que dans `Ponton10km.html`** (`renderStrategie` ligne 499). Elle est absente de `analyse_course_el.html`.
 
 ---
 
@@ -360,6 +367,8 @@ function courses(){ return G==='f' ? CF : CH; }
 - **Indice EL** : `ng.rv` et `ng.di` dans `c.nageurs[]`
 - **Positions** : `ng.pos[]` dans `c.nageurs[]`
 - **Focus** : `ng.vit[]`, `ng.ecart[]`, `ng.rang`, `ng.noc`
+
+**Note :** ce fichier n'a pas de vue stratégie cigare — uniquement dans `Ponton10km.html`.
 
 ---
 
@@ -453,7 +462,7 @@ Modèle de ponton pour les courses KO. Charge `resultats_ko_el.json`.
 2. **Mettre à jour `DATA_H` ou `DATA_F`** pour chaque nageur de la course :
    - Ajouter ou mettre à jour son entrée avec `positions_tour`, `vitesses_tour`, `rang`, `nb_nageurs`
    - `positions_tour` doit être identique à `pos[]` de l'entrée `CH`/`CF`
-3. **Recalculer `strategie`** pour tous les nageurs impactés (jalons 0–100% par 10%)
+3. **Recalculer `strategie`** pour tous les nageurs impactés (jalons 20, 40, 60, 80, 100%)
 4. **Valider le JSON :**
    ```bash
    python3 -c "import json; json.load(open('resultats_10km_el.json')); print('OK')"
@@ -501,8 +510,8 @@ La branche `data` contient bien 28 courses dans `CH` et des nageurs dans `DATA_H
 | `CH[x].nageurs[i].rv` = null | 27/28 courses | Onglet Indice EL : "Données non disponibles" |
 | `CH[x].nageurs[i].di` = null | 27/28 courses | Indice EL absent |
 | `DATA_H[i].courses[c].positions_tour` absent | 27/28 courses | **Crash JS** dans `renderCourseDetail` |
-| `DATA_H[i].strategie` vide | 100% nageurs H | Onglet Stratégie : "Pas assez de données" |
-| `DATA_F[i].strategie` vide | 100% nageurs F | Idem côté femmes |
+| `DATA_H[i].strategie` = null | 100% nageurs H | Onglet Stratégie : "Pas assez de données" |
+| `DATA_F[i].strategie` = null | 100% nageurs F | Idem côté femmes |
 | `CH['CdM_Ibiza26']` absent | 1 course | Course manquante dans le sélecteur H |
 
 **Sheets présents dans `DATA_H` mais absents de `CH`** (à régulariser) :
