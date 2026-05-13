@@ -272,9 +272,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 
 <script>
 'use strict';
-fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_el.json')
-  .then(function(r){return r.json();})
-  .then(function(json){
+Promise.all([
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_courses_el.json').then(function(r){return r.json();}),
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_nageurs_el.json').then(function(r){return r.json();})
+]).then(function(parts){
+  var json = Object.assign({}, parts[0], parts[1]);
     var NOC_FLAGS = json.NOC_FLAGS;
     var DATA_F = json.DATA_F;
     var DATA_H = json.DATA_H;
