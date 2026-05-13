@@ -208,8 +208,13 @@ function fmtCond(cond){
   const parts=[];
   if(cond.temp_eau_C!=null) parts.push(cond.temp_eau_C+'°C eau');
   else if(cond.temp_air_C!=null) parts.push(cond.temp_air_C+'°C air');
-  if(cond.vent_moy_kmh!=null) parts.push('Vent '+(cond.dir_vent||'')+' '+cond.vent_moy_kmh+' km/h');
-  if(cond.rafales_max_kmh!=null) parts.push('raf. '+cond.rafales_max_kmh+' km/h');
+  if(cond.vent_moy_kmh!=null){
+    var v='Vent '+(cond.dir_vent?cond.dir_vent+' ':'')+cond.vent_moy_kmh+' km/h';
+    if(cond.rafales_max_kmh!=null) v+=' (raf. '+cond.rafales_max_kmh+')';
+    parts.push(v);
+  }
+  if(cond.courant&&cond.courant!=='Nul') parts.push('Crt '+cond.courant.toLowerCase());
+  if(cond.marees&&cond.marees!=='Nul') parts.push('Marées '+cond.marees);
   return parts.join(' · ');
 }
 function updateCond(){
