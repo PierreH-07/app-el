@@ -86,7 +86,6 @@ input[type=range]{accent-color:var(--blue);width:140px;cursor:pointer;}
     <div class="hdr-title">🌊 Analyse de course · Eau libre 10km</div>
     <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.6);font-size:10px;text-decoration:none;padding:3px 8px;border:1px solid rgba(255,255,255,.2);border-radius:3px;margin-bottom:4px">← Accueil</a>
     <div class="hdr-sub">FFN · Centre de la Performance · 2021–2026</div>
-    <div class="hdr-cond" id="hdr-cond"></div>
   </div>
   <div class="hdr-controls">
     <button class="tab on" id="btn-f" onclick="setGender('f')">♀ Femmes</button>
@@ -100,15 +99,18 @@ input[type=range]{accent-color:var(--blue);width:140px;cursor:pointer;}
   <div class="vtab" data-v="positions" onclick="selectView('positions')">📍 Positions</div>
   <div class="vtab" data-v="focus" onclick="selectView('focus')">🎯 Focus nageur</div>
 </div>
+<div id="badge-conditions" style="padding:8px 16px 0 16px;background:#fff;border-bottom:1px solid #dde3ea"></div>
 <div class="main" id="main">
   <div class="content" id="content"></div>
 </div>
 <div id="grp-tip"></div>
 <script>
 'use strict';
-fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_el.json')
-  .then(function(r){return r.json();})
-  .then(function(json){
+Promise.all([
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_courses_el.json').then(function(r){return r.json();}),
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_nageurs_el.json').then(function(r){return r.json();})
+]).then(function(parts){
+  var json = Object.assign({}, parts[0], parts[1]);
     const CF = json.CF;
     const CH = json.CH || {};
 let G='f', COURSE=null, VIEW='groupes', SEL=[], FOCUS=null, TOP_N=15;
@@ -200,10 +202,69 @@ function buildCourseSelector(){
 }
 
 function selectCourse(v){COURSE=v; SEL=[]; FOCUS=null; updateCond(); renderAll();}
+function _bcell(val,lbl,sub,color){
+  return '<div style="background:#fff;border:1px solid #dde3ea;border-radius:6px;padding:7px 10px">'+
+    '<div style="font-size:14px;font-weight:700;color:'+color+';line-height:1.1">'+val+'</div>'+
+    '<div style="font-size:10px;color:#8090a8;margin-top:2px;text-transform:uppercase;letter-spacing:.04em">'+lbl+'</div>'+
+    (sub?'<div style="font-size:10px;color:#a0b0c8;margin-top:1px">'+sub+'</div>':'')+
+  '</div>';
+}
+function renderBadgeConditions(cond){
+  if(!cond||typeof cond!=='object') return '';
+  var wetsuitHtml='';
+  if(cond.temp_eau_C!=null){
+    if(cond.temp_eau_C<18) wetsuitHtml='<div style="font-style:italic;font-size:11px;color:#6a90b8;margin-top:3px">combinaison néoprène obligatoire</div>';
+    else if(cond.temp_eau_C<20) wetsuitHtml='<div style="font-style:italic;font-size:11px;color:#8090a8;margin-top:3px">combinaison néoprène possible (décision arbitre)</div>';
+  }
+  var tempEauHtml=cond.temp_eau_C!=null?cond.temp_eau_C.toFixed(1)+'°C':'—';
+  var sectionMer='';
+  if(cond.type_eau==='Mer'||cond.type_eau==='Estuaire'){
+    var wh=cond.wave_height_m!=null?cond.wave_height_m.toFixed(2)+' m':'—';
+    var sh=cond.swell_height_m!=null?cond.swell_height_m.toFixed(2)+' m':'—';
+    var sp=cond.swell_period_s!=null?cond.swell_period_s.toFixed(0)+'s':'';
+    var cv=cond.courant_vitesse_kmh!=null?cond.courant_vitesse_kmh.toFixed(2)+' km/h':'—';
+    var cd=cond.courant_direction||'';
+    sectionMer=
+      '<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#4a6a90;margin:8px 0 4px">Mer</div>'+
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">'+
+        _bcell(wh,'Vagues','','#106840')+
+        _bcell(sh,'Houle',sp,'#107060')+
+        _bcell(cv,'Courant',cd,'#601080')+
+        _bcell(cond.marees||'—','Marées','','#405070')+
+      '</div>';
+  }
+  return '<div style="background:#f7f9fc;border:1px solid #dde3ea;border-radius:8px;padding:10px 14px;margin-bottom:10px">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">'+
+      '<div>'+
+        '<div style="font-size:12px;font-weight:700;color:#003087">'+(cond.lieu||'')+'</div>'+
+        '<div style="font-size:11px;color:#6a80a0;margin-top:2px">'+(cond.type_eau||'')+' · '+(cond.salinite||'')+' · marées '+(cond.marees||'—')+' · courant '+(cond.courant||'—')+'</div>'+
+      '</div>'+
+      '<div style="text-align:right">'+
+        '<div style="font-size:9px;font-weight:700;letter-spacing:.07em;background:#003087;color:#9ab8d8;padding:2px 7px;border-radius:3px;display:inline-block">'+(cond.type_competition||'')+'</div>'+
+        (cond.heure_depart?'<div style="font-size:12px;color:#b07010;font-weight:700;margin-top:4px">⏱ '+cond.heure_depart+'</div>':'')+
+      '</div>'+
+    '</div>'+
+    '<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#4a6a90;margin-bottom:4px">Atmosphère</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">'+
+      _bcell(cond.temp_air_C!=null?cond.temp_air_C.toFixed(1)+'°C':'—','Air','','#b07010')+
+      '<div style="background:#fff;border:1px solid #dde3ea;border-radius:6px;padding:7px 10px">'+
+        '<div style="font-size:14px;font-weight:700;color:#107090;line-height:1.1">'+tempEauHtml+'</div>'+
+        '<div style="font-size:10px;color:#8090a8;margin-top:2px;text-transform:uppercase;letter-spacing:.04em">Eau</div>'+
+        wetsuitHtml+
+      '</div>'+
+      _bcell(cond.vent_moy_kmh!=null?cond.vent_moy_kmh.toFixed(1)+' km/h':'—','Vent moy.',(cond.dir_vent||'')+(cond.vent_max_kmh?' · max '+cond.vent_max_kmh.toFixed(1):''),'#1560b0')+
+      _bcell(cond.rafales_max_kmh!=null?cond.rafales_max_kmh.toFixed(1)+' km/h':'—','Rafales',cond.dir_vent||'','#b04010')+
+    '</div>'+
+    sectionMer+
+  '</div>';
+}
 function updateCond(){
   const c=courses()[COURSE];
-  const el=document.getElementById('hdr-cond');
-  if(el) el.textContent=c&&c.conditions?'🌊 '+c.conditions:'';
+  const el=document.getElementById('badge-conditions');
+  if(!el) return;
+  var cond=c&&c.conditions?c.conditions:null;
+  if(cond&&typeof cond==='object') cond.type_competition=c.type||'';
+  el.innerHTML=renderBadgeConditions(cond);
 }
 
 function selectView(v){
