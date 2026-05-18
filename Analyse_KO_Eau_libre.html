@@ -230,7 +230,7 @@ function renderBadgeConditions(cond){
     var cd=cond.courant_direction||'';
     sectionMer=
       '<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#4a6a90;margin:8px 0 4px">Mer</div>'+
-      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:6px">'+
         _bcell(wh,'Vagues','','#106840')+
         _bcell(sh,'Houle',sp,'#107060')+
         _bcell(cv,'Courant',cd,'#601080')+
@@ -249,7 +249,7 @@ function renderBadgeConditions(cond){
       '</div>'+
     '</div>'+
     '<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#4a6a90;margin-bottom:4px">Atmosphère</div>'+
-    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">'+
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:6px">'+
       _bcell(cond.temp_air_C!=null?cond.temp_air_C.toFixed(1)+'°C':'—','Air','','#b07010')+
       '<div style="background:#fff;border:1px solid #dde3ea;border-radius:6px;padding:7px 10px">'+
         '<div style="font-size:14px;font-weight:700;color:#107090;line-height:1.1">'+tempEauHtml+'</div>'+
