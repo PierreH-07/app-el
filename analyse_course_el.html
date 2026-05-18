@@ -99,7 +99,7 @@ input[type=range]{accent-color:var(--blue);width:140px;cursor:pointer;}
   <div class="vtab" data-v="positions" onclick="selectView('positions')">📍 Positions</div>
   <div class="vtab" data-v="focus" onclick="selectView('focus')">🎯 Focus nageur</div>
 </div>
-<div id="badge-conditions" style="padding:8px 16px 0 16px;background:#fff;border-bottom:1px solid #dde3ea"></div>
+<div id="badge-conditions" style="position:fixed;left:0;right:0;z-index:198;padding:8px 16px 0 16px;background:#fff;border-bottom:1px solid #dde3ea"></div>
 <div class="main" id="main">
   <div class="content" id="content"></div>
 </div>
@@ -172,8 +172,7 @@ function setGender(g){
   document.getElementById('btn-f').className='tab'+(g==='f'?' on':'');
   document.getElementById('btn-h').className='tab'+(g==='h'?' on':'');
   buildCourseSelector();
-  const keys=Object.keys(courses());
-  if(keys.length) COURSE=keys[keys.length-1];
+  COURSE=null;
   renderAll();
 }
 
@@ -276,8 +275,11 @@ function selectView(v){
 function setTop(){
   const hh=document.getElementById('hdr').offsetHeight;
   const vh=document.getElementById('vtabs').offsetHeight;
-  document.getElementById('main').style.paddingTop=(hh+vh)+'px';
+  const bh=document.getElementById('badge-conditions').offsetHeight;
+  const total=hh+vh+bh;
+  document.getElementById('main').style.paddingTop=total+'px';
   document.getElementById('vtabs').style.top=hh+'px';
+  document.getElementById('badge-conditions').style.top=(hh+vh)+'px';
 }
 
 
@@ -297,7 +299,17 @@ function isDNF(ng, nb_tours){
 function renderAll(){
   setTop();
   const c=courses()[COURSE];
-  if(!c){document.getElementById('content').innerHTML='<div style="padding:40px;text-align:center;color:var(--txt-dim)">Aucune course</div>';return;}
+  if(!c){
+    document.getElementById('badge-conditions').innerHTML='';
+    document.getElementById('content').innerHTML=`
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:40px;color:var(--txt-dim)">
+        <div style="font-size:48px;margin-bottom:16px">🌊</div>
+        <div style="font-size:18px;font-weight:700;color:var(--blue);margin-bottom:8px">Analyse de course · Eau libre 10km</div>
+        <div style="font-size:13px;margin-bottom:20px">Sélectionner une course dans le menu ci-dessus pour afficher l'analyse.</div>
+        <div style="font-size:11px;color:#8090a8;max-width:360px;line-height:1.6">Choisissez d'abord le genre (♀ Femmes / ♂ Hommes), puis la compétition dans le sélecteur.</div>
+      </div>`;
+    return;
+  }
   TIP_DATA.clear();
   if(VIEW==='groupes') renderGroupes(c);
   else if(VIEW==='indice') renderIndice(c);
