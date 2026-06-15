@@ -647,14 +647,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <div class="mx-cond-icon">〰️</div>
       <div><div class="mx-cond-val" id="mx-c-mer">0.0m · —</div><div class="mx-cond-lbl" id="mx-l-mer">Mer de vent (320°) &middot; <span id="mx-c-mer-per">5s</span></div></div>
     </div>
-    <div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:200px">
-      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ Marées · 21 juin</div>
-      <div style="font-size:11px;color:#fff;line-height:1.6">
-        BM ~02h15 (0.7m) · MH ~08h25 (2.5m)<br>
-        BM ~14h20 (0.9m) · MH ~20h25 (2.4m)<br>
-        <span style="color:rgba(255,255,255,.5);font-size:9px">Morte-eau · coef ~45 · courant entrant en matinée</span>
-      </div>
-    </div>
+    <div id="mx-marees-block"></div>
   </div>
 
   <!-- Onglets vues -->
@@ -761,6 +754,54 @@ var METEO_F=[
   {h:"13h",t:30.5,v:3.7,r:8.0,dir:"NO"},
 ];
 var DEPART_H=12.5,DEPART_M=0,DEPART_F=10.5;
+
+var MAREES={
+  label:"Marées · Setúbal · 21 juin 2026",
+  source:"Réf. Lisbonne ±10min",
+  marnage:2.5,
+  coeff:"~58",
+  evenements:[
+    {h:"02h29",type:"BM",hauteur:1.08},
+    {h:"09h00",type:"PM",hauteur:3.33},
+    {h:"14h42",type:"BM",hauteur:1.31},
+    {h:"21h20",type:"PM",hauteur:3.37},
+  ],
+  courant:[
+    {h:"07h",sens:"flot",force:"moyen"},
+    {h:"08h",sens:"flot",force:"faible"},
+    {h:"09h",sens:"etale",force:"nul"},
+    {h:"10h",sens:"jusant",force:"faible"},
+    {h:"11h",sens:"jusant",force:"moyen"},
+    {h:"12h",sens:"jusant",force:"fort"},
+    {h:"13h",sens:"jusant",force:"fort"},
+    {h:"14h",sens:"jusant",force:"moyen"},
+    {h:"15h",sens:"etale",force:"nul"},
+    {h:"16h",sens:"flot",force:"faible"},
+  ]
+};
+
+function renderMarees(){
+  if(!MAREES)return'';
+  var evts=MAREES.evenements.map(function(e){
+    var icon=e.type==='PM'?'▲':'▼';
+    var col=e.type==='PM'?'#5bc4f5':'#a0c8e8';
+    return'<span style="margin-right:10px;color:'+col+'">'+icon+' '+e.h+' <b>'+e.hauteur+'m</b></span>';
+  }).join('');
+  var icons={flot:'→',jusant:'←',etale:'·'};
+  var cols={fort:'#f5a623',moyen:'#f5d87a',faible:'#d4eaf7',nul:'#888'};
+  var now_h=new Date().getHours();
+  var courantHtml=MAREES.courant.map(function(c){
+    var h=parseInt(c.h);
+    var active=(h===now_h)?'outline:2px solid #fff;':'';
+    return'<span style="display:inline-block;padding:2px 5px;margin:1px;border-radius:3px;font-size:10px;background:'+cols[c.force]+';color:#1a2a3a;'+active+'" title="'+c.sens+'">'+c.h+' '+icons[c.sens]+'</span>';
+  }).join('');
+  return'<div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:260px;border-left:1px solid rgba(255,255,255,.15)">'
+    +'<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ '+MAREES.label+' · coef '+MAREES.coeff+' · '+MAREES.source+'</div>'
+    +'<div style="font-size:11px;margin-bottom:6px">'+evts+'</div>'
+    +'<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:3px">Courant · ← jusant (NE→SO) · → flot (SO→NE)</div>'
+    +'<div>'+courantHtml+'</div>'
+    +'</div>';
+}
 
 function dirCard(d){
   var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
@@ -1002,6 +1043,7 @@ function fetchMeteoOpenMeteo(){
 updateSliderTicks();
 updateMeteo(3);
 fetchMeteoOpenMeteo();
+document.getElementById('mx-marees-block').innerHTML=renderMarees();
   </script>
 </div>
 </body>
