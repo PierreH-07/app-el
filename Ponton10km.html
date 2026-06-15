@@ -979,29 +979,34 @@ function showVue(v,btn){
 // Femmes : 09h–15h (départ 12h) | Hommes : 06h–12h (départ 09h)
 // wave_height = mer totale, swell_wave_height = houle, mer de vent = wave_height - swell
 var METEO_F=[
-  {"label":"08h","heure":"08h00","vent_dir":0,"vent_kmh":2.1,"raf_kmh":4.5,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":20.4},
-  {"label":"09h","heure":"09h00","vent_dir":0,"vent_kmh":2.4,"raf_kmh":5.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":21.4},
-  {"label":"10h","heure":"10h00","vent_dir":337,"vent_kmh":2.5,"raf_kmh":5.8,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":22.8},
-  {"label":"11h♀","heure":"11h00","vent_dir":337,"vent_kmh":2.6,"raf_kmh":6.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":24.5},
-  {"label":"12h","heure":"12h00","vent_dir":315,"vent_kmh":2.6,"raf_kmh":6.4,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":26.6},
-  {"label":"13h","heure":"13h00","vent_dir":315,"vent_kmh":3.0,"raf_kmh":7.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":28.4},
-  {"label":"14h","heure":"14h00","vent_dir":315,"vent_kmh":4.1,"raf_kmh":8.9,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":29.8},
-  {"label":"15h","heure":"15h00","vent_dir":315,"vent_kmh":5.7,"raf_kmh":11.3,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.0},
-  {"label":"16h","heure":"16h00","vent_dir":315,"vent_kmh":6.8,"raf_kmh":13.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.6}
+  {h:"08h",t:20.4,v:2.1,r:4.5,dir:"N"},
+  {h:"09h",t:21.4,v:2.4,r:5.2,dir:"N"},
+  {h:"10h",t:22.8,v:2.5,r:5.8,dir:"NNO"},
+  {h:"11h♀",t:24.5,v:2.6,r:6.2,dir:"NNO"},
+  {h:"12h",t:26.6,v:2.6,r:6.4,dir:"NO"},
+  {h:"13h",t:28.4,v:3.0,r:7.2,dir:"NO"},
+  {h:"14h",t:29.8,v:4.1,r:8.9,dir:"NO"},
+  {h:"15h",t:31.0,v:5.7,r:11.3,dir:"NO"},
+  {h:"16h",t:31.6,v:6.8,r:13.2,dir:"NO"},
 ];
 var METEO_H=[
-  {"label":"13h","heure":"13h00","vent_dir":315,"vent_kmh":3.0,"raf_kmh":7.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":28.4},
-  {"label":"14h","heure":"14h00","vent_dir":315,"vent_kmh":4.1,"raf_kmh":8.9,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":29.8},
-  {"label":"15h","heure":"15h00","vent_dir":315,"vent_kmh":5.7,"raf_kmh":11.3,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.0},
-  {"label":"16h♂","heure":"16h00","vent_dir":315,"vent_kmh":6.8,"raf_kmh":13.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.6},
-  {"label":"17h","heure":"17h00","vent_dir":315,"vent_kmh":7.6,"raf_kmh":14.4,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.6},
-  {"label":"18h","heure":"18h00","vent_dir":315,"vent_kmh":8.1,"raf_kmh":15.2,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":31.0},
-  {"label":"19h","heure":"19h00","vent_dir":315,"vent_kmh":8.1,"raf_kmh":15.4,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":30.0},
-  {"label":"20h","heure":"20h00","vent_dir":315,"vent_kmh":7.3,"raf_kmh":14.8,"mer_h":0,"houle_dir":null,"houle_h":null,"houle_per":null,"mer_vent_h":0,"mer_per":null,"mer_dir":null,"temp":28.3}
+  {h:"13h",t:28.4,v:3.0,r:7.2,dir:"NO"},
+  {h:"14h",t:29.8,v:4.1,r:8.9,dir:"NO"},
+  {h:"15h",t:31.0,v:5.7,r:11.3,dir:"NO"},
+  {h:"16h♂",t:31.6,v:6.8,r:13.2,dir:"NO"},
+  {h:"17h",t:31.6,v:7.6,r:14.4,dir:"NO"},
+  {h:"18h",t:31.0,v:8.1,r:15.2,dir:"NO"},
+  {h:"19h",t:30.0,v:8.1,r:15.4,dir:"NO"},
+  {h:"20h",t:28.3,v:7.3,r:14.8,dir:"NO"},
 ];
 var METEO=METEO_F; // initialisé sur femmes au démarrage
-var DEPART_H=16.5,DEPART_M=0,DEPART_H_F=11,DEPART_H_H=16.5;
+var DEPART_F=11,DEPART_M=0,DEPART_H=16.5;
 
+
+function cardToDeg(s){
+  var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+  var i=c.indexOf(s); return i>=0?i*22.5:0;
+}
 function dirCard(d){
   var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
   return c[Math.round(((d%360)+360)%360/22.5)%16];
@@ -1129,41 +1134,52 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
 }
 
 function updateMeteo(idx){
-  var m=METEO[idx];
-  document.getElementById('mx-heure-label').textContent=m.label;
-  document.getElementById('mx-heure-time').textContent=m.heure||'';
-  var pct=(idx/6*100).toFixed(1);
+  var arr=METEO;
+  if(idx<0||idx>=arr.length)idx=Math.min(3,arr.length-1);
+  var m=arr[idx];
+  var pct=(arr.length>1?(idx/(arr.length-1)*100):50).toFixed(1);
+  document.getElementById('mx-heure-label').textContent=m.h||m.label||'';
+  document.getElementById('mx-heure-time').textContent=(m.h||'').replace('h','h00').replace('♀','').replace('♂','');
   document.getElementById('mx-time-slider').style.background=
     'linear-gradient(to right,#003087 0%,#003087 '+pct+'%,#c8d8ea '+pct+'%,#c8d8ea 100%)';
-  document.getElementById('mx-c-temp').textContent=(m.temp!=null?m.temp+'°C':'—');
-  document.getElementById('mx-c-vent').textContent=m.vent_kmh+' km/h · '+(m.vent_dir!=null?dirCard(m.vent_dir):'—');
-  if(document.getElementById('mx-c-raf'))document.getElementById('mx-c-raf').textContent=(m.raf_kmh||'—')+' km/h';
-  document.getElementById('mx-c-houle').textContent=(m.houle_h||0).toFixed(1)+'m · '+(m.houle_dir!=null?dirCard(m.houle_dir):'—');
-  document.getElementById('mx-c-mer').textContent=(m.mer_vent_h||m.mer_h||0).toFixed(1)+'m · '+(m.mer_dir!=null?dirCard(m.mer_dir):'—');
-  document.getElementById('mx-l-vent').textContent='Vent ('+m.vent_dir+'°) · raf. '+(m.raf_kmh||'—')+' km/h';
-  document.getElementById('mx-l-houle').textContent='Houle'+(m.houle_dir!=null?' ('+m.houle_dir+'°)':'');
-  document.getElementById('mx-l-mer').textContent='Mer de vent'+(m.mer_dir!=null?' ('+m.mer_dir+'°)':'');
-  if(document.getElementById('mx-c-houle-per')) document.getElementById('mx-c-houle-per').textContent=(m.houle_per||'—')+'s';
-  if(document.getElementById('mx-c-mer-per')) document.getElementById('mx-c-mer-per').textContent=(m.mer_per||'—')+'s';
-
-  // Vue parcours : zone de mer ouverte gauche
-  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, m);
-  // Vue arrivée (zoom) : zone de mer à gauche du ponton
-  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, m);
+  document.getElementById('mx-c-temp').textContent=(m.t!=null?m.t+'°C':'—');
+  document.getElementById('mx-c-vent').textContent=(m.v!=null?m.v+' km/h':'—')+' · '+(m.dir||'—');
+  document.getElementById('mx-l-vent').innerHTML='Vent · raf. '+(m.r!=null?m.r.toFixed(1)+' km/h':'—');
+  if(m.houle_h!=null){
+    document.getElementById('mx-c-houle').textContent=m.houle_h.toFixed(1)+'m · '+(m.houle_dir!=null?dirCard(m.houle_dir):'—');
+    document.getElementById('mx-l-houle').innerHTML='Houle'+(m.houle_dir!=null?' ('+Math.round(m.houle_dir)+'°)':'')+'&middot; <span id="mx-c-houle-per">'+(m.houle_per!=null?Math.round(m.houle_per):'—')+'s</span>';
+  } else {
+    document.getElementById('mx-c-houle').textContent='—';
+    document.getElementById('mx-l-houle').textContent='Houle';
+  }
+  document.getElementById('mx-c-mer').textContent='—';
+  document.getElementById('mx-l-mer').textContent='Mer de vent';
+  // Convertir vers le format attendu par renderSVG
+  var ms={
+    vent_kmh: m.v,
+    vent_dir: cardToDeg(m.dir),
+    houle_dir: m.houle_dir!=null?m.houle_dir:null,
+    houle_h: m.houle_h!=null?m.houle_h:null,
+    houle_per: m.houle_per!=null?m.houle_per:null,
+    mer_dir: null, mer_h: null, mer_vent_h: null, mer_per: null
+  };
+  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
+  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
 }
 
 function renderSliderTicks(){
   var ticks=document.getElementById('mx-slider-ticks');
   if(!ticks) return;
   var html='';
-  METEO.forEach(function(m,i){
-    var isDepart=(m.label.indexOf('♀')>=0||m.label.indexOf('♂')>=0);
-    if(isDepart) html+='<span style="color:#C8102E;font-weight:800">'+m.label+'</span>';
-    else html+='<span>'+m.label+'</span>';
+  METEO.forEach(function(m){
+    var lbl=m.h||m.label||'';
+    var isDepart=(lbl.indexOf('♀')>=0||lbl.indexOf('♂')>=0);
+    if(isDepart) html+='<span style="color:#C8102E;font-weight:800">'+lbl+'</span>';
+    else html+='<span>'+lbl+'</span>';
   });
   ticks.innerHTML=html;
-  var first=METEO[0].heure.replace('h00','h');
-  var last=METEO[METEO.length-1].heure.replace('h00','h');
+  var first=(METEO[0].h||METEO[0].heure||'').replace('♀','').replace('♂','');
+  var last=(METEO[METEO.length-1].h||METEO[METEO.length-1].heure||'').replace('♀','').replace('♂','');
   document.getElementById('mx-slider-start').textContent=first;
   document.getElementById('mx-slider-end').textContent=last;
 }
@@ -1181,6 +1197,61 @@ function switchMeteoGender(g){
   updateMeteo(0);
 }
 
+
+function fetchMeteoOpenMeteo(){
+  var LAT=38.52,LON=-8.89,DATE='2026-06-20';
+  var urlWind='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON
+    +'&hourly=temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m'
+    +'&timezone=Europe%2FLisbon&start_date='+DATE+'&end_date='+DATE;
+  var urlMarine='https://marine-api.open-meteo.com/v1/marine?latitude='+LAT+'&longitude='+LON
+    +'&hourly=wave_height,wave_direction,wave_period'
+    +'&timezone=Europe%2FLisbon&start_date='+DATE+'&end_date='+DATE;
+
+  function buildSlice(wind,marine,fromH,toH){
+    var times=wind.hourly.time,out=[];
+    for(var i=0;i<times.length;i++){
+      var h=parseInt(times[i].split('T')[1]);
+      if(h>=fromH&&h<=toH){
+        var isDepart=(G==='f'&&h===DEPART_F)||(G==='h'&&Math.floor(DEPART_H)===h);
+        out.push({
+          h:h+'h'+(isDepart?(G==='f'?'♀':'♂'):''),
+          t:wind.hourly.temperature_2m[i],
+          v:+(wind.hourly.windspeed_10m[i]).toFixed(1),
+          r:+(wind.hourly.windgusts_10m[i]).toFixed(1),
+          dir:dirCard(wind.hourly.winddirection_10m[i]),
+          houle_h:marine&&marine.hourly?marine.hourly.wave_height[i]:null,
+          houle_dir:marine&&marine.hourly?marine.hourly.wave_direction[i]:null,
+          houle_per:marine&&marine.hourly?marine.hourly.wave_period[i]:null
+        });
+      }
+    }
+    return out;
+  }
+
+  function applyForGender(g,wind,marine){
+    var fromH=g==='f'?Math.floor(DEPART_F)-3:Math.floor(DEPART_H)-3;
+    var toH=g==='f'?Math.floor(DEPART_F)+5:Math.floor(DEPART_H)+5;
+    return buildSlice(wind,marine,fromH,toH);
+  }
+
+  Promise.all([
+    fetch(urlWind).then(function(r){return r.json();}),
+    fetch(urlMarine).then(function(r){return r.json();}).catch(function(){return null;})
+  ]).then(function(res){
+    var wind=res[0],marine=res[1];
+    METEO_F=applyForGender('f',wind,marine);
+    METEO_H=applyForGender('h',wind,marine);
+    METEO=(G==='f')?METEO_F:METEO_H;
+    renderSliderTicks();
+    updateMeteo(Math.min(3,METEO.length-1));
+    var el=document.getElementById('mx-card-sub');
+    if(el) el.textContent='10km · F 11h00 · H 16h30 · Setúbal · Open-Meteo live · '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  }).catch(function(e){
+    console.warn('Open-Meteo unavailable, using static data',e);
+  });
+}
+
+fetchMeteoOpenMeteo();
 updateMeteo(0);
 
 
