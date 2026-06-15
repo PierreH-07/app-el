@@ -606,7 +606,7 @@ function switchSerie(s){
     if(document.readyState==='loading'){
       window.addEventListener('load',function(){setTop();switchGender('f');});
     } else {
-      setTop(); switchGender('f');
+      requestAnimationFrame(function(){setTop();switchGender('f');});
     }
 window.addEventListener('resize',()=>{setTop();renderHist();});
   })
