@@ -1167,14 +1167,14 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
 
   // MER DE VENT — 2 flèches parallèles (plus discrètes)
   var mSVG='';
-  if(mPts&&m.mer_h!=null){
+  if(mPts&&m.mer_h!=null&&m.mer_dir!=null){
     [mPts[0],mPts[2]].forEach(function(pt){
       mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
     });
     var mrad=((m.mer_dir+180)%360)*Math.PI/180;
     var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
     mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
-    mSVG+=bgLbl(mLx-2,mLy,m.mer_h.toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
+    mSVG+=bgLbl(mLx-2,mLy,(m.mer_h||0).toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
   }
 
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
@@ -1212,8 +1212,10 @@ function updateMeteo(idx){
     houle_per: m.houle_per!=null?m.houle_per:null,
     mer_dir: null, mer_h: null, mer_vent_h: null, mer_per: null
   };
-  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
-  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+  try{
+    renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
+    renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+  }catch(e){ console.warn('renderSVG error',e); }
 }
 
 function renderSliderTicks(){
