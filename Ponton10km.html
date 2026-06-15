@@ -1095,7 +1095,7 @@ function bgLbl(x,y,txt,col,sz){
 function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
   var vPts=parallelPts(vCx,vCy,m.vent_dir,90);
   var hPts=m.houle_dir!=null?parallelPts(hCx,hCy,m.houle_dir,80):null;
-  var mPts=parallelPts(mCx,mCy,m.mer_dir,70);
+  var mPts=m.mer_dir!=null?parallelPts(mCx,mCy,m.mer_dir,70):null;
 
   // VENT — 3 flèches parallèles, label sur la centrale
   var vSVG='';
@@ -1113,20 +1113,24 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
   if(hPts) hPts.forEach(function(pt,i){
     hSVG+=swellArrow(pt[0],pt[1],m.houle_dir,'#67e8f9',1.2,0.88,9);
   });
-  var hrad=((m.houle_dir+180)%360)*Math.PI/180;
-  var hLx=hCx-Math.sin(hrad)*30, hLy=hCy+Math.cos(hrad)*30;
-  if(m.houle_dir!=null) hSVG+=bgLbl(hLx-2,hLy-18,'HOULE','#a5f3fc',14);
-  if(m.houle_dir!=null) hSVG+=bgLbl(hLx-2,hLy,m.houle_h.toFixed(1)+'m '+dirCard(m.houle_dir)+' T'+(m.houle_per||'?')+'s','#67e8f9',12);
+  if(m.houle_dir!=null){
+    var hrad=((m.houle_dir+180)%360)*Math.PI/180;
+    var hLx=hCx-Math.sin(hrad)*30, hLy=hCy+Math.cos(hrad)*30;
+    hSVG+=bgLbl(hLx-2,hLy-18,'HOULE','#a5f3fc',14);
+    if(m.houle_h!=null) hSVG+=bgLbl(hLx-2,hLy,m.houle_h.toFixed(1)+'m '+dirCard(m.houle_dir)+' T'+(m.houle_per||'?')+'s','#67e8f9',12);
+  }
 
   // MER DE VENT — 2 flèches parallèles (plus discrètes)
   var mSVG='';
-  if(mPts) [mPts[0],mPts[2]].forEach(function(pt){
-    mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
-  });
-  var mrad=((m.mer_dir+180)%360)*Math.PI/180;
-  var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
-  mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
-  mSVG+=bgLbl(mLx-2,mLy,m.mer_h.toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
+  if(mPts&&m.mer_h!=null){
+    [mPts[0],mPts[2]].forEach(function(pt){
+      mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
+    });
+    var mrad=((m.mer_dir+180)%360)*Math.PI/180;
+    var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
+    mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
+    mSVG+=bgLbl(mLx-2,mLy,m.mer_h.toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
+  }
 
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
   document.getElementById(svgId+'-houle').innerHTML=hSVG;
