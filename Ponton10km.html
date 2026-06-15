@@ -906,7 +906,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <!-- Vue arrivée -->
   <div class="mx-carte-wrap" id="mx-vue-finish">
-    <img src="img/arrivee_10km_setubal2026.jpg" alt="Zone arrivée Setúbal 2026" style="width:100%;height:100%;object-fit:contain" alt="Zone arrivée Golfo Aranci">
+    <img src="img/parcours_10km_setubal2026.jpg" alt="Zone arrivée Setúbal 2026" style="width:100%;height:100%;object-fit:contain">
     <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-finish-vent"></g>
       <g id="mx-svg-finish-houle"></g>
@@ -994,6 +994,7 @@ var METEO_H=[
 ];
 var METEO=METEO_F; // initialisé sur femmes au démarrage
 var DEPART_F=11,DEPART_M=0,DEPART_H=16.5;
+var G='f'; // genre actif
 
 var MAREES={
   label:"Marées · Setúbal · 20 juin 2026",
