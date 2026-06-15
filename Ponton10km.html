@@ -885,14 +885,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <div class="mx-cond-icon">〰️</div>
       <div><div class="mx-cond-val" id="mx-c-mer">0.0m · —</div><div class="mx-cond-lbl" id="mx-l-mer">Mer de vent (320°) &middot; <span id="mx-c-mer-per">5s</span></div></div>
     </div>
-    <div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:200px">
-      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ Marées · 20 juin</div>
-      <div style="font-size:11px;color:#fff;line-height:1.6">
-        BM 01h20 (0.6m) · MH 07h32 (2.6m)<br>
-        BM 13h27 (0.8m) · MH ~19h30 (2.5m)<br>
-        <span style="color:rgba(255,255,255,.5);font-size:9px">Morte-eau · coef ~50 · courant entrant matin → sortant après-midi</span>
-      </div>
-    </div>
+    <div id="mx-marees-block"></div>
   </div>
 
   <!-- Onglets vues -->
@@ -913,7 +906,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <!-- Vue arrivée -->
   <div class="mx-carte-wrap" id="mx-vue-finish">
-    <img src="img/arrivee_10km_setubal2026.jpg" alt="Zone arrivée Setúbal 2026" style="width:100%;height:100%;object-fit:contain" alt="Zone arrivée Golfo Aranci">
+    <img src="img/parcours_10km_setubal2026.jpg" alt="Zone arrivée Setúbal 2026" style="width:100%;height:100%;object-fit:contain">
     <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-finish-vent"></g>
       <g id="mx-svg-finish-houle"></g>
@@ -1001,6 +994,58 @@ var METEO_H=[
 ];
 var METEO=METEO_F; // initialisé sur femmes au démarrage
 var DEPART_F=11,DEPART_M=0,DEPART_H=16.5;
+var G='f'; // genre actif
+
+var MAREES={
+  label:"Marées · Setúbal · 20 juin 2026",
+  source:"Réf. Lisbonne ±10min",
+  marnage:2.5,
+  coeff:"~60",
+  evenements:[
+    {h:"01h29",type:"BM",hauteur:0.91},
+    {h:"08h06",type:"PM",hauteur:3.48},
+    {h:"13h39",type:"BM",hauteur:1.15},
+    {h:"20h24",type:"PM",hauteur:3.55},
+  ],
+  courant:[
+    {h:"08h",sens:"jusant",force:"fort"},
+    {h:"09h",sens:"jusant",force:"fort"},
+    {h:"10h",sens:"jusant",force:"moyen"},
+    {h:"11h",sens:"jusant",force:"faible"},
+    {h:"12h",sens:"jusant",force:"faible"},
+    {h:"13h",sens:"etale",force:"nul"},
+    {h:"14h",sens:"flot",force:"faible"},
+    {h:"15h",sens:"flot",force:"moyen"},
+    {h:"16h",sens:"flot",force:"fort"},
+    {h:"17h",sens:"flot",force:"fort"},
+    {h:"18h",sens:"flot",force:"fort"},
+    {h:"19h",sens:"flot",force:"moyen"},
+    {h:"20h",sens:"flot",force:"faible"},
+  ]
+};
+
+function renderMarees(){
+  if(!MAREES)return'';
+  var evts=MAREES.evenements.map(function(e){
+    var icon=e.type==='PM'?'▲':'▼';
+    var col=e.type==='PM'?'#5bc4f5':'#a0c8e8';
+    return'<span style="margin-right:10px;color:'+col+'">'+icon+' '+e.h+' <b>'+e.hauteur+'m</b></span>';
+  }).join('');
+  var icons={flot:'→',jusant:'←',etale:'·'};
+  var cols={fort:'#f5a623',moyen:'#f5d87a',faible:'#d4eaf7',nul:'#888'};
+  var now_h=new Date().getHours();
+  var courantHtml=MAREES.courant.map(function(c){
+    var h=parseInt(c.h);
+    var active=(h===now_h)?'outline:2px solid #fff;':'';
+    return'<span style="display:inline-block;padding:2px 5px;margin:1px;border-radius:3px;font-size:10px;background:'+cols[c.force]+';color:#1a2a3a;'+active+'" title="'+c.sens+'">'+c.h+' '+icons[c.sens]+'</span>';
+  }).join('');
+  return'<div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:260px;border-left:1px solid rgba(255,255,255,.15)">'
+    +'<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ '+MAREES.label+' · coef '+MAREES.coeff+' · '+MAREES.source+'</div>'
+    +'<div style="font-size:11px;margin-bottom:6px">'+evts+'</div>'
+    +'<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:3px">Courant · ← jusant (NE→SO) · → flot (SO→NE)</div>'
+    +'<div>'+courantHtml+'</div>'
+    +'</div>';
+}
 
 
 function cardToDeg(s){
@@ -1095,7 +1140,7 @@ function bgLbl(x,y,txt,col,sz){
 function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
   var vPts=parallelPts(vCx,vCy,m.vent_dir,90);
   var hPts=m.houle_dir!=null?parallelPts(hCx,hCy,m.houle_dir,80):null;
-  var mPts=parallelPts(mCx,mCy,m.mer_dir,70);
+  var mPts=m.mer_dir!=null?parallelPts(mCx,mCy,m.mer_dir,70):null;
 
   // VENT — 3 flèches parallèles, label sur la centrale
   var vSVG='';
@@ -1113,20 +1158,24 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
   if(hPts) hPts.forEach(function(pt,i){
     hSVG+=swellArrow(pt[0],pt[1],m.houle_dir,'#67e8f9',1.2,0.88,9);
   });
-  var hrad=((m.houle_dir+180)%360)*Math.PI/180;
-  var hLx=hCx-Math.sin(hrad)*30, hLy=hCy+Math.cos(hrad)*30;
-  if(m.houle_dir!=null) hSVG+=bgLbl(hLx-2,hLy-18,'HOULE','#a5f3fc',14);
-  if(m.houle_dir!=null) hSVG+=bgLbl(hLx-2,hLy,m.houle_h.toFixed(1)+'m '+dirCard(m.houle_dir)+' T'+(m.houle_per||'?')+'s','#67e8f9',12);
+  if(m.houle_dir!=null){
+    var hrad=((m.houle_dir+180)%360)*Math.PI/180;
+    var hLx=hCx-Math.sin(hrad)*30, hLy=hCy+Math.cos(hrad)*30;
+    hSVG+=bgLbl(hLx-2,hLy-18,'HOULE','#a5f3fc',14);
+    if(m.houle_h!=null) hSVG+=bgLbl(hLx-2,hLy,m.houle_h.toFixed(1)+'m '+dirCard(m.houle_dir)+' T'+(m.houle_per||'?')+'s','#67e8f9',12);
+  }
 
   // MER DE VENT — 2 flèches parallèles (plus discrètes)
   var mSVG='';
-  if(mPts) [mPts[0],mPts[2]].forEach(function(pt){
-    mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
-  });
-  var mrad=((m.mer_dir+180)%360)*Math.PI/180;
-  var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
-  mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
-  mSVG+=bgLbl(mLx-2,mLy,m.mer_h.toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
+  if(mPts&&m.mer_h!=null&&m.mer_dir!=null){
+    [mPts[0],mPts[2]].forEach(function(pt){
+      mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
+    });
+    var mrad=((m.mer_dir+180)%360)*Math.PI/180;
+    var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
+    mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
+    mSVG+=bgLbl(mLx-2,mLy,(m.mer_h||0).toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
+  }
 
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
   document.getElementById(svgId+'-houle').innerHTML=hSVG;
@@ -1163,8 +1212,10 @@ function updateMeteo(idx){
     houle_per: m.houle_per!=null?m.houle_per:null,
     mer_dir: null, mer_h: null, mer_vent_h: null, mer_per: null
   };
-  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
-  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+  try{
+    renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
+    renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+  }catch(e){ console.warn('renderSVG error',e); }
 }
 
 function renderSliderTicks(){
@@ -1253,6 +1304,7 @@ function fetchMeteoOpenMeteo(){
 
 fetchMeteoOpenMeteo();
 updateMeteo(0);
+document.getElementById('mx-marees-block').innerHTML=renderMarees();
 
 
 </script>
