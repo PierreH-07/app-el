@@ -184,8 +184,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 <div class="filters" id="fbar">
   <span class="flabel">Tri :</span>
   <select class="fsel" id="sort" onchange="renderHist()">
-    <option value="bib" selected>BIB</option>
-    <option value="v15">Vitesse 1500 ↓</option>
+    <option value="bib">BIB</option>
+    <option value="v15" selected>Vitesse 1500 ↑</option>
     <option value="v400">Vitesse 400 ↓</option>
     <option value="exp">Expérience ↓</option>
     <option value="noc">Nation</option>
@@ -234,10 +234,120 @@ fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_ko_el.
       return s;
     });
 
+    var BIB_ASSIGNED=false;
+    var STARTLIST_F=[
+      {nom:'GARCES Sofia',noc:'ARG',annee:2008},
+      {nom:'GIORDANINO Candela',noc:'ARG',annee:2004},
+      {nom:'IMWINKELRIED Romina Sole',noc:'ARG',annee:1994},
+      {nom:'GUBECKA Chelsea',noc:'AUS',annee:1998},
+      {nom:'JOHNSON Moesha',noc:'AUS',annee:1997},
+      {nom:'LI Xinxuan',noc:'CHN',annee:2008},
+      {nom:'BENESOVA Alena',noc:'CZE',annee:1998},
+      {nom:'PLESKOTOVA Julie',noc:'CZE',annee:2002},
+      {nom:'KASVIO Louna',noc:'FIN',annee:2006},
+      {nom:'COCCORDANO Clemence',noc:'FRA',annee:2005},
+      {nom:'DELACROIX Ines',noc:'FRA',annee:2003},
+      {nom:'GAUDAIRE Lou-Ann Katy',noc:'FRA',annee:2006},
+      {nom:'JOUISSE Caroline Laure',noc:'FRA',annee:1994},
+      {nom:'BOY Lea',noc:'GER',annee:2000},
+      {nom:'SPIWOKS Jeannette',noc:'GER',annee:1998},
+      {nom:'GKAZGKA Maria',noc:'GRE',annee:1999},
+      {nom:'KARRAS Sophia Olivia',noc:'GRE',annee:2003},
+      {nom:'MAKRI Georgia',noc:'GRE',annee:2006},
+      {nom:'FABIAN Bettina',noc:'HUN',annee:2004},
+      {nom:'ADIR Ofek',noc:'ISR',annee:2006},
+      {nom:'GOLOS Emily',noc:'ISR',annee:2008},
+      {nom:'BERTON Giulia',noc:'ITA',annee:2001},
+      {nom:'CAPONI Linda',noc:'ITA',annee:1998},
+      {nom:'MENCHINI Iris',noc:'ITA',annee:2003},
+      {nom:'POZZOBON Barbara',noc:'ITA',annee:1993},
+      {nom:'TADDEUCCI Ginevra',noc:'ITA',annee:1997},
+      {nom:'TORTORA Elena',noc:'ITA',annee:2004},
+      {nom:'EBINA Airi',noc:'JPN',annee:2001},
+      {nom:'KAJIMOTO Ichika',noc:'JPN',annee:2004},
+      {nom:'POU Lisa',noc:'MON',annee:1999},
+      {nom:'HEATH Ruby',noc:'NZL',annee:1999},
+      {nom:'TARASIEWICZ Klaudia',noc:'POL',annee:2004},
+      {nom:'ANDRE Angelica',noc:'POR',annee:1994},
+      {nom:'MENDES Mariana',noc:'POR',annee:2002},
+      {nom:'VIANA Carolina',noc:'POR',annee:2004},
+      {nom:'HEMMENS Sasha-Lee',noc:'RSA',annee:1997},
+      {nom:'LOTTER Callan',noc:'RSA',annee:2006},
+      {nom:'PERSE Spela',noc:'SLO',annee:1996},
+      {nom:'DENIGAN Mariah',noc:'USA',annee:2003},
+      {nom:'GENDARMI Alessandra Livi',noc:'USA',annee:2008},
+      {nom:'MANN Becca',noc:'USA',annee:1997},
+    ];
+    var STARTLIST_H=[
+      {nom:'CASSINI Franco Ivo',noc:'ARG',annee:1994},
+      {nom:'MORENO Joaquin',noc:'ARG',annee:1997},
+      {nom:'ARMSTRONG Bailey',noc:'AUS',annee:1999},
+      {nom:'LEE Kyle',noc:'AUS',annee:2002},
+      {nom:'KARL Luca',noc:'AUT',annee:2002},
+      {nom:'MELECCHI Matheus',noc:'BRA',annee:2005},
+      {nom:'MORENO Victor',noc:'BRA',annee:2006},
+      {nom:'ZHANG Ziyang',noc:'CHN',annee:2001},
+      {nom:'BOROVKA Denis',noc:'CZE',annee:2005},
+      {nom:'KOZUBEK Matej',noc:'CZE',annee:1996},
+      {nom:'LUDVIK David',noc:'CZE',annee:2002},
+      {nom:'STRAKA Martin',noc:'CZE',annee:2000},
+      {nom:'PASKO Jaan',noc:'EST',annee:2006},
+      {nom:'LIETZEN Jesper',noc:'FIN',annee:2002},
+      {nom:'FONTAINE Logan',noc:'FRA',annee:1999},
+      {nom:'OLIVIER Marc-Antoine',noc:'FRA',annee:1996},
+      {nom:'PARKER Ethan',noc:'FRA',annee:2007},
+      {nom:'KLEMET Oliver',noc:'GER',annee:2002},
+      {nom:'WELLBROCK Florian',noc:'GER',annee:1997},
+      {nom:'CHRISTODOULOU Angelos',noc:'GRE',annee:2006},
+      {nom:'THEOFILOPOULOS Filippos',noc:'GRE',annee:2003},
+      {nom:'BETLEHEM David',noc:'HUN',annee:2003},
+      {nom:'AHDUT Yonatan',noc:'ISR',annee:2003},
+      {nom:'ACERENZA Domenico',noc:'ITA',annee:1995},
+      {nom:'FILADELLI Andrea',noc:'ITA',annee:2001},
+      {nom:'GIORDANO Pasquale',noc:'ITA',annee:2004},
+      {nom:'GUIDI Marcello',noc:'ITA',annee:1997},
+      {nom:'ILARIO Giuseppe',noc:'ITA',annee:2003},
+      {nom:'PALTRINIERI Gregorio',noc:'ITA',annee:1994},
+      {nom:'VERANI Dario',noc:'ITA',annee:1995},
+      {nom:'EZAWA Riku',noc:'JPN',annee:2003},
+      {nom:'MINAMIDE Taishin',noc:'JPN',annee:1996},
+      {nom:'TSUJIMORI Kaito',noc:'JPN',annee:2006},
+      {nom:'MORENO GUTIERREZ Raul',noc:'MEX',annee:2006},
+      {nom:'DRUENNE Theo',noc:'MON',annee:2005},
+      {nom:'KAPALA Bartosz',noc:'POL',annee:2006},
+      {nom:'AMARAL Francisco',noc:'POR',annee:2002},
+      {nom:'CARDOSO Diogo',noc:'POR',annee:2001},
+      {nom:'LOUREIRO Bruno',noc:'POR',annee:2006},
+      {nom:'MARQUES Duarte',noc:'POR',annee:2007},
+      {nom:'SARREIRA Tomas',noc:'POR',annee:2005},
+      {nom:'KIMBER Byron',noc:'RSA',annee:2001},
+      {nom:'GAGNEBIN Ilan',noc:'SUI',annee:2004},
+      {nom:'NIEDERBERGER Paul',noc:'SUI',annee:2004},
+      {nom:'POLSTER Attila',noc:'SUI',annee:2007},
+      {nom:'SCHREIBER Christian',noc:'SUI',annee:2002},
+      {nom:'BROWN Joshua',noc:'USA',annee:2003},
+      {nom:'GRAVLEY Dylan',noc:'USA',annee:2002},
+      {nom:'PUSKOVITCH Ivan',noc:'USA',annee:2001},
+    ];
+    function buildStartlist(dataArr,sl){
+      return sl.map(function(e,i){
+        var nomLow=e.nom.toLowerCase();
+        var found=dataArr.find(function(s){return s.nom.toLowerCase()===nomLow;});
+        if(!found){var sur=e.nom.split(' ')[0].toLowerCase();var c=dataArr.filter(function(s){return s.nom.toLowerCase().startsWith(sur+' ');});if(c.length===1)found=c[0];}
+        var base=found?Object.assign({},found):{nom:e.nom,noc:e.noc,annee:e.annee,experience:0,v400:null,v800:null,v1500:null,t400:null,t800:null,t1500:null,ko_hist:[]};
+        base.bib=i+1; base.serie=(i<Math.ceil(sl.length/2)?1:2);
+        if(!base.ko_hist)base.ko_hist=[];
+        return base;
+      });
+    }
+    DATA_F=buildStartlist(DATA_F,STARTLIST_F);
+    DATA_H=buildStartlist(DATA_H,STARTLIST_H);
+
 let G='f', SEL=null, NOC_FILT=null, SERIE=1, PANEL_VIEW='profil';
 
 const data = () => {
   const all = G==='f' ? DATA_F : DATA_H;
+  if(!BIB_ASSIGNED) return all;
   return all.filter(d => d.serie === SERIE);
 };
 const allData = () => G==='f' ? DATA_F : DATA_H;
@@ -290,7 +400,7 @@ function sorted(){
   if(NOC_FILT) d=d.filter(x=>x.noc===NOC_FILT);
   const s=document.getElementById('sort').value;
   if(s==='bib') d.sort((a,b)=>a.bib-b.bib);
-  else if(s==='v15') d.sort((a,b)=>(b.v1500||0)-(a.v1500||0));
+  else if(s==='v15') d.sort((a,b)=>{if(!a.v1500&&!b.v1500)return 0;if(!a.v1500)return 1;if(!b.v1500)return -1;return a.v1500-b.v1500;});
   else if(s==='v400') d.sort((a,b)=>(b.v400||0)-(a.v400||0));
   else if(s==='exp') d.sort((a,b)=>(b.experience||0)-(a.experience||0));
   else d.sort((a,b)=>a.noc.localeCompare(b.noc)||a.bib-b.bib);
@@ -304,7 +414,7 @@ function renderHist(){
   document.getElementById('ponton-info').textContent=
     d.length+' nageur'+(G==='h'?'s':'ses')+(NOC_FILT?' · '+NOC_FILT:'');
   document.getElementById('serie-count').textContent=
-    'Série 1 : '+nb_s+' | Série 2 : '+nb_s2+' (répartition provisoire)';
+    (BIB_ASSIGNED?'Série 1 : '+nb_s+' | Série 2 : '+nb_s2:'BIBs non attribués · '+allData().length+' inscrit(e)s · Vitesse 1500 lent→rapide');
 
   const container=document.getElementById('hist-container');
   const W=Math.max(container.clientWidth||600, d.length*12+80);
@@ -369,7 +479,6 @@ function renderHist(){
     svg+='<rect x="'+(cx-gap/2)+'" y="'+marginT+'" width="'+gap+'" height="'+chartH+'" fill="transparent" style="cursor:pointer" data-bib="'+ng.bib+'"/>';
 
     const lblY=marginT+chartH+14;
-    svg+='<text x="'+cx+'" y="'+lblY+'" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="'+(isSel?'#C8102E':'#6b7f9e')+'" font-weight="'+(isSel?'700':'400')+'">'+ng.bib+'</text>';
     const sn=ng.nom.length>16?ng.nom.split(' ')[0]:ng.nom;
     const nameY=marginT+chartH+22;
     svg+='<text transform="rotate(-55,'+cx+','+(nameY+8)+')" x="'+cx+'" y="'+(nameY+8)+'"'
