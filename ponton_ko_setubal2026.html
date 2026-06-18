@@ -342,7 +342,12 @@ Promise.all([
         if(a===b)return true;
         if(a.startsWith(b+' ')||b.startsWith(a+' '))return true;
         var at=a.split(' '),bt=b.split(' ');
-        return at[0]===bt[0]&&at.length>1&&bt.length>1&&at[1]===bt[1];
+        if(at[0]!==bt[0]||at.length<2||bt.length<2)return false;
+        if(at[1]===bt[1])return true;
+        var ai=at[1],bi=bt[1];
+        if(ai.length<=2&&ai.endsWith('.')&&bt[1].startsWith(ai[0]))return true;
+        if(bi.length<=2&&bi.endsWith('.')&&at[1].startsWith(bi[0]))return true;
+        return false;
       }
       function findSpeed(nom){
         var nL=nom.toLowerCase().trim();

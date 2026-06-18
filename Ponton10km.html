@@ -392,11 +392,15 @@ Promise.all([
       function matchNom(a,b){
         a=a.toLowerCase().trim(); b=b.toLowerCase().trim();
         if(a===b)return true;
-        // l'un est préfixe de l'autre (ex: "JOUISSE Caroline" vs "JOUISSE Caroline Laure")
         if(a.startsWith(b+' ')||b.startsWith(a+' '))return true;
-        // même nom de famille + même prénom (ignore prénoms composés)
         var at=a.split(' '),bt=b.split(' ');
-        return at[0]===bt[0]&&at.length>1&&bt.length>1&&at[1]===bt[1];
+        if(at[0]!==bt[0]||at.length<2||bt.length<2)return false;
+        if(at[1]===bt[1])return true;
+        // prénom abrégé : "V." correspond à "Viktor"
+        var ai=at[1],bi=bt[1];
+        if(ai.length<=2&&ai.endsWith('.')&&bt[1].startsWith(ai[0]))return true;
+        if(bi.length<=2&&bi.endsWith('.')&&at[1].startsWith(bi[0]))return true;
+        return false;
       }
       return sl.map(function(e,i){
         var found=dataArr.find(function(s){return matchNom(e.nom,s.nom);});
