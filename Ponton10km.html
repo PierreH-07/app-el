@@ -1328,11 +1328,11 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m, cInfo){
   if(cInfo&&cInfo.sens&&cInfo.sens!=='etale'){
     var cToDir=cInfo.sens==='flot'?45:225;
     var cCol=cInfo.sens==='flot'?'#34d399':'#f87171';
-    cSVG+=currentArrow(950,720,cToDir,cInfo.force,cCol,1.0);
+    cSVG+=currentArrow(130,750,cToDir,cInfo.force,cCol,1.0);
     var fLbl={fort:'fort',moyen:'moyen',faible:'faible'}[cInfo.force]||'';
-    cSVG+=bgLbl(910,760,'COURANT · '+(cInfo.sens==='flot'?'flot →':'← jusant')+' · '+fLbl,cCol,11);
+    cSVG+=bgLbl(90,790,'COURANT · '+(cInfo.sens==='flot'?'flot →':'← jusant')+' · '+fLbl,cCol,11);
   }else if(cInfo&&cInfo.sens==='etale'){
-    cSVG+=bgLbl(910,760,'COURANT · étale','#9ca3af',11);
+    cSVG+=bgLbl(90,790,'COURANT · étale','#9ca3af',11);
   }
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
   document.getElementById(svgId+'-houle').innerHTML=hSVG;
