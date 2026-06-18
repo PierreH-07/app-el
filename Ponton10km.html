@@ -326,7 +326,7 @@ Promise.all([
       {nom:'HEMMENS Sasha-Lee',noc:'RSA',annee:1997},
       {nom:'LOTTER Callan',noc:'RSA',annee:2006},
       {nom:'PERSE Spela',noc:'SLO',annee:1996},
-      {nom:'INAL Su',noc:'TUR',annee:2010},
+      {nom:'INAL Su',noc:'TUR',annee:2010,t400:'4:20.38',t800:'8:58.25',t1500:'17:43.20',v400:1.5362,v800:1.4863,v1500:1.4108},
       {nom:'DENIGAN Mariah',noc:'USA',annee:2003},
       {nom:'GENDARMI Alessandra Livi',noc:'USA',annee:2008},
       {nom:'MANN Becca',noc:'USA',annee:1997},
@@ -401,6 +401,9 @@ Promise.all([
       return sl.map(function(e,i){
         var found=dataArr.find(function(s){return matchNom(e.nom,s.nom);});
         var base=found?Object.assign({},found):{nom:e.nom,noc:e.noc,annee:e.annee,experience:0,v400:null,v800:null,v1500:null,t400:null,t800:null,t1500:null};
+        if(e.v400!=null&&base.v400==null){base.v400=e.v400;base.t400=e.t400||null;}
+        if(e.v800!=null&&base.v800==null){base.v800=e.v800;base.t800=e.t800||null;}
+        if(e.v1500!=null&&base.v1500==null){base.v1500=e.v1500;base.t1500=e.t1500||null;}
         base.bib=i+1;
         return base;
       });
