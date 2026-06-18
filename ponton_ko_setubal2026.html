@@ -221,18 +221,25 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 
 <script>
 'use strict';
-fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_ko_el.json')
-  .then(function(r){return r.json();})
-  .then(function(json){
-    var NOC_FLAGS = json.KO_FLAGS;
-    var DATA_F = json.DATA_F.map(function(s){
-      s.ko_hist = json.KO_HF[s.nom] || [];
-      return s;
-    });
-    var DATA_H = json.DATA_H.map(function(s){
-      s.ko_hist = json.KO_HH[s.nom] || [];
-      return s;
-    });
+Promise.all([
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_ko_el.json').then(function(r){return r.json();}),
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_nageurs_el.json').then(function(r){return r.json();}).catch(function(){return null;})
+]).then(function(parts){
+  var json=parts[0], nagJson=parts[1];
+  var nagF={}, nagH={};
+  if(nagJson){
+    (nagJson.DATA_F||[]).forEach(function(s){ nagF[s.nom.toLowerCase().trim()]=s; });
+    (nagJson.DATA_H||[]).forEach(function(s){ nagH[s.nom.toLowerCase().trim()]=s; });
+  }
+  var NOC_FLAGS = json.KO_FLAGS;
+  var DATA_F = json.DATA_F.map(function(s){
+    s.ko_hist = json.KO_HF[s.nom] || [];
+    return s;
+  });
+  var DATA_H = json.DATA_H.map(function(s){
+    s.ko_hist = json.KO_HH[s.nom] || [];
+    return s;
+  });
 
     var BIB_ASSIGNED=false;
     var STARTLIST_F=[
@@ -329,26 +336,41 @@ fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_ko_el.
       {nom:'GRAVLEY Dylan',noc:'USA',annee:2002},
       {nom:'PUSKOVITCH Ivan',noc:'USA',annee:2001},
     ];
-    function buildStartlist(dataArr,sl){
+    function buildStartlist(dataArr,sl,speedMap){
       function matchNom(a,b){
         a=a.toLowerCase().trim(); b=b.toLowerCase().trim();
         if(a===b)return true;
-        // l'un est préfixe de l'autre (ex: "JOUISSE Caroline" vs "JOUISSE Caroline Laure")
         if(a.startsWith(b+' ')||b.startsWith(a+' '))return true;
-        // même nom de famille + même prénom (ignore prénoms composés)
         var at=a.split(' '),bt=b.split(' ');
         return at[0]===bt[0]&&at.length>1&&bt.length>1&&at[1]===bt[1];
+      }
+      function findSpeed(nom){
+        var nL=nom.toLowerCase().trim();
+        if(speedMap[nL])return speedMap[nL];
+        for(var k in speedMap){if(matchNom(nL,k))return speedMap[k];}
+        return null;
       }
       return sl.map(function(e,i){
         var found=dataArr.find(function(s){return matchNom(e.nom,s.nom);});
         var base=found?Object.assign({},found):{nom:e.nom,noc:e.noc,annee:e.annee,experience:0,v400:null,v800:null,v1500:null,t400:null,t800:null,t1500:null,ko_hist:[]};
+        if(base.v1500==null||base.v400==null){
+          var sp=findSpeed(e.nom);
+          if(sp){
+            if(base.v1500==null)base.v1500=sp.v1500;
+            if(base.v400==null)base.v400=sp.v400;
+            if(base.v800==null)base.v800=sp.v800;
+            if(base.t1500==null)base.t1500=sp.t1500;
+            if(base.t400==null)base.t400=sp.t400;
+            if(!base.annee)base.annee=sp.annee;
+          }
+        }
         base.bib=i+1; base.serie=(i<Math.ceil(sl.length/2)?1:2);
         if(!base.ko_hist)base.ko_hist=[];
         return base;
       });
     }
-    DATA_F=buildStartlist(DATA_F,STARTLIST_F);
-    DATA_H=buildStartlist(DATA_H,STARTLIST_H);
+    DATA_F=buildStartlist(DATA_F,STARTLIST_F,nagF);
+    DATA_H=buildStartlist(DATA_H,STARTLIST_H,nagH);
 
 let G='f', SEL=null, NOC_FILT=null, SERIE=1, PANEL_VIEW='profil';
 
@@ -779,6 +801,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <g id="mx-svg-parcours-vent"></g>
       <g id="mx-svg-parcours-houle"></g>
       <g id="mx-svg-parcours-mer"></g>
+      <g id="mx-svg-parcours-courant"></g>
     </svg>
   </div>
 
@@ -789,6 +812,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <g id="mx-svg-finish-vent"></g>
       <g id="mx-svg-finish-houle"></g>
       <g id="mx-svg-finish-mer"></g>
+      <g id="mx-svg-finish-courant"></g>
     </svg>
   </div>
 
@@ -893,6 +917,10 @@ var MAREES={
     {h:"14h",sens:"jusant",force:"moyen"},
     {h:"15h",sens:"etale",force:"nul"},
     {h:"16h",sens:"flot",force:"faible"},
+    {h:"17h",sens:"flot",force:"moyen"},
+    {h:"18h",sens:"flot",force:"fort"},
+    {h:"19h",sens:"flot",force:"fort"},
+    {h:"20h",sens:"flot",force:"moyen"},
   ]
 };
 
@@ -1035,7 +1063,26 @@ function bgLbl(x,y,txt,col,sz){
   return s;
 }
 
-function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
+function currentArrow(x,y,toDir,force,col,sc){
+  sc=sc||1;
+  var flen={fort:90,moyen:65,faible:42,nul:0};
+  var len=(flen[force]||55)*sc;
+  if(len===0)return'';
+  var rad=toDir*Math.PI/180;
+  var dx=Math.sin(rad),dy=-Math.cos(rad);
+  var sx=x-dx*len/2,sy=y-dy*len/2;
+  var ex=sx+dx*len,ey=sy+dy*len;
+  var px=-dy,py=dx;
+  var ah=16*sc,aw=9*sc;
+  var s='<line x1="'+sx.toFixed(1)+'" y1="'+sy.toFixed(1)+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'"';
+  s+=' stroke="'+col+'" stroke-width="'+(6*sc)+'" stroke-linecap="round" opacity="0.85"/>';
+  s+='<polygon points="'+ex.toFixed(1)+','+ey.toFixed(1);
+  s+=' '+(ex-dx*ah+px*aw).toFixed(1)+','+(ey-dy*ah+py*aw).toFixed(1);
+  s+=' '+(ex-dx*ah-px*aw).toFixed(1)+','+(ey-dy*ah-py*aw).toFixed(1)+'" fill="'+col+'" opacity="0.85"/>';
+  return s;
+}
+
+function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m, cInfo){
   var vPts=parallelPts(vCx,vCy,m.vent_dir,90);
   var hPts=m.houle_dir!=null?parallelPts(hCx,hCy,m.houle_dir,80):null;
   var mPts=m.mer_dir!=null?parallelPts(mCx,mCy,m.mer_dir,70):null;
@@ -1074,9 +1121,20 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
     mSVG+=bgLbl(mLx-2,mLy,(m.mer_h||0).toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
   }
 
+  var cSVG='';
+  if(cInfo&&cInfo.sens&&cInfo.sens!=='etale'){
+    var cToDir=cInfo.sens==='flot'?45:225;
+    var cCol=cInfo.sens==='flot'?'#34d399':'#f87171';
+    cSVG+=currentArrow(950,720,cToDir,cInfo.force,cCol,1.0);
+    var fLbl={fort:'fort',moyen:'moyen',faible:'faible'}[cInfo.force]||'';
+    cSVG+=bgLbl(910,760,'COURANT · '+(cInfo.sens==='flot'?'flot →':'← jusant')+' · '+fLbl,cCol,11);
+  }else if(cInfo&&cInfo.sens==='etale'){
+    cSVG+=bgLbl(910,760,'COURANT · étale','#9ca3af',11);
+  }
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
   document.getElementById(svgId+'-houle').innerHTML=hSVG;
   document.getElementById(svgId+'-mer').innerHTML=mSVG;
+  document.getElementById(svgId+'-courant').innerHTML=cSVG;
 }
 
 function updateMeteo(idx){
@@ -1112,8 +1170,11 @@ function updateMeteo(idx){
     mer_h: null,
     mer_per: null
   };
-  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
-  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+  var mH=parseInt(m.h);
+  var cEntry=MAREES&&MAREES.courant?MAREES.courant.find(function(c){return parseInt(c.h)===mH;}):null;
+  var cInfo=cEntry?{sens:cEntry.sens,force:cEntry.force}:null;
+  renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms, cInfo);
+  renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms, cInfo);
 }
 
 function fetchMeteoOpenMeteo(){

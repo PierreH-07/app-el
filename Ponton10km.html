@@ -1027,6 +1027,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <g id="mx-svg-parcours-vent"></g>
       <g id="mx-svg-parcours-houle"></g>
       <g id="mx-svg-parcours-mer"></g>
+      <g id="mx-svg-parcours-courant"></g>
     </svg>
   </div>
 
@@ -1037,6 +1038,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <g id="mx-svg-finish-vent"></g>
       <g id="mx-svg-finish-houle"></g>
       <g id="mx-svg-finish-mer"></g>
+      <g id="mx-svg-finish-courant"></g>
     </svg>
   </div>
 
@@ -1263,7 +1265,26 @@ function bgLbl(x,y,txt,col,sz){
   return s;
 }
 
-function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
+function currentArrow(x,y,toDir,force,col,sc){
+  sc=sc||1;
+  var flen={fort:90,moyen:65,faible:42,nul:0};
+  var len=(flen[force]||55)*sc;
+  if(len===0)return'';
+  var rad=toDir*Math.PI/180;
+  var dx=Math.sin(rad),dy=-Math.cos(rad);
+  var sx=x-dx*len/2,sy=y-dy*len/2;
+  var ex=sx+dx*len,ey=sy+dy*len;
+  var px=-dy,py=dx;
+  var ah=16*sc,aw=9*sc;
+  var s='<line x1="'+sx.toFixed(1)+'" y1="'+sy.toFixed(1)+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'"';
+  s+=' stroke="'+col+'" stroke-width="'+(6*sc)+'" stroke-linecap="round" opacity="0.85"/>';
+  s+='<polygon points="'+ex.toFixed(1)+','+ey.toFixed(1);
+  s+=' '+(ex-dx*ah+px*aw).toFixed(1)+','+(ey-dy*ah+py*aw).toFixed(1);
+  s+=' '+(ex-dx*ah-px*aw).toFixed(1)+','+(ey-dy*ah-py*aw).toFixed(1)+'" fill="'+col+'" opacity="0.85"/>';
+  return s;
+}
+
+function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m, cInfo){
   var vPts=parallelPts(vCx,vCy,m.vent_dir,90);
   var hPts=m.houle_dir!=null?parallelPts(hCx,hCy,m.houle_dir,80):null;
   var mPts=m.mer_dir!=null?parallelPts(mCx,mCy,m.mer_dir,70):null;
@@ -1303,9 +1324,20 @@ function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m){
     mSVG+=bgLbl(mLx-2,mLy,(m.mer_h||0).toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
   }
 
+  var cSVG='';
+  if(cInfo&&cInfo.sens&&cInfo.sens!=='etale'){
+    var cToDir=cInfo.sens==='flot'?45:225;
+    var cCol=cInfo.sens==='flot'?'#34d399':'#f87171';
+    cSVG+=currentArrow(950,720,cToDir,cInfo.force,cCol,1.0);
+    var fLbl={fort:'fort',moyen:'moyen',faible:'faible'}[cInfo.force]||'';
+    cSVG+=bgLbl(910,760,'COURANT · '+(cInfo.sens==='flot'?'flot →':'← jusant')+' · '+fLbl,cCol,11);
+  }else if(cInfo&&cInfo.sens==='etale'){
+    cSVG+=bgLbl(910,760,'COURANT · étale','#9ca3af',11);
+  }
   document.getElementById(svgId+'-vent').innerHTML=vSVG;
   document.getElementById(svgId+'-houle').innerHTML=hSVG;
   document.getElementById(svgId+'-mer').innerHTML=mSVG;
+  document.getElementById(svgId+'-courant').innerHTML=cSVG;
 }
 
 function updateMeteo(idx){
@@ -1338,9 +1370,12 @@ function updateMeteo(idx){
     houle_per: m.houle_per!=null?m.houle_per:null,
     mer_dir: null, mer_h: null, mer_vent_h: null, mer_per: null
   };
+  var mH=parseInt(m.h);
+  var cEntry=MAREES&&MAREES.courant?MAREES.courant.find(function(c){return parseInt(c.h)===mH;}):null;
+  var cInfo=cEntry?{sens:cEntry.sens,force:cEntry.force}:null;
   try{
-    renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms);
-    renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms);
+    renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms, cInfo);
+    renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms, cInfo);
   }catch(e){ console.warn('renderSVG error',e); }
 }
 
