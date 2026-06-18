@@ -389,10 +389,17 @@ Promise.all([
       {nom:'SIEGEL Will',noc:'USA',annee:2007},
     ];
     function buildStartlist(dataArr,sl){
+      function matchNom(a,b){
+        a=a.toLowerCase().trim(); b=b.toLowerCase().trim();
+        if(a===b)return true;
+        // l'un est préfixe de l'autre (ex: "JOUISSE Caroline" vs "JOUISSE Caroline Laure")
+        if(a.startsWith(b+' ')||b.startsWith(a+' '))return true;
+        // même nom de famille + même prénom (ignore prénoms composés)
+        var at=a.split(' '),bt=b.split(' ');
+        return at[0]===bt[0]&&at.length>1&&bt.length>1&&at[1]===bt[1];
+      }
       return sl.map(function(e,i){
-        var nomLow=e.nom.toLowerCase();
-        var found=dataArr.find(function(s){return s.nom.toLowerCase()===nomLow;});
-        if(!found){var sur=e.nom.split(' ')[0].toLowerCase();var c=dataArr.filter(function(s){return s.nom.toLowerCase().startsWith(sur+' ');});if(c.length===1)found=c[0];}
+        var found=dataArr.find(function(s){return matchNom(e.nom,s.nom);});
         var base=found?Object.assign({},found):{nom:e.nom,noc:e.noc,annee:e.annee,experience:0,v400:null,v800:null,v1500:null,t400:null,t800:null,t1500:null};
         base.bib=i+1;
         return base;
