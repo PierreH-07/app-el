@@ -58,14 +58,33 @@ Arrondir à 4 décimales. Notation française : virgule → point décimal (03:5
 
 `buildStartlist` utilise `e.bib` s'il est défini, sinon l'index du tableau.
 
+### Deux endroits à mettre à jour
+
+1. **JSON (branche `data`)** — source primaire, 438 H + 69 F
+   - Fichier : `resultats_10km_nageurs_el.json` (champs `t400`, `t800`, `t1500`, `v400`, `v800`, `v1500`)
+   - Méthode : worktree sur `origin/data`, modifier le JSON, pousser sur `data`
+
+2. **HTML STARTLIST (branche feature)** — fallback si JSON a null
+   - `Ponton10km.html` STARTLIST_F / STARTLIST_H
+   - `ponton_ko_setubal2026.html` STARTLIST_F / STARTLIST_H
+
+`buildStartlist` prend le JSON en priorité — si v1500 est null dans le JSON, il utilise l'entrée STARTLIST HTML.
+
 ### Déploiement après modification
 
 ```bash
+# 1. Mettre à jour le JSON (branche data)
+git worktree add /tmp/data-branch origin/data
+# ... modifier resultats_10km_nageurs_el.json ...
+cd /tmp/data-branch && git add . && git commit -m "..." && git push origin HEAD:data
+git worktree remove /tmp/data-branch --force
+
+# 2. Mettre à jour les HTML STARTLIST (branche feature → main)
 git add Ponton10km.html ponton_ko_setubal2026.html
 git commit -m "Update pool times: ..."
 git push origin claude/analyze-course-html-PCRZd
 
-# Merger sur main pour mettre à jour le site
+# 3. Merger sur main pour le site
 git checkout main && git merge claude/analyze-course-html-PCRZd --no-edit
 git push origin main
 git checkout claude/analyze-course-html-PCRZd
