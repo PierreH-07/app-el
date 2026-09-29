@@ -136,8 +136,9 @@ branche `data`, `WA_APP` racine du dépôt, `WA_TODAY` date du contrôle, `WA_OU
 (dists / temps du tour) pour toutes les courses femmes et `golfo26_h`. `strategie.storage_type()`
 le détecte (écarts recalculés cohérents ⇒ cumulé). Vérifier le type avant toute analyse de `vit`.
 
-**⚠️ ChM_Singapour25_5K et CHM_Singapour25_10K (F)** : `pos` et `ecart` incohérents à partir du
-tour 3 (ex. la gagnante JOHNSON 14e à 1235 s) ; `vit` (vitesse du tour) semble correcte.
+**Nageurs avec des tours sans temps** : ils sont exclus du calcul du leader et du classement à
+partir du premier tour manquant (`ecart`/`pos` = null). Sinon leur cumul tronqué les fait passer
+leader et décale tous les écarts (erreur corrigée le 29/09/2026 sur ChM_Singapour25_5K / CHM_Singapour25_10K F).
 
 Les fiches fusionnées portent un champ `alias` (variantes d'orthographe rencontrées dans les
 PDF) : s'en servir pour rattacher les résultats des prochaines courses à la bonne fiche.
