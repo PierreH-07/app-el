@@ -90,19 +90,42 @@ git push origin main
 git checkout claude/analyze-course-html-PCRZd
 ```
 
-## Nageurs sans temps bassin connus (à renseigner si données disponibles)
+## Nageurs des STARTLIST sans temps bassin (contrôle World Aquatics du 29/09/2026)
 
-Femmes : GKAZGKA Maria (GRE), KARRAS Sophia Olivia (GRE), VIANA Carolina (POR),
-HEMMENS Sasha-Lee (RSA), GARCES Sofia (ARG), IMWINKELRIED Romina Sole (ARG),
-ANDRE Angelica (POR), LI Xinxuan (CHN), ABAD Ana (ECU), LEE Kyle (AUS — homme).
+Aucun 400/800/1500 NL en bassin 50m trouvé sur World Aquatics dans les 24 derniers mois :
 
-Hommes : MORENO Joaquin (ARG), CASSINI Franco Ivo (ARG), KIMBER Byron (RSA),
-POLSTER Attila (SUI), MORENO GUTIERREZ Raul (MEX), CHRISTODOULOU Angelos (GRE),
-SARREIRA Tomas (POR), LIETZEN Jesper (FIN), LEE Kyle (AUS), SIEGEL Will (USA),
-LUDVIK David (CZE), MARQUES Duarte (POR), KOVACS-SERES Hunor (HUN).
+Femmes : ABAD Ana (ECU), KARRAS Sophia Olivia (GRE).
+
+Hommes : CASSINI Franco Ivo (ARG), MARQUES Duarte (POR), KIMBER Byron (RSA).
+
+## Contrôle des temps bassin via World Aquatics (`outils/worldaquatics/`)
+
+Règles appliquées :
+- Fenêtre : 24 mois avant la date du contrôle.
+- Un temps WA remplace celui de la base **uniquement s'il est meilleur** (ou si la base est vide).
+- Bassin 50m uniquement, `(25m)` exclu. Quand le nom de compétition n'indique pas le bassin,
+  il est validé par les points WA : base implicite = temps × (points/1000)^(1/3), comparée aux
+  bases de référence 50m/25m de l'année (médianes des résultats étiquetés), tolérance 0,5 %.
+- Rapprochement nageur ↔ WA : nom par mots entiers + prénom + nation + année ; les profils WA
+  en double (même date de naissance et nation) sont fusionnés.
+
+Enchaînement (variables d'environnement : `WA_WORK` dossier de travail, `WA_DATA` copie de la
+branche `data`, `WA_APP` racine du dépôt, `WA_TODAY` date du contrôle, `WA_OUT` sortie) :
+1. `wa_collect.py` puis `wa_pass2.py` → `wa_raw.json` (résultats WA bruts par nageur)
+2. `dedup.py` (optionnel) → fusion des doublons de noms dans toute la base
+3. `wa_report.py` → JSON + HTML mis à jour, `historique_bassin_el.json`, Excel avant/après et historiques
+
+Les fiches fusionnées portent un champ `alias` (variantes d'orthographe rencontrées dans les
+PDF) : s'en servir pour rattacher les résultats des prochaines courses à la bonne fiche.
 
 ## JSON data (branche `data`)
 
 - `resultats_10km_nageurs_el.json` : DATA_F / DATA_H avec vitesses EL des nageurs
 - `resultats_ko_el.json` : résultats rounds KO
+- `historique_bassin_el.json` : historique des temps bassin WA (lecture machine)
+  - `nageurs[genre|NOM NORMALISE]` : identité WA, `perfs` (tous les 200→1500 NL avec bassin
+    retenu et motif de validation), `par_annee[AAAA]` (meilleurs 400/800/1500 + VC sur les
+    24 mois finissant au 31/12), `eau_libre_wa` (résultats OW WA)
+  - `courses[source|genre|cle]` : date (vérifiée via WA), et pour chaque participant les
+    meilleurs 400/800/1500 + VC sur les 24 mois précédant la course
 - Le ponton KO fetch les deux en parallèle (Promise.all) pour enrichir les données de vitesse
