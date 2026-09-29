@@ -123,12 +123,21 @@ branche `data`, `WA_APP` racine du dépôt, `WA_TODAY` date du contrôle, `WA_OU
 - `top5` = courses avec rang ≤ 5, `hors5` = rang > 5.
 - jalon pct (20/40/60/80/100) = tour dont `dist_cumul` est le plus proche de pct % de la distance totale.
 - par jalon : courses sans position à ce tour écartées ; `pos_moy` = moyenne des positions,
-  `nb_moy` = moyenne de `nb_nageurs`, `vz_norm` = moyenne de `vitesses_tour`, `n_courses` = nb de courses.
+  `nb_moy` = moyenne de `nb_nageurs`, `n_courses` = nb de courses.
+- `vz_norm` = moyenne sur les courses de (vitesse **du tour** du nageur / vitesse **médiane du peloton**
+  sur ce tour) : 1,00 = vitesse du peloton, 1,03 = 3 % plus rapide. Calcul : `compute(courses, build_ref(courses_json, 'CF'|'CH'))`.
+- Le ponton colore les ovales de −6 % (bleu clair) à +6 % (marine) (`VZ_MIN`/`VZ_MAX` dans `renderStrategie`).
 - aucune course retenue → `null` ; un groupe sans course → `[]`.
-- Recalculer après toute modification des courses d'une fiche. Règle validée : elle reproduit
-  à l'identique 470/476 stratégies d'origine (écarts = arrondis ±0,0001 et fiches fusionnées).
-- Limite connue : le JS (`ovalColor`) attend `vz_norm` entre 0 et 1 alors que la valeur est une
-  vitesse brute (~1,4 m/s) → couleur des ovales toujours saturée.
+- Recalculer après toute modification des courses d'une fiche. Positions : règle validée sur
+  470/476 stratégies d'origine.
+
+**⚠️ Stockage de `vit` hétérogène dans `resultats_10km_courses_el.json`** : vitesse **cumulée**
+(dist_cumul / temps cumulé) pour les courses hommes, sauf `golfo26_h` ; vitesse **du tour**
+(dists / temps du tour) pour toutes les courses femmes et `golfo26_h`. `strategie.storage_type()`
+le détecte (écarts recalculés cohérents ⇒ cumulé). Vérifier le type avant toute analyse de `vit`.
+
+**⚠️ ChM_Singapour25_5K et CHM_Singapour25_10K (F)** : `pos` et `ecart` incohérents à partir du
+tour 3 (ex. la gagnante JOHNSON 14e à 1235 s) ; `vit` (vitesse du tour) semble correcte.
 
 Les fiches fusionnées portent un champ `alias` (variantes d'orthographe rencontrées dans les
 PDF) : s'en servir pour rattacher les résultats des prochaines courses à la bonne fiche.
