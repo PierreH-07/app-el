@@ -115,6 +115,21 @@ branche `data`, `WA_APP` racine du dépôt, `WA_TODAY` date du contrôle, `WA_OU
 2. `dedup.py` (optionnel) → fusion des doublons de noms dans toute la base
 3. `wa_report.py` → JSON + HTML mis à jour, `historique_bassin_el.json`, Excel avant/après et historiques
 
+### Stratégie du ponton (`outils/worldaquatics/strategie.py`)
+
+`strategie` de chaque fiche (DATA_F/DATA_H) = `compute(fiche['courses'])` :
+- courses retenues : `format == '10km'` (5 km inclus), `positions_tour` et `rang` renseignés.
+  **Toute course 10 km ajoutée à une fiche doit porter `format: '10km'`**, sinon elle est ignorée.
+- `top5` = courses avec rang ≤ 5, `hors5` = rang > 5.
+- jalon pct (20/40/60/80/100) = tour dont `dist_cumul` est le plus proche de pct % de la distance totale.
+- par jalon : courses sans position à ce tour écartées ; `pos_moy` = moyenne des positions,
+  `nb_moy` = moyenne de `nb_nageurs`, `vz_norm` = moyenne de `vitesses_tour`, `n_courses` = nb de courses.
+- aucune course retenue → `null` ; un groupe sans course → `[]`.
+- Recalculer après toute modification des courses d'une fiche. Règle validée : elle reproduit
+  à l'identique 470/476 stratégies d'origine (écarts = arrondis ±0,0001 et fiches fusionnées).
+- Limite connue : le JS (`ovalColor`) attend `vz_norm` entre 0 et 1 alors que la valeur est une
+  vitesse brute (~1,4 m/s) → couleur des ovales toujours saturée.
+
 Les fiches fusionnées portent un champ `alias` (variantes d'orthographe rencontrées dans les
 PDF) : s'en servir pour rattacher les résultats des prochaines courses à la bonne fiche.
 
