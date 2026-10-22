@@ -140,6 +140,31 @@ le détecte (écarts recalculés cohérents ⇒ cumulé). Vérifier le type avan
 partir du premier tour manquant (`ecart`/`pos` = null). Sinon leur cumul tronqué les fait passer
 leader et décale tous les écarts (erreur corrigée le 29/09/2026 sur ChM_Singapour25_5K / CHM_Singapour25_10K F).
 
+### Import des courses World Aquatics (`outils/worldaquatics/ow_import.py`)
+
+`WA_DATA=<copie branche data> WA_CACHE=<cache> python ow_import.py [--dry]` (journal JSON dans `WA_LOG`).
+- Source : `api.worldaquatics.com/fina` (`/competitions?disciplines=OW`, `/competitions/{id}/events`,
+  `/events/{id}` → `Heats[].Results[].Splits[]` = temps cumulés aux points de passage).
+- Seules les courses avec temps intermédiaires sont importées (WA n'en a pas avant fin 2021, sauf Tokyo,
+  ni pour CdM 2022 Sétubal/Paris/Lac Mégantic, Eilat 2022, Doha/Ohrid 2021). Pas de ChE (absents de WA), pas de 25 km.
+- Courses existantes : complétées avec les nageurs manquants ; les temps WA remplacent ceux de la base
+  pour les nageurs retrouvés (même source, écart médian 0,05 s H / 0,3 s F) ; positions, écarts, groupes recalculés.
+  Tours de l'app calés sur les points WA par comparaison des temps. Le classement WA fait foi : un nageur
+  classé dans l'app mais DSQ/DNF sur WA est retiré (ex. VANHUYS Logan, DSQ* sur 8 courses).
+- **Points de passage** : WA renumérote parfois les points quand l'un manque pour un nageur → alignement
+  par fraction du temps final sur les points de référence (nageurs au jeu complet). Temps final fictif
+  `9:59:59` ignoré. Temps intermédiaires incohérents (vitesse de tour hors 0,6–2,2 m/s) écartés.
+- Distances par tour des nouvelles courses (`dists_source`) : `meme_competition` (parcours de l'autre genre),
+  `meme_competition_10km` (5 km d'un ChM : boucle du 10 km), `bulletin` (bulletin d'information WA,
+  dictionnaire `BULLETINS`), sinon `egal` (distance / nombre de tours). Un point de fin de tour absent
+  fusionne deux tours.
+- Champs ajoutés aux courses WA : `source_temps`, `wa_competition_id`, `distance_km`, et pour les nouvelles
+  `dists_source`, `vit_type: 'tour'`, `categorie: 'junior'`. `rv`/`di` restent null pour les nageurs ajoutés.
+- Juniors : `type: 'CHMJ'`, `format: 'junior'` dans les fiches → exclus du calcul de la stratégie.
+- KO (`KO_NOUVEAUX`) : temps par manche uniquement ; temps bassin = meilleurs 400/800/1500 50m des
+  24 mois précédant la course (`historique_bassin_el.json`), `rv` = rang du 1500 dans la manche.
+- Non complétées (calage impossible, données WA incohérentes) : ChM_Doha24 F, ChM_Budapest22 F.
+
 Les fiches fusionnées portent un champ `alias` (variantes d'orthographe rencontrées dans les
 PDF) : s'en servir pour rattacher les résultats des prochaines courses à la bonne fiche.
 
