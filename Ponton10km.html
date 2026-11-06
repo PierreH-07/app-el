@@ -183,7 +183,6 @@ body{font-family:'Helvetica Neue',Arial,system-ui,-apple-system,sans-serif;font-
 .mx-cond-lbl{font-size:9px;color:rgba(255,255,255,.4);margin-top:2px;}
 .mx-cond-item.mx-temp .mx-cond-val{color:#fbbf24;}
 .mx-cond-item.mx-vent .mx-cond-val{color:#93c5fd;}
-.mx-cond-item.mx-houle .mx-cond-val{color:#67e8f9;}
 .mx-cond-item.mx-mer .mx-cond-val{color:#7dd3fc;}
 /* Onglets vues */
 .mx-vtabs{display:flex;background:#eaf0f9;border-bottom:1px solid var(--border);}
@@ -1008,8 +1007,8 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <div class="mx-card-hdr">
     <div>
-      <div class="mx-card-hdr-title">🗺️ Parcours Cancún 2026 (boucle 1 666 m) · Météo Setúbal non mise à jour</div>
-      <div class="mx-card-hdr-sub" id="mx-card-sub">10km · F 11h00 · H 16h30 · Setúbal · Source : Open-Meteo + Cabaigne.net · Mise à jour 15/06/2026</div>
+      <div class="mx-card-hdr-title">🗺️ Parcours &amp; Météo — Cancún 2026 (boucle 1 666 m)</div>
+      <div class="mx-card-hdr-sub" id="mx-card-sub">10km · H 09h00 · F 12h00 (heure locale) · Playa Langosta · Source : Open-Meteo</div>
     </div>
     <div class="mx-heure-badge">
       <div class="mx-heure-label" id="mx-heure-label">H</div>
@@ -1026,14 +1025,6 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
       <div class="mx-cond-icon">💨</div>
       <div><div class="mx-cond-val" id="mx-c-vent">— km/h · —</div><div class="mx-cond-lbl" id="mx-l-vent">Vent (—°) · raf. — km/h</div></div>
     </div>
-    <div class="mx-cond-item mx-houle">
-      <div class="mx-cond-icon">🌊</div>
-      <div><div class="mx-cond-val" id="mx-c-houle">0.0m · —</div><div class="mx-cond-lbl" id="mx-l-houle">Houle (230°) &middot; <span id="mx-c-houle-per">8s</span></div></div>
-    </div>
-    <div class="mx-cond-item mx-mer">
-      <div class="mx-cond-icon">〰️</div>
-      <div><div class="mx-cond-val" id="mx-c-mer">0.0m · —</div><div class="mx-cond-lbl" id="mx-l-mer">Mer de vent (320°) &middot; <span id="mx-c-mer-per">5s</span></div></div>
-    </div>
     <div id="mx-marees-block"></div>
   </div>
 
@@ -1046,22 +1037,16 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
   <!-- Vue parcours -->
   <div class="mx-carte-wrap on" id="mx-vue-parcours">
     <img src="img/parcours_10km_cancun2026.jpg" alt="Parcours 10km Cancún 2026" style="width:100%;height:100%;object-fit:contain">
-    <svg class="mx-carte-overlay" id="mx-svg-parcours" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
+    <svg class="mx-carte-overlay" id="mx-svg-parcours" viewBox="0 0 1264 827" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-parcours-vent"></g>
-      <g id="mx-svg-parcours-houle"></g>
-      <g id="mx-svg-parcours-mer"></g>
-      <g id="mx-svg-parcours-courant"></g>
     </svg>
   </div>
 
   <!-- Vue arrivée -->
   <div class="mx-carte-wrap" id="mx-vue-finish">
     <img src="img/parcours_10km_cancun2026.jpg" alt="Zone arrivée Cancún 2026" style="width:100%;height:100%;object-fit:contain">
-    <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
+    <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 827" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-finish-vent"></g>
-      <g id="mx-svg-finish-houle"></g>
-      <g id="mx-svg-finish-mer"></g>
-      <g id="mx-svg-finish-courant"></g>
     </svg>
   </div>
 
@@ -1082,19 +1067,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
         <line x1="9" y1="6" x2="15" y2="1" stroke="#93c5fd" stroke-width="2"/>
       </svg><span style="color:#1e3a8a;font-weight:700">Vent</span>
     </div>
-    <div class="mx-leg-item">
-      <svg width="40" height="12">
-        <polyline points="2,6 6,3 10,6 14,3 18,6 22,3 26,6" fill="none" stroke="#67e8f9" stroke-width="2"/>
-        <polygon points="26,6 17,2 17,10" fill="#67e8f9"/>
-      </svg><span style="color:#0e7490;font-weight:700">Houle</span>
-    </div>
-    <div class="mx-leg-item">
-      <svg width="40" height="12">
-        <polyline points="2,6 5,4 8,6 11,4 14,6 17,4 20,6 23,4 26,6" fill="none" stroke="#7dd3fc" stroke-width="1.8" opacity=".75"/>
-        <polygon points="26,6 18,3 18,9" fill="#7dd3fc" opacity=".75"/>
-      </svg><span style="color:#0284c7;font-weight:700">Mer de vent</span>
-    </div>
-    <span class="mx-leg-note">Trait court=15 km/h · Trait long=30 km/h · ▲=60 km/h &nbsp;·&nbsp; Source : <a href="https://open-meteo.com/" target="_blank" style="color:var(--dim)">Open-Meteo GFS</a></span>
+    <span class="mx-leg-note">Trait court=15 km/h · Trait long=30 km/h · ▲=60 km/h &nbsp;·&nbsp; Carte orientée nord en haut · Source : <a href="https://open-meteo.com/" target="_blank" style="color:var(--dim)">Open-Meteo</a></span>
   </div>
 
 </div>
@@ -1119,85 +1092,60 @@ function showVue(v,btn){
 }
 
 'use strict';
-// Données Open-Meteo GFS — Golfo Aranci — 1er mai 2026 — vent en km/h
-// Femmes : 09h–15h (départ 12h) | Hommes : 06h–12h (départ 09h)
-// wave_height = mer totale, swell_wave_height = houle, mer de vent = wave_height - swell
-var METEO_F=[
-  {h:"08h",t:20.4,v:2.1,r:4.5,dir:"N"},
-  {h:"09h",t:21.4,v:2.4,r:5.2,dir:"N"},
-  {h:"10h",t:22.8,v:2.5,r:5.8,dir:"NNO"},
-  {h:"11h♀",t:24.5,v:2.6,r:6.2,dir:"NNO"},
-  {h:"12h",t:26.6,v:2.6,r:6.4,dir:"NO"},
-  {h:"13h",t:28.4,v:3.0,r:7.2,dir:"NO"},
-  {h:"14h",t:29.8,v:4.1,r:8.9,dir:"NO"},
-  {h:"15h",t:31.0,v:5.7,r:11.3,dir:"NO"},
-  {h:"16h",t:31.6,v:6.8,r:13.2,dir:"NO"},
-];
-var METEO_H=[
-  {h:"13h",t:28.4,v:3.0,r:7.2,dir:"NO"},
-  {h:"14h",t:29.8,v:4.1,r:8.9,dir:"NO"},
-  {h:"15h",t:31.0,v:5.7,r:11.3,dir:"NO"},
-  {h:"16h♂",t:31.6,v:6.8,r:13.2,dir:"NO"},
-  {h:"17h",t:31.6,v:7.6,r:14.4,dir:"NO"},
-  {h:"18h",t:31.0,v:8.1,r:15.2,dir:"NO"},
-  {h:"19h",t:30.0,v:8.1,r:15.4,dir:"NO"},
-  {h:"20h",t:28.3,v:7.3,r:14.8,dir:"NO"},
-];
-var METEO=METEO_F; // initialisé sur femmes au démarrage
-var DEPART_F=11,DEPART_M=0,DEPART_H=16.5;
+// ── Météo & marées · Cancún, Playa Langosta · 6 novembre 2026 ─────────────
+// Vent / température : Open-Meteo forecast (live, navigateur). Marées : Open-Meteo Marine,
+// sea_level_height_msl (modèle, maille ~8 km, hauteur / niveau moyen). Pas de valeurs inventées :
+// si l'API ne répond pas, les cases restent « — ».
+// Carte du parcours orientée nord en haut (ponton de départ orienté nord).
+var LAT=21.1451,LON=-86.7817,DATE_COURSE='2026-11-06',TZ='America%2FCancun';
+var DEPART_F=12,DEPART_H=9;
 var G='f'; // genre actif
+function emptySlice(dep){var o=[];for(var h=dep-3;h<=dep+5;h++)o.push({h:h+'h'+(h===dep?(dep===DEPART_F?'♀':'♂'):''),t:null,v:null,r:null,dir:null});return o;}
+var METEO_F=emptySlice(DEPART_F), METEO_H=emptySlice(DEPART_H);
+var METEO=METEO_F;
 
-var MAREES={
-  label:"Marées · Setúbal · 20 juin 2026",
-  source:"Réf. Lisbonne ±10min",
-  marnage:2.5,
-  coeff:"~60",
-  evenements:[
-    {h:"01h29",type:"BM",hauteur:0.91},
-    {h:"08h06",type:"PM",hauteur:3.48},
-    {h:"13h39",type:"BM",hauteur:1.15},
-    {h:"20h24",type:"PM",hauteur:3.55},
-  ],
-  courant:[
-    {h:"08h",sens:"jusant",force:"fort"},
-    {h:"09h",sens:"jusant",force:"fort"},
-    {h:"10h",sens:"jusant",force:"moyen"},
-    {h:"11h",sens:"jusant",force:"faible"},
-    {h:"12h",sens:"jusant",force:"faible"},
-    {h:"13h",sens:"etale",force:"nul"},
-    {h:"14h",sens:"flot",force:"faible"},
-    {h:"15h",sens:"flot",force:"moyen"},
-    {h:"16h",sens:"flot",force:"fort"},
-    {h:"17h",sens:"flot",force:"fort"},
-    {h:"18h",sens:"flot",force:"fort"},
-    {h:"19h",sens:"flot",force:"moyen"},
-    {h:"20h",sens:"flot",force:"faible"},
-  ]
-};
+// Niveau de la mer horaire (m, / niveau moyen) — Open-Meteo Marine, relevé le 06/11/2026 (repli si l'API ne répond pas)
+var MAREE_NIVEAUX=[0.01,0.00,0.02,0.06,0.11,0.16,0.19,0.20,0.19,0.17,0.13,0.09,0.07,0.06,0.07,0.10,0.13,0.17,0.20,0.20,0.18,0.15,0.11,0.06];
+var MAREE_SOURCE='Open-Meteo Marine (relevé 06/11)';
 
+function pad2(n){return (n<10?'0':'')+n;}
+function fmtH(x){var h=Math.floor(x),m=Math.round((x-h)*60);if(m===60){h++;m=0;}return pad2(h)+'h'+pad2(m);}
+// Extrêmes (PM/BM) par interpolation parabolique sur les valeurs horaires
+function mareeEvents(lv){
+  var ev=[];
+  for(var i=1;i<lv.length-1;i++){
+    var a=lv[i-1],b=lv[i],c=lv[i+1];
+    var isMax=b>=a&&b>c, isMin=b<=a&&b<c;
+    if(!isMax&&!isMin)continue;
+    var den=a-2*b+c, off=den!==0?0.5*(a-c)/den:0;
+    if(off<-0.5)off=-0.5; if(off>0.5)off=0.5;
+    var hv=b-0.25*(a-c)*off;
+    ev.push({h:fmtH(i+off),type:isMax?'PM':'BM',hauteur:(Math.abs(hv)<0.005?0:hv).toFixed(2)});
+  }
+  return ev;
+}
 function renderMarees(){
-  if(!MAREES)return'';
-  var evts=MAREES.evenements.map(function(e){
-    var icon=e.type==='PM'?'▲':'▼';
+  var lv=MAREE_NIVEAUX; if(!lv||!lv.length)return'';
+  var evts=mareeEvents(lv).map(function(e){
     var col=e.type==='PM'?'#5bc4f5':'#a0c8e8';
-    return'<span style="margin-right:10px;color:'+col+'">'+icon+' '+e.h+' <b>'+e.hauteur+'m</b></span>';
+    return'<span style="margin-right:10px;color:'+col+'">'+(e.type==='PM'?'▲':'▼')+' '+e.h+' <b>'+e.hauteur+'m</b></span>';
   }).join('');
-  var icons={flot:'→',jusant:'←',etale:'·'};
-  var cols={fort:'#f5a623',moyen:'#f5d87a',faible:'#d4eaf7',nul:'#888'};
-  var now_h=new Date().getHours();
-  var courantHtml=MAREES.courant.map(function(c){
-    var h=parseInt(c.h);
-    var active=(h===now_h)?'outline:2px solid #fff;':'';
-    return'<span style="display:inline-block;padding:2px 5px;margin:1px;border-radius:3px;font-size:10px;background:'+cols[c.force]+';color:#1a2a3a;'+active+'" title="'+c.sens+'">'+c.h+' '+icons[c.sens]+'</span>';
-  }).join('');
+  var dep=G==='f'?DEPART_F:DEPART_H, chips='';
+  for(var h=dep-1;h<=dep+3&&h<23;h++){
+    var d=lv[h+1]-lv[h];
+    var sens=Math.abs(d)<0.005?'étale':(d>0?'montante':'descendante');
+    var ic=sens==='montante'?'↑':(sens==='descendante'?'↓':'·');
+    var bg=sens==='montante'?'#bfe3f7':(sens==='descendante'?'#f5d87a':'#ddd');
+    chips+='<span style="display:inline-block;padding:2px 5px;margin:1px;border-radius:3px;font-size:10px;background:'+bg+';color:#1a2a3a" title="'+sens+'">'+h+'h '+ic+' '+lv[h].toFixed(2)+'m</span>';
+  }
+  var mn=Math.min.apply(null,lv),mx=Math.max.apply(null,lv);
   return'<div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:260px;border-left:1px solid rgba(255,255,255,.15)">'
-    +'<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ '+MAREES.label+' · coef '+MAREES.coeff+' · '+MAREES.source+'</div>'
+    +'<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ Marées · Cancún · 6 nov. 2026 · marnage du jour '+(mx-mn).toFixed(2)+' m · '+MAREE_SOURCE+'</div>'
     +'<div style="font-size:11px;margin-bottom:6px">'+evts+'</div>'
-    +'<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:3px">Courant · ← jusant (NE→SO) · → flot (SO→NE)</div>'
-    +'<div>'+courantHtml+'</div>'
+    +'<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:3px">Niveau / niveau moyen pendant la course · ↑ montante · ↓ descendante</div>'
+    +'<div>'+chips+'</div>'
     +'</div>';
 }
-
 
 function cardToDeg(s){
   var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
@@ -1207,24 +1155,12 @@ function dirCard(d){
   var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
   return c[Math.round(((d%360)+360)%360/22.5)%16];
 }
-
-// Calcule les 3 points d'ancrage parallèles
-// centre = [cx,cy], direction depuis laquelle arrive le phénomène
-// spacing = écart perpendiculaire en px (viewBox)
 function parallelPts(cx,cy,fromDeg,spacing){
   var rad=((fromDeg+180)%360)*Math.PI/180;
-  var px=-Math.cos(rad); // perpendiculaire
-  var py= Math.sin(rad);
-  // Normaliser la perpendiculaire
-  var len=Math.sqrt(px*px+py*py)||1;
-  px/=len; py/=len;
-  return [
-    [cx-px*spacing, cy-py*spacing],
-    [cx,             cy           ],
-    [cx+px*spacing, cy+py*spacing],
-  ];
+  var px=-Math.cos(rad), py=Math.sin(rad);
+  var len=Math.sqrt(px*px+py*py)||1; px/=len; py/=len;
+  return [[cx-px*spacing,cy-py*spacing],[cx,cy],[cx+px*spacing,cy+py*spacing]];
 }
-
 function windArrow(x,y,fromDeg,kt,col,sc){
   sc=sc||1;
   var len=110*sc;
@@ -1232,135 +1168,36 @@ function windArrow(x,y,fromDeg,kt,col,sc){
   var dx=Math.sin(rad),dy=-Math.cos(rad);
   var ex=x+dx*len,ey=y+dy*len;
   var px=-dy,py=dx;
-  var s='';
-  s+='<line x1="'+x+'" y1="'+y+'" x2="'+ex+'" y2="'+ey+'"';
-  s+=' stroke="'+col+'" stroke-width="'+(2.5*sc)+'" stroke-linecap="round"/>';
+  var s='<line x1="'+x+'" y1="'+y+'" x2="'+ex+'" y2="'+ey+'" stroke="'+col+'" stroke-width="'+(2.5*sc)+'" stroke-linecap="round"/>';
   var ah=16*sc,aw=8*sc;
-  s+='<polygon points="'+ex+','+ey;
-  s+=' '+(ex-dx*ah+px*aw)+','+(ey-dy*ah+py*aw);
-  s+=' '+(ex-dx*ah-px*aw)+','+(ey-dy*ah-py*aw)+'" fill="'+col+'"/>';
-  var blen=24*sc,bstep=10*sc,rem=kt;
-  var bx=x,by=y;
-  while(rem>=60){
-    var nx=bx+dx*bstep,ny=by+dy*bstep;
-    s+='<polygon points="'+bx+','+by+' '+nx+','+ny+' '+(bx+px*blen)+','+(by+py*blen)+'" fill="'+col+'"/>';
-    bx=nx;by=ny;rem-=60;
-  }
-  while(rem>=30){
-    s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen)+'" y2="'+(by+py*blen)+'"';
-    s+=' stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';
-    bx+=dx*bstep;by+=dy*bstep;rem-=30;
-  }
-  if(rem>=15){
-    s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen*0.55)+'" y2="'+(by+py*blen*0.55)+'"';
-    s+=' stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';
-  }
+  s+='<polygon points="'+ex+','+ey+' '+(ex-dx*ah+px*aw)+','+(ey-dy*ah+py*aw)+' '+(ex-dx*ah-px*aw)+','+(ey-dy*ah-py*aw)+'" fill="'+col+'"/>';
+  var blen=24*sc,bstep=10*sc,rem=kt,bx=x,by=y;
+  while(rem>=60){var nx=bx+dx*bstep,ny=by+dy*bstep;s+='<polygon points="'+bx+','+by+' '+nx+','+ny+' '+(bx+px*blen)+','+(by+py*blen)+'" fill="'+col+'"/>';bx=nx;by=ny;rem-=60;}
+  while(rem>=30){s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen)+'" y2="'+(by+py*blen)+'" stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';bx+=dx*bstep;by+=dy*bstep;rem-=30;}
+  if(rem>=15){s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen*0.55)+'" y2="'+(by+py*blen*0.55)+'" stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';}
   return s;
 }
-
-function swellArrow(x,y,fromDeg,col,sc,op,amp){
-  sc=sc||1;op=op||1;amp=amp||8;
-  var len=120*sc;
-  var rad=((fromDeg+180)%360)*Math.PI/180;
-  var dx=Math.sin(rad),dy=-Math.cos(rad);
-  var px=-dy,py=dx;
-  var steps=26,pts=[];
-  for(var i=0;i<=steps;i++){
-    var t=i/steps;
-    pts.push((x+dx*len*t+px*amp*Math.sin(t*Math.PI*4)).toFixed(1)+','+(y+dy*len*t+py*amp*Math.sin(t*Math.PI*4)).toFixed(1));
-  }
-  var ex=x+dx*len,ey=y+dy*len;
-  var ah=14*sc,aw=7*sc;
-  var s='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+col+'"';
-  s+=' stroke-width="'+(2*sc)+'" stroke-linecap="round" opacity="'+op+'"/>';
-  s+='<polygon points="'+ex+','+ey;
-  s+=' '+(ex-dx*ah+px*aw)+','+(ey-dy*ah+py*aw);
-  s+=' '+(ex-dx*ah-px*aw)+','+(ey-dy*ah-py*aw)+'" fill="'+col+'" opacity="'+op+'"/>';
-  return s;
-}
-
 function bgLbl(x,y,txt,col,sz){
   var w=txt.length*sz*0.62+10;
-  var s='<rect x="'+(x-4)+'" y="'+(y-sz)+'" width="'+w+'" height="'+(sz+5)+'"';
-  s+=' rx="3" fill="rgba(6,12,36,0.68)"/>';
-  s+='<text x="'+x+'" y="'+y+'" font-size="'+sz+'" font-weight="700"';
-  s+=' fill="'+col+'" font-family="Arial,sans-serif">'+txt+'</text>';
-  return s;
+  return '<rect x="'+(x-4)+'" y="'+(y-sz)+'" width="'+w+'" height="'+(sz+5)+'" rx="3" fill="rgba(6,12,36,0.68)"/>'
+    +'<text x="'+x+'" y="'+y+'" font-size="'+sz+'" font-weight="700" fill="'+col+'" font-family="Arial,sans-serif">'+txt+'</text>';
 }
-
-function currentArrow(x,y,toDir,force,col,sc){
-  sc=sc||1;
-  var flen={fort:90,moyen:65,faible:42,nul:0};
-  var len=(flen[force]||55)*sc;
-  if(len===0)return'';
-  var rad=toDir*Math.PI/180;
-  var dx=Math.sin(rad),dy=-Math.cos(rad);
-  var sx=x-dx*len/2,sy=y-dy*len/2;
-  var ex=sx+dx*len,ey=sy+dy*len;
-  var px=-dy,py=dx;
-  var ah=16*sc,aw=9*sc;
-  var s='<line x1="'+sx.toFixed(1)+'" y1="'+sy.toFixed(1)+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'"';
-  s+=' stroke="'+col+'" stroke-width="'+(6*sc)+'" stroke-linecap="round" opacity="0.85"/>';
-  s+='<polygon points="'+ex.toFixed(1)+','+ey.toFixed(1);
-  s+=' '+(ex-dx*ah+px*aw).toFixed(1)+','+(ey-dy*ah+py*aw).toFixed(1);
-  s+=' '+(ex-dx*ah-px*aw).toFixed(1)+','+(ey-dy*ah-py*aw).toFixed(1)+'" fill="'+col+'" opacity="0.85"/>';
-  return s;
+// Flèche nord (carte orientée nord en haut)
+function northArrow(x,y){
+  return '<polygon points="'+x+','+(y-26)+' '+(x-9)+','+(y+4)+' '+x+','+(y-4)+' '+(x+9)+','+(y+4)+'" fill="#fff" opacity=".9"/>'
+    +'<text x="'+(x-6)+'" y="'+(y+22)+'" font-size="18" font-weight="800" fill="#fff" font-family="Arial,sans-serif">N</text>';
 }
-
-function renderSVG(svgId, vCx,vCy, hCx,hCy, mCx,mCy, m, cInfo){
-  var vPts=parallelPts(vCx,vCy,m.vent_dir,90);
-  var hPts=m.houle_dir!=null?parallelPts(hCx,hCy,m.houle_dir,80):null;
-  var mPts=m.mer_dir!=null?parallelPts(mCx,mCy,m.mer_dir,70):null;
-
-  // VENT — 3 flèches parallèles, label sur la centrale
-  var vSVG='';
-  vPts.forEach(function(pt,i){
-    vSVG+=windArrow(pt[0],pt[1],m.vent_dir,m.vent_kmh,'#93c5fd',1.4);
-  });
-  // Label au-dessus de la flèche centrale, décalé vers l'origine
-  var vrad=((m.vent_dir+180)%360)*Math.PI/180;
-  var vLx=vCx-Math.sin(vrad)*30, vLy=vCy+Math.cos(vrad)*30;
-  vSVG+=bgLbl(vLx-2,vLy-18,'VENT','#bfdbfe',15);
-  vSVG+=bgLbl(vLx-2,vLy,m.vent_kmh+'km/h '+dirCard(m.vent_dir),'#93c5fd',13);
-
-  // HOULE — 3 flèches parallèles ondulées
-  var hSVG='';
-  if(hPts) hPts.forEach(function(pt,i){
-    hSVG+=swellArrow(pt[0],pt[1],m.houle_dir,'#67e8f9',1.2,0.88,9);
-  });
-  if(m.houle_dir!=null){
-    var hrad=((m.houle_dir+180)%360)*Math.PI/180;
-    var hLx=hCx-Math.sin(hrad)*30, hLy=hCy+Math.cos(hrad)*30;
-    hSVG+=bgLbl(hLx-2,hLy-18,'HOULE','#a5f3fc',14);
-    if(m.houle_h!=null) hSVG+=bgLbl(hLx-2,hLy,m.houle_h.toFixed(1)+'m '+dirCard(m.houle_dir)+' T'+(m.houle_per||'?')+'s','#67e8f9',12);
+function renderSVG(svgId,vCx,vCy,m){
+  var s=northArrow(1225,110);
+  if(m.v!=null&&m.dir){
+    var deg=cardToDeg(m.dir);
+    parallelPts(vCx,vCy,deg,90).forEach(function(pt){s+=windArrow(pt[0],pt[1],deg,m.v,'#93c5fd',1.4);});
+    var vrad=((deg+180)%360)*Math.PI/180;
+    var vLx=vCx-Math.sin(vrad)*30, vLy=vCy+Math.cos(vrad)*30;
+    s+=bgLbl(vLx-2,vLy-18,'VENT','#bfdbfe',15);
+    s+=bgLbl(vLx-2,vLy,m.v+'km/h '+m.dir,'#93c5fd',13);
   }
-
-  // MER DE VENT — 2 flèches parallèles (plus discrètes)
-  var mSVG='';
-  if(mPts&&m.mer_h!=null&&m.mer_dir!=null){
-    [mPts[0],mPts[2]].forEach(function(pt){
-      mSVG+=swellArrow(pt[0],pt[1],m.mer_dir,'#7dd3fc',1.0,0.65,6);
-    });
-    var mrad=((m.mer_dir+180)%360)*Math.PI/180;
-    var mLx=mCx-Math.sin(mrad)*20, mLy=mCy+Math.cos(mrad)*20;
-    mSVG+=bgLbl(mLx-2,mLy-16,'MER DE VENT','#bae6fd',12);
-    mSVG+=bgLbl(mLx-2,mLy,(m.mer_h||0).toFixed(1)+'m '+dirCard(m.mer_dir)+' T'+(m.mer_per||'?')+'s','#7dd3fc',11);
-  }
-
-  var cSVG='';
-  if(cInfo&&cInfo.sens&&cInfo.sens!=='etale'){
-    var cToDir=cInfo.sens==='flot'?45:225;
-    var cCol=cInfo.sens==='flot'?'#34d399':'#f87171';
-    cSVG+=currentArrow(130,750,cToDir,cInfo.force,cCol,1.0);
-    var fLbl={fort:'fort',moyen:'moyen',faible:'faible'}[cInfo.force]||'';
-    cSVG+=bgLbl(90,790,'COURANT · '+(cInfo.sens==='flot'?'flot →':'← jusant')+' · '+fLbl,cCol,11);
-  }else if(cInfo&&cInfo.sens==='etale'){
-    cSVG+=bgLbl(90,790,'COURANT · étale','#9ca3af',11);
-  }
-  document.getElementById(svgId+'-vent').innerHTML=vSVG;
-  document.getElementById(svgId+'-houle').innerHTML=hSVG;
-  document.getElementById(svgId+'-mer').innerHTML=mSVG;
-  document.getElementById(svgId+'-courant').innerHTML=cSVG;
+  document.getElementById(svgId+'-vent').innerHTML=s;
 }
 
 function updateMeteo(idx){
@@ -1368,37 +1205,16 @@ function updateMeteo(idx){
   if(idx<0||idx>=arr.length)idx=Math.min(3,arr.length-1);
   var m=arr[idx];
   var pct=(arr.length>1?(idx/(arr.length-1)*100):50).toFixed(1);
-  document.getElementById('mx-heure-label').textContent=m.h||m.label||'';
+  document.getElementById('mx-heure-label').textContent=m.h||'';
   document.getElementById('mx-heure-time').textContent=(m.h||'').replace('h','h00').replace('♀','').replace('♂','');
   document.getElementById('mx-time-slider').style.background=
     'linear-gradient(to right,#003087 0%,#003087 '+pct+'%,#c8d8ea '+pct+'%,#c8d8ea 100%)';
   document.getElementById('mx-c-temp').textContent=(m.t!=null?m.t+'°C':'—');
   document.getElementById('mx-c-vent').textContent=(m.v!=null?m.v+' km/h':'—')+' · '+(m.dir||'—');
   document.getElementById('mx-l-vent').innerHTML='Vent · raf. '+(m.r!=null?m.r.toFixed(1)+' km/h':'—');
-  if(m.houle_h!=null){
-    document.getElementById('mx-c-houle').textContent=m.houle_h.toFixed(1)+'m · '+(m.houle_dir!=null?dirCard(m.houle_dir):'—');
-    document.getElementById('mx-l-houle').innerHTML='Houle'+(m.houle_dir!=null?' ('+Math.round(m.houle_dir)+'°)':'')+'&middot; <span id="mx-c-houle-per">'+(m.houle_per!=null?Math.round(m.houle_per):'—')+'s</span>';
-  } else {
-    document.getElementById('mx-c-houle').textContent='—';
-    document.getElementById('mx-l-houle').textContent='Houle';
-  }
-  document.getElementById('mx-c-mer').textContent='—';
-  document.getElementById('mx-l-mer').textContent='Mer de vent';
-  // Convertir vers le format attendu par renderSVG
-  var ms={
-    vent_kmh: m.v,
-    vent_dir: cardToDeg(m.dir),
-    houle_dir: m.houle_dir!=null?m.houle_dir:null,
-    houle_h: m.houle_h!=null?m.houle_h:null,
-    houle_per: m.houle_per!=null?m.houle_per:null,
-    mer_dir: null, mer_h: null, mer_vent_h: null, mer_per: null
-  };
-  var mH=parseInt(m.h);
-  var cEntry=MAREES&&MAREES.courant?MAREES.courant.find(function(c){return parseInt(c.h)===mH;}):null;
-  var cInfo=cEntry?{sens:cEntry.sens,force:cEntry.force}:null;
   try{
-    renderSVG('mx-svg-parcours', 180,340, 340,560, 260,450, ms, cInfo);
-    renderSVG('mx-svg-finish', 180,300, 290,480, 220,390, ms, cInfo);
+    renderSVG('mx-svg-parcours',630,420,m);
+    renderSVG('mx-svg-finish',630,420,m);
   }catch(e){ console.warn('renderSVG error',e); }
 }
 
@@ -1407,89 +1223,60 @@ function renderSliderTicks(){
   if(!ticks) return;
   var html='';
   METEO.forEach(function(m){
-    var lbl=m.h||m.label||'';
-    var isDepart=(lbl.indexOf('♀')>=0||lbl.indexOf('♂')>=0);
-    if(isDepart) html+='<span style="color:#C8102E;font-weight:800">'+lbl+'</span>';
-    else html+='<span>'+lbl+'</span>';
+    var lbl=m.h||'';
+    html+=(lbl.indexOf('♀')>=0||lbl.indexOf('♂')>=0)?'<span style="color:#C8102E;font-weight:800">'+lbl+'</span>':'<span>'+lbl+'</span>';
   });
   ticks.innerHTML=html;
-  var first=(METEO[0].h||METEO[0].heure||'').replace('♀','').replace('♂','');
-  var last=(METEO[METEO.length-1].h||METEO[METEO.length-1].heure||'').replace('♀','').replace('♂','');
-  document.getElementById('mx-slider-start').textContent=first;
-  document.getElementById('mx-slider-end').textContent=last;
+  document.getElementById('mx-slider-start').textContent=(METEO[0].h||'').replace('♀','').replace('♂','');
+  document.getElementById('mx-slider-end').textContent=(METEO[METEO.length-1].h||'').replace('♀','').replace('♂','');
 }
 
+var MX_SUB='10km · H 09h00 · F 12h00 (heure locale) · Playa Langosta · Source : Open-Meteo';
 function switchMeteoGender(g){
-  METEO = (g==='f') ? METEO_F : METEO_H;
-  var sub = g==='f'
-    ? '10km · F 11h00 · H 16h30 · Setúbal · Source : Open-Meteo + Cabaigne.net · Mise à jour 15/06/2026'
-    : '10km · H 16h30 · F 11h00 · Setúbal · Source : Open-Meteo + Cabaigne.net · Mise à jour 15/06/2026';
-  var el=document.getElementById('mx-card-sub');
-  if(el) el.textContent=sub;
+  G=g;
+  METEO=(g==='f')?METEO_F:METEO_H;
   var slider=document.getElementById('mx-time-slider');
-  if(slider){slider.value=0;}
+  if(slider){slider.max=METEO.length-1;slider.value=3;}
   renderSliderTicks();
-  updateMeteo(0);
+  updateMeteo(3);
+  document.getElementById('mx-marees-block').innerHTML=renderMarees();
 }
-
 
 function fetchMeteoOpenMeteo(){
-  var LAT=38.52,LON=-8.89,DATE='2026-06-20';
   var urlWind='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON
     +'&hourly=temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m'
-    +'&timezone=Europe%2FLisbon&start_date='+DATE+'&end_date='+DATE;
+    +'&timezone='+TZ+'&start_date='+DATE_COURSE+'&end_date='+DATE_COURSE;
   var urlMarine='https://marine-api.open-meteo.com/v1/marine?latitude='+LAT+'&longitude='+LON
-    +'&hourly=wave_height,wave_direction,wave_period'
-    +'&timezone=Europe%2FLisbon&start_date='+DATE+'&end_date='+DATE;
-
-  function buildSlice(wind,marine,fromH,toH){
-    var times=wind.hourly.time,out=[];
+    +'&hourly=sea_level_height_msl&timezone='+TZ+'&start_date='+DATE_COURSE+'&end_date='+DATE_COURSE;
+  function slice(wind,dep){
+    var out=[],times=wind.hourly.time;
     for(var i=0;i<times.length;i++){
       var h=parseInt(times[i].split('T')[1]);
-      if(h>=fromH&&h<=toH){
-        var isDepart=(G==='f'&&h===DEPART_F)||(G==='h'&&Math.floor(DEPART_H)===h);
-        out.push({
-          h:h+'h'+(isDepart?(G==='f'?'♀':'♂'):''),
-          t:wind.hourly.temperature_2m[i],
-          v:+(wind.hourly.windspeed_10m[i]).toFixed(1),
-          r:+(wind.hourly.windgusts_10m[i]).toFixed(1),
-          dir:dirCard(wind.hourly.winddirection_10m[i]),
-          houle_h:marine&&marine.hourly?marine.hourly.wave_height[i]:null,
-          houle_dir:marine&&marine.hourly?marine.hourly.wave_direction[i]:null,
-          houle_per:marine&&marine.hourly?marine.hourly.wave_period[i]:null
-        });
-      }
+      if(h<dep-3||h>dep+5)continue;
+      var t=wind.hourly.temperature_2m[i],v=wind.hourly.windspeed_10m[i],r=wind.hourly.windgusts_10m[i],d=wind.hourly.winddirection_10m[i];
+      out.push({h:h+'h'+(h===dep?(dep===DEPART_F?'♀':'♂'):''),t:t,v:v!=null?+v.toFixed(1):null,r:r!=null?+r.toFixed(1):null,dir:d!=null?dirCard(d):null});
     }
     return out;
   }
-
-  function applyForGender(g,wind,marine){
-    var fromH=g==='f'?Math.floor(DEPART_F)-3:Math.floor(DEPART_H)-3;
-    var toH=g==='f'?Math.floor(DEPART_F)+5:Math.floor(DEPART_H)+5;
-    return buildSlice(wind,marine,fromH,toH);
-  }
-
-  Promise.all([
-    fetch(urlWind).then(function(r){return r.json();}),
-    fetch(urlMarine).then(function(r){return r.json();}).catch(function(){return null;})
-  ]).then(function(res){
-    var wind=res[0],marine=res[1];
-    METEO_F=applyForGender('f',wind,marine);
-    METEO_H=applyForGender('h',wind,marine);
-    METEO=(G==='f')?METEO_F:METEO_H;
-    renderSliderTicks();
-    updateMeteo(Math.min(3,METEO.length-1));
+  fetch(urlWind).then(function(r){return r.json();}).then(function(wind){
+    if(!wind||!wind.hourly)throw new Error(wind&&wind.reason||'pas de données');
+    METEO_F=slice(wind,DEPART_F); METEO_H=slice(wind,DEPART_H);
+    switchMeteoGender(G);
     var el=document.getElementById('mx-card-sub');
-    if(el) el.textContent='10km · F 11h00 · H 16h30 · Setúbal · Open-Meteo live · '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-  }).catch(function(e){
-    console.warn('Open-Meteo unavailable, using static data',e);
-  });
+    if(el) el.textContent=MX_SUB+' live · '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  }).catch(function(e){ console.warn('Open-Meteo vent indisponible',e); });
+  fetch(urlMarine).then(function(r){return r.json();}).then(function(mar){
+    var lv=mar&&mar.hourly&&mar.hourly.sea_level_height_msl;
+    if(lv&&lv.length===24&&lv.every(function(x){return x!=null;})){
+      MAREE_NIVEAUX=lv; MAREE_SOURCE='Open-Meteo Marine live';
+      document.getElementById('mx-marees-block').innerHTML=renderMarees();
+    }
+  }).catch(function(e){ console.warn('Open-Meteo marine indisponible',e); });
 }
 
+document.getElementById('mx-card-sub').textContent=MX_SUB;
+switchMeteoGender('f');
 fetchMeteoOpenMeteo();
-updateMeteo(0);
-document.getElementById('mx-marees-block').innerHTML=renderMarees();
-
 
 </script>
 </body>
