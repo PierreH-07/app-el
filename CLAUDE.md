@@ -52,8 +52,8 @@ Arrondir à 4 décimales. Notation française : virgule → point décimal (03:5
 
 ### Numéros de dossard (bib)
 
-- Femmes 10 km : 101–148
-- Hommes 10 km : 1–55
+- 10 km : dossards propres à chaque étape (Cancún 2026/27 : F 1–51, H 1–64 ; source start list WA
+  `api.worldaquatics.com/fina/events/{id}` → `Heats[0].Results[].Bib`)
 - KO : dossards propres à chaque édition (cf. PDF start list officiel)
 
 `buildStartlist` utilise `e.bib` s'il est défini, sinon l'index du tableau.
