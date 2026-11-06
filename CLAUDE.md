@@ -99,7 +99,7 @@ Femmes : ABAD Ana (ECU), KARRAS Sophia Olivia (GRE).
 Hommes : CASSINI Franco Ivo (ARG), MARQUES Duarte (POR), KIMBER Byron (RSA).
 
 Contrôle Cancún (06/11/2026, start list 10 km, fenêtre depuis le 06/11/2024) — temps ajoutés en
-fallback STARTLIST de `Ponton10km.html` uniquement (JSON `data` non modifié). Sans aucun temps 50m :
+fallback STARTLIST de `Ponton10km.html` et dans le JSON `data` (27 fiches ajoutées). Sans aucun temps 50m :
 
 Femmes : PEREZ Paola (VEN), MERCADO Katherine (MEX), TOLEDO Dana (MEX), MORENO VELASCO Dalia Berenice (MEX),
 PUCA Mayte (ARG), CUEVAS ORTIZ Regina (MEX, 25m seulement), GABBRIELLESCHI Giulia (ITA).
