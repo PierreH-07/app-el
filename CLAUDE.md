@@ -98,6 +98,17 @@ Femmes : ABAD Ana (ECU), KARRAS Sophia Olivia (GRE).
 
 Hommes : CASSINI Franco Ivo (ARG), MARQUES Duarte (POR), KIMBER Byron (RSA).
 
+Contrôle Cancún (06/11/2026, start list 10 km, fenêtre depuis le 06/11/2024) — temps ajoutés en
+fallback STARTLIST de `Ponton10km.html` uniquement (JSON `data` non modifié). Sans aucun temps 50m :
+
+Femmes : PEREZ Paola (VEN), MERCADO Katherine (MEX), TOLEDO Dana (MEX), MORENO VELASCO Dalia Berenice (MEX),
+PUCA Mayte (ARG), CUEVAS ORTIZ Regina (MEX, 25m seulement), GABBRIELLESCHI Giulia (ITA).
+
+Hommes : VEGA CUEVAS Maximiliano (MEX), SEGOVIA Johndry (VEN), ESCOBAR Percy (BOL), PISHKO Jacob (USA),
+BETANZOS Fernando (MEX, 25m seulement), OBELE CISNEROS Diego (MEX, 25m seulement), ARREDONDO Jonatha (MEX),
+ROJAS Jeison (CRC), MARTINEZ Santiago (MEX), GARCIA SANTA CRUZ Juan Pablo (MEX, 25m seulement),
+DUCOURTIL ANCONA Alessio (MEX), MELENDEZ HERNANDEZ Marco Antonio (MEX), AGUIAR Arthur (BRA).
+
 ## Contrôle des temps bassin via World Aquatics (`outils/worldaquatics/`)
 
 Règles appliquées :

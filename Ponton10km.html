@@ -282,17 +282,17 @@ Promise.all([
     var DATA_H = json.DATA_H;
 
     var STARTLIST_F=[
-      {bib:1,nom:'MARTINEZ Danna',noc:'ECU',annee:2006},
+      {bib:1,nom:'MARTINEZ Danna',noc:'ECU',annee:2006,t400:'4:32.03',t800:'9:17.16',t1500:'17:36.15',v400:1.4704,v800:1.4359,v1500:1.4203},
       {bib:2,nom:'ROSA Mafalda',noc:'POR',annee:2003},
       {bib:3,nom:'DE VALDES Maria',noc:'ESP',annee:1998},
-      {bib:4,nom:'JUNGBLUT Cibelle',noc:'BRA',annee:2003},
+      {bib:4,nom:'JUNGBLUT Cibelle',noc:'BRA',annee:2003,t800:'9:11.91',t1500:'17:01.29',v800:1.4495,v1500:1.4687},
       {bib:5,nom:'GENDARMI Alessandra Liviana',noc:'USA',annee:2008,t400:'4:24.15',t800:'9:08.06',t1500:'17:19.49',v400:1.5143,v800:1.4597,v1500:1.443},
-      {bib:6,nom:'PEREZ ARMENTA Andrea Ximena',noc:'MEX',annee:2007},
+      {bib:6,nom:'PEREZ ARMENTA Andrea Ximena',noc:'MEX',annee:2007,t400:'4:24.24',t800:'9:04.90',t1500:'17:06.07',v400:1.5138,v800:1.4682,v1500:1.4619},
       {bib:7,nom:'MANN Becca',noc:'USA',annee:1997,t400:'4:07.09',t800:'8:21.77',t1500:'16:05.42',v400:1.6188,v800:1.5944,v1500:1.5537},
       {bib:8,nom:'SPIWOKS Jeannette',noc:'GER',annee:1998,t400:'4:12.56',t800:'8:32.22',t1500:'16:16.90',v400:1.5838,v800:1.5618,v1500:1.5355},
       {bib:9,nom:'TARASIEWICZ Klaudia',noc:'POL',annee:2004,t400:'4:11.13',t800:'8:33.93',t1500:'16:26.58',v400:1.5928,v800:1.5566,v1500:1.5204},
       {bib:10,nom:'EBINA Airi',noc:'JPN',annee:2001,t400:'4:11.95',t800:'8:29.24',t1500:'16:02.22',v400:1.5876,v800:1.571,v1500:1.5589},
-      {bib:11,nom:'RUBIO DE LA ROSA Sharon',noc:'MEX',annee:2005},
+      {bib:11,nom:'RUBIO DE LA ROSA Sharon',noc:'MEX',annee:2005,t400:'4:59.14',t800:'9:39.70',t1500:'18:24.66',v400:1.3372,v800:1.38,v1500:1.3579},
       {bib:12,nom:'DELACROIX Ines',noc:'FRA',annee:2003,t400:'4:15.31',t800:'8:43.64',t1500:'16:29.24',v400:1.5667,v800:1.5278,v1500:1.5163},
       {bib:13,nom:'PEREZ Paola',noc:'VEN',annee:1991},
       {bib:14,nom:'MERCADO Katherine',noc:'MEX',annee:2008},
@@ -303,40 +303,40 @@ Promise.all([
       {bib:19,nom:'POU Lisa',noc:'MON',annee:1999,t400:'4:17.60',t800:'8:40.02',t1500:'16:34.73',v400:1.5528,v800:1.5384,v1500:1.5079},
       {bib:20,nom:'LOTTER Callan',noc:'RSA',annee:2006,t400:'4:13.21',t800:'8:40.49',t1500:'16:36.99',v400:1.5797,v800:1.537,v1500:1.5045},
       {bib:21,nom:'KASVIO Louna',noc:'FIN',annee:2006,t400:'4:19.69',t800:'8:49.61',t1500:'16:51.30',v400:1.5403,v800:1.5105,v1500:1.4832},
-      {bib:22,nom:'ALANIS HERNANDEZ Paulina',noc:'MEX',annee:2004},
-      {bib:23,nom:'TEGER Chloe',noc:'USA',annee:2009},
+      {bib:22,nom:'ALANIS HERNANDEZ Paulina',noc:'MEX',annee:2004,t400:'4:28.07',t800:'9:10.10',t1500:'17:25.07',v400:1.4921,v800:1.4543,v1500:1.4353},
+      {bib:23,nom:'TEGER Chloe',noc:'USA',annee:2009,t400:'4:19.96',t800:'8:45.81',t1500:'16:33.66',v400:1.5387,v800:1.5215,v1500:1.5096},
       {bib:24,nom:'MARTINEZ GUILLEN Angela',noc:'ESP',annee:2004,t400:'4:10.95',t800:'8:29.08',t1500:'16:14.95',v400:1.5939,v800:1.5715,v1500:1.5385},
       {bib:25,nom:'POZZOBON Barbara',noc:'ITA',annee:1993,t400:'4:20.73',t800:'8:45.73',t1500:'16:30.47',v400:1.5342,v800:1.5217,v1500:1.5144},
-      {bib:26,nom:'ESCOBAR FALCON Marisela',noc:'MEX',annee:2009},
+      {bib:26,nom:'ESCOBAR FALCON Marisela',noc:'MEX',annee:2009,t400:'4:26.56',t800:'9:15.08',v400:1.5006,v800:1.4412},
       {bib:27,nom:'BERTON Giulia',noc:'ITA',annee:2001,t400:'4:18.98',t800:'8:46.57',t1500:'16:38.68',v400:1.5445,v800:1.5193,v1500:1.502},
-      {bib:28,nom:'CANEDO Pilar',noc:'URU',annee:2004},
+      {bib:28,nom:'CANEDO Pilar',noc:'URU',annee:2004,t400:'4:42.44',t800:'9:42.51',t1500:'18:15.21',v400:1.4162,v800:1.3734,v1500:1.3696},
       {bib:29,nom:'IMWINKELRIED Romina Soledad',noc:'ARG',annee:1994,t800:'9:04.40',t1500:'17:01.81',v800:1.4695,v1500:1.468},
-      {bib:30,nom:'NIEVES ZUBIETA Camila',noc:'MEX',annee:2009},
+      {bib:30,nom:'NIEVES ZUBIETA Camila',noc:'MEX',annee:2009,t400:'4:38.51',t800:'9:30.93',t1500:'18:07.94',v400:1.4362,v800:1.4012,v1500:1.3788},
       {bib:31,nom:'TOLEDO Dana',noc:'MEX',annee:2007},
       {bib:32,nom:'ANDRE Angelica',noc:'POR',annee:1994,t1500:'17:15.67',v1500:1.4483},
       {bib:33,nom:'MORENO VELASCO Dalia',noc:'MEX',annee:2002},
       {bib:34,nom:'JOHNSON Moesha',noc:'AUS',annee:1997,t400:'4:05.97',t800:'8:24.46',t1500:'15:53.49',v400:1.6262,v800:1.5859,v1500:1.5732},
-      {bib:35,nom:'VANEGAS Yanci',noc:'GUA',annee:2003},
+      {bib:35,nom:'VANEGAS Yanci',noc:'GUA',annee:2003,t400:'4:33.15',t800:'9:20.10',t1500:'17:54.16',v400:1.4644,v800:1.4283,v1500:1.3964},
       {bib:36,nom:'TADDEUCCI Ginevra',noc:'ITA',annee:1997,t400:'4:15.30',t800:'8:34.31',t1500:'16:08.35',v400:1.5668,v800:1.5555,v1500:1.549},
-      {bib:37,nom:'MORA OLIVARES Citlalli Montserrat',noc:'MEX',annee:2004},
+      {bib:37,nom:'MORA OLIVARES Citlalli Montserrat',noc:'MEX',annee:2004,t400:'4:31.70',t800:'9:16.87',t1500:'17:46.30',v400:1.4722,v800:1.4366,v1500:1.4067},
       {bib:38,nom:'SANCHEZ LORA Candela',noc:'ESP',annee:2003,t400:'4:18.54',t800:'8:42.11',t1500:'16:33.90',v400:1.5471,v800:1.5322,v1500:1.5092},
       {bib:39,nom:'MENDES Mariana',noc:'POR',annee:2002,t400:'4:28.94',t800:'9:00.56',t1500:'16:55.62',v400:1.4873,v800:1.4799,v1500:1.4769},
       {bib:40,nom:'BOY Lea',noc:'GER',annee:2000,t400:'4:10.49',t800:'8:37.58',t1500:'16:27.91',v400:1.5969,v800:1.5457,v1500:1.5184},
       {bib:41,nom:'COCCORDANO Clemence',noc:'FRA',annee:2005,t400:'4:19.33',t800:'8:49.55',t1500:'16:31.83',v400:1.5424,v800:1.5107,v1500:1.5124},
       {bib:42,nom:'PLESKOTOVA Julie',noc:'CZE',annee:2002,t400:'4:26.20',t800:'9:05.87',t1500:'17:21.06',v400:1.5026,v800:1.4656,v1500:1.4408},
       {bib:43,nom:'PUCA Mayte',noc:'ARG',annee:1998},
-      {bib:44,nom:'SOBRAL Lizian',noc:'BRA',annee:2007},
-      {bib:45,nom:'VALKO Karolina Ann',noc:'SVK',annee:2010},
+      {bib:44,nom:'SOBRAL Lizian',noc:'BRA',annee:2007,t400:'4:27.02',t800:'9:06.40',t1500:'17:24.99',v400:1.498,v800:1.4641,v1500:1.4354},
+      {bib:45,nom:'VALKO Karolina Ann',noc:'SVK',annee:2010,t400:'4:22.76',t800:'8:59.77',t1500:'17:11.40',v400:1.5223,v800:1.4821,v1500:1.4543},
       {bib:46,nom:'KAJIMOTO Ichika',noc:'JPN',annee:2004,t400:'4:06.61',t800:'8:23.11',t1500:'15:58.59',v400:1.622,v800:1.5901,v1500:1.5648},
-      {bib:47,nom:'COELLO Rafaela',noc:'ECU',annee:2008},
+      {bib:47,nom:'COELLO Rafaela',noc:'ECU',annee:2008,t400:'4:24.03',t800:'9:29.52',t1500:'17:55.67',v400:1.515,v800:1.4047,v1500:1.3945},
       {bib:48,nom:'CUEVAS ORTIZ Regina',noc:'MEX',annee:2007},
       {bib:49,nom:'GABBRIELLESCHI Giulia',noc:'ITA',annee:1996},
-      {bib:50,nom:'SLAMOVA Lucia',noc:'SVK',annee:2010},
+      {bib:50,nom:'SLAMOVA Lucia',noc:'SVK',annee:2010,t400:'4:54.12',t800:'9:45.52',t1500:'18:44.08',v400:1.36,v800:1.3663,v1500:1.3344},
       {bib:51,nom:'SALGADO GONZALEZ Yuritzi',noc:'MEX',annee:2005},
     ];
     var STARTLIST_H=[
       {bib:1,nom:'FILADELLI Andrea',noc:'ITA',annee:2001,t400:'3:54.12',t800:'8:06.24',t1500:'15:35.14',v400:1.7085,v800:1.6453,v1500:1.604},
-      {bib:2,nom:'ALMANZA CHAVEZ Emiliano',noc:'MEX',annee:2008},
+      {bib:2,nom:'ALMANZA CHAVEZ Emiliano',noc:'MEX',annee:2008,t1500:'17:17.47',v1500:1.4458},
       {bib:3,nom:'PUSKOVITCH Ivan',noc:'USA',annee:2001,t400:'4:04.50',t800:'7:59.45',t1500:'15:10.91',v400:1.636,v800:1.6686,v1500:1.6467},
       {bib:4,nom:'WELLBROCK Florian',noc:'GER',annee:1997,t400:'3:45.29',t800:'7:39.63',t1500:'14:34.89',v400:1.7755,v800:1.7405,v1500:1.7145},
       {bib:5,nom:'FARINANGO David',noc:'ECU',annee:2000},
@@ -352,7 +352,7 @@ Promise.all([
       {bib:15,nom:'VEGA CUEVAS Maximiliano',noc:'MEX',annee:2003},
       {bib:16,nom:'ALBA Lucas Ezequiel',noc:'ARG',annee:2000},
       {bib:17,nom:'SEGOVIA Johndry',noc:'VEN',annee:1987},
-      {bib:18,nom:'LABAYRU GOMEZ Jose Maria',noc:'URU',annee:2005},
+      {bib:18,nom:'LABAYRU GOMEZ Jose Maria',noc:'URU',annee:2005,t400:'4:29.57',t800:'8:51.99',t1500:'16:48.29',v400:1.4838,v800:1.5038,v1500:1.4877},
       {bib:19,nom:'ULAC Dogukan',noc:'TUR',annee:1996,t400:'4:02.58',t800:'8:14.12',t1500:'15:46.26',v400:1.6489,v800:1.619,v1500:1.5852},
       {bib:20,nom:'EZAWA Riku',noc:'JPN',annee:2003,t400:'3:52.95',t800:'8:04.54',t1500:'15:21.23',v400:1.7171,v800:1.6511,v1500:1.6283},
       {bib:21,nom:'MINAMIDE Taishin',noc:'JPN',annee:1996,t400:'4:04.20',t800:'8:16.60',t1500:'15:41.52',v400:1.638,v800:1.611,v1500:1.5932},
@@ -368,17 +368,17 @@ Promise.all([
       {bib:31,nom:'TSUJIMORI Kaito',noc:'JPN',annee:2006,t400:'3:51.30',t800:'7:54.50',t1500:'15:08.30',v400:1.7294,v800:1.686,v1500:1.6514},
       {bib:32,nom:'STREHLKE DELGADO Paulo',noc:'MEX',annee:2006},
       {bib:33,nom:'GRAVLEY Dylan',noc:'USA',annee:2002,t400:'4:07.36',t800:'8:15.08',t1500:'15:40.07',v400:1.6171,v800:1.6159,v1500:1.5956},
-      {bib:34,nom:'MUSTAFA Eduardo Lima',noc:'BRA',annee:2008},
+      {bib:34,nom:'MUSTAFA Eduardo Lima',noc:'BRA',annee:2008,t400:'4:05.49',t800:'8:34.38',t1500:'16:02.87',v400:1.6294,v800:1.5553,v1500:1.5578},
       {bib:35,nom:'BETLEHEM David',noc:'HUN',annee:2003,t400:'3:47.86',t800:'7:47.02',t1500:'14:40.91',v400:1.7555,v800:1.713,v1500:1.7028},
       {bib:36,nom:'OLIVIER Marc-Antoine',noc:'FRA',annee:1996,t400:'3:49.10',t800:'7:49.14',t1500:'14:55.19',v400:1.746,v800:1.7052,v1500:1.6756},
       {bib:37,nom:'KAPALA Bartosz',noc:'POL',annee:2006,t400:'3:54.31',t800:'8:01.18',t1500:'15:15.69',v400:1.7071,v800:1.6626,v1500:1.6381},
       {bib:38,nom:'BETANZOS Fernando',noc:'MEX',annee:1992},
       {bib:39,nom:'GIORDANO Pasquale',noc:'ITA',annee:2004,t400:'3:59.06',t800:'8:08.07',t1500:'15:27.58',v400:1.6732,v800:1.6391,v1500:1.6171},
       {bib:40,nom:'OBELE CISNEROS Diego',noc:'MEX',annee:2001},
-      {bib:41,nom:'CORONA MARTINEZ Luis Eduardo',noc:'MEX',annee:2006},
-      {bib:42,nom:'MIRANDA VIDAL Ramses',noc:'MEX',annee:2004},
+      {bib:41,nom:'CORONA MARTINEZ Luis Eduardo',noc:'MEX',annee:2006,t400:'4:00.59',t800:'8:20.12',t1500:'16:03.20',v400:1.6626,v800:1.5996,v1500:1.5573},
+      {bib:42,nom:'MIRANDA VIDAL Ramses',noc:'MEX',annee:2004,t400:'4:09.84',t800:'8:40.52',t1500:'16:36.38',v400:1.601,v800:1.5369,v1500:1.5054},
       {bib:43,nom:'FAURE Esteban',noc:'MON',annee:2008},
-      {bib:44,nom:'BARRIOS Jose',noc:'GUA',annee:2008},
+      {bib:44,nom:'BARRIOS Jose',noc:'GUA',annee:2008,t400:'4:12.16',t800:'8:39.01',v400:1.5863,v800:1.5414},
       {bib:45,nom:'ARREDONDO Jonatha',noc:'MEX',annee:2004},
       {bib:46,nom:'ROJAS Jeison',noc:'CRC',annee:2003},
       {bib:47,nom:'SCHREIBER Christian',noc:'SUI',annee:2002,t400:'4:01.21',t800:'8:17.37',t1500:'15:39.83',v400:1.6583,v800:1.6085,v1500:1.596},
@@ -394,7 +394,7 @@ Promise.all([
       {bib:57,nom:'DUCOURTIL ANCONA Alessio',noc:'MEX',annee:2009},
       {bib:58,nom:'VELLY Sacha',noc:'FRA',annee:2005,t400:'3:49.58',t800:'7:53.91',t1500:'14:45.75',v400:1.7423,v800:1.6881,v1500:1.6935},
       {bib:59,nom:'MESMACQUE Emile',noc:'FRA',annee:2006},
-      {bib:60,nom:'VALDES OCHOA Roberto',noc:'MEX',annee:2006},
+      {bib:60,nom:'VALDES OCHOA Roberto',noc:'MEX',annee:2006,t400:'4:03.34',t800:'8:16.58',t1500:'15:36.80',v400:1.6438,v800:1.611,v1500:1.6012},
       {bib:61,nom:'MELENDEZ HERNANDEZ Marco Antonio',noc:'MEX',annee:2007},
       {bib:62,nom:'ACERENZA Domenico',noc:'ITA',annee:1995,t400:'3:51.94',t800:'7:57.66',t1500:'15:12.56',v400:1.7246,v800:1.6748,v1500:1.6437},
       {bib:63,nom:'AGUIAR Arthur',noc:'BRA',annee:2007},
@@ -1008,7 +1008,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <div class="mx-card-hdr">
     <div>
-      <div class="mx-card-hdr-title">🗺️ Parcours &amp; Météo — Setúbal 2026</div>
+      <div class="mx-card-hdr-title">🗺️ Parcours Cancún 2026 (boucle 1 666 m) · Météo Setúbal non mise à jour</div>
       <div class="mx-card-hdr-sub" id="mx-card-sub">10km · F 11h00 · H 16h30 · Setúbal · Source : Open-Meteo + Cabaigne.net · Mise à jour 15/06/2026</div>
     </div>
     <div class="mx-heure-badge">
@@ -1045,7 +1045,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <!-- Vue parcours -->
   <div class="mx-carte-wrap on" id="mx-vue-parcours">
-    <img src="img/parcours_10km_setubal2026.jpg" alt="Parcours 10km Setúbal 2026" style="width:100%;height:100%;object-fit:contain" alt="Parcours 10km Golfo Aranci">
+    <img src="img/parcours_10km_cancun2026.jpg" alt="Parcours 10km Cancún 2026" style="width:100%;height:100%;object-fit:contain">
     <svg class="mx-carte-overlay" id="mx-svg-parcours" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-parcours-vent"></g>
       <g id="mx-svg-parcours-houle"></g>
@@ -1056,7 +1056,7 @@ window.addEventListener('resize',()=>{setTop();renderHist();});
 
   <!-- Vue arrivée -->
   <div class="mx-carte-wrap" id="mx-vue-finish">
-    <img src="img/parcours_10km_setubal2026.jpg" alt="Zone arrivée Setúbal 2026" style="width:100%;height:100%;object-fit:contain">
+    <img src="img/parcours_10km_cancun2026.jpg" alt="Zone arrivée Cancún 2026" style="width:100%;height:100%;object-fit:contain">
     <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 894" preserveAspectRatio="xMidYMid meet">
       <g id="mx-svg-finish-vent"></g>
       <g id="mx-svg-finish-houle"></g>
