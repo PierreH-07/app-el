@@ -1,0 +1,1062 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Ponton KO · Cancún 2026 · 3km Sprint</title>
+<style>
+:root{
+  --ffn-blue:#003087;--ffn-red:#C8102E;--ffn-light:#c6ddf0;
+  --bg:#f0f5fb;--surf:#fff;--surf2:#eef3fa;--surf3:#e4edf8;
+  --border:#d0dce8;--txt:#1a2a4a;--txt-dim:#6b7f9e;--txt-bright:#0a1628;
+  --gold:#b8860b;--panel-w:min(360px,92vw);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{min-min-height:100%;overflow-x:hidden;background:var(--bg);color:var(--txt);}
+body{font-family:'Helvetica Neue',Arial,system-ui,-apple-system,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased;}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:max(env(safe-area-inset-top),10px) 16px 8px;
+  background:var(--ffn-blue);border-bottom:3px solid var(--ffn-red);
+  position:fixed;top:0;left:0;right:0;z-index:300;}
+.hdr-title{font-size:clamp(12px,3.5vw,17px);font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;line-height:1;}
+.hdr-sub{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+.tabs{display:flex;gap:4px;flex-shrink:0;}
+.tab{font-size:12px;font-weight:700;text-transform:uppercase;padding:6px 13px;border-radius:3px;
+  border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .18s;white-space:nowrap;}
+.tab.on{background:var(--ffn-red);border-color:var(--ffn-red);color:#fff;}
+
+.serie-tabs{display:flex;background:#002070;position:fixed;z-index:299;left:0;right:0;border-bottom:2px solid var(--ffn-red);gap:8px;padding:6px 14px;}
+.serie-tab{
+  flex:1;text-align:center;padding:8px 6px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+  color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;
+  border-radius:4px;border:2px solid transparent;background:transparent;
+}
+.serie-tab.on{color:#fff;background:var(--ffn-red);border-color:var(--ffn-red);}
+.serie-tab:hover:not(.on){background:rgba(255,255,255,.1);color:#fff;}
+
+.filters{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;padding:6px 14px;
+  background:#e8f0f8;border-bottom:1px solid var(--border);
+  position:fixed;z-index:298;left:0;right:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.filters::-webkit-scrollbar{display:none;}
+.flabel{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--txt-dim);font-weight:700;white-space:nowrap;}
+.fsel{background:var(--surf);border:1px solid var(--border);color:var(--txt);padding:4px 8px;border-radius:3px;font-size:11px;cursor:pointer;font-family:inherit;}
+.chip{font-size:10px;padding:3px 9px;border-radius:20px;border:1.5px solid var(--border);background:var(--surf);
+  color:var(--txt-dim);cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit;}
+.chip.on{background:var(--ffn-blue);border-color:var(--ffn-blue);color:#fff;}
+
+.main-layout{display:flex;height:100%;}
+.left-col{flex:1;overflow-y:auto;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:12px 10px calc(env(safe-area-inset-bottom)+20px);}
+.ponton-info{font-size:11px;color:var(--txt-dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+
+.panel-overlay{position:fixed;inset:0;background:rgba(0,30,80,.45);z-index:400;opacity:0;pointer-events:none;transition:opacity .25s;}
+.panel-overlay.show{opacity:1;pointer-events:all;}
+.panel{position:fixed;right:0;top:0;bottom:0;width:var(--panel-w);background:var(--surf);
+  border-left:2px solid var(--ffn-blue);overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:401;
+  transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  padding-bottom:calc(env(safe-area-inset-bottom)+16px);}
+.panel.show{transform:translateX(0);}
+@media(min-width:820px){
+  .panel-overlay{display:none!important;}
+  .panel{position:static;transform:none!important;width:0;min-width:0;flex-shrink:0;border-left:none;overflow:hidden;transition:width .28s cubic-bezier(.4,0,.2,1);}
+  .panel.show{width:var(--panel-w);min-width:var(--panel-w);border-left:2px solid var(--ffn-blue);overflow:auto;}
+  .main-layout{overflow:hidden;}
+}
+.panel-close{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--ffn-blue);}
+.close-label{font-size:11px;color:rgba(255,255,255,.8);font-weight:700;text-transform:uppercase;letter-spacing:.04em;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px;}
+.close-btn{background:var(--ffn-red);border:none;color:#fff;padding:5px 12px;border-radius:3px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:700;flex-shrink:0;}
+
+.panel-vtabs{display:flex;background:var(--surf3);border-bottom:1px solid var(--border);}
+.panel-vtab{flex:1;padding:8px 4px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--txt-dim);cursor:pointer;transition:all .15s;border-bottom:2px solid transparent;}
+.panel-vtab.on{color:var(--ffn-blue);border-bottom-color:var(--ffn-blue);}
+
+.fiche{padding:14px 14px 24px;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fiche-hdr{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.bib-badge{width:42px;height:42px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;background:var(--ffn-blue);}
+.fiche-name{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--txt-bright);line-height:1.1;}
+.fiche-meta{font-size:11px;color:var(--txt-dim);margin-top:3px;}
+.resp-badge{display:inline-flex;align-items:center;gap:5px;margin-top:5px;padding:3px 9px;background:var(--surf2);border:1.5px solid var(--ffn-blue);border-radius:20px;font-size:11px;}
+.resp-icon{font-size:14px;font-weight:900;color:var(--ffn-blue);}
+.resp-label{color:var(--ffn-blue);font-weight:600;}
+.sect-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ffn-blue);padding-bottom:5px;margin-bottom:7px;border-bottom:2px solid var(--ffn-blue);}
+.sect{margin-bottom:14px;}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.tcell{background:var(--surf2);border-radius:3px;padding:6px 8px;}
+.tlabel{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt-dim);font-weight:600;}
+.tval{font-size:16px;font-weight:800;color:var(--txt-bright);margin-top:1px;}
+.tval.nd{font-size:12px;color:#bbc8d8;font-weight:400;}
+.exp-wrap{background:var(--surf2);border-radius:3px;padding:8px 10px;}
+.exp-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px;color:var(--txt);}
+.exp-bar-bg{height:7px;background:var(--border);border-radius:3px;overflow:hidden;}
+.exp-bar{height:100%;border-radius:3px;transition:width .4s ease;}
+.stat-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.stat-pill{background:var(--surf2);border-radius:4px;padding:6px 10px;text-align:center;flex:1;min-width:60px;}
+.stat-val{font-size:18px;font-weight:800;color:var(--txt-bright);}
+.stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--txt-dim);margin-top:2px;}
+.top1c{color:var(--gold);} .top3c{color:#cd7c3a;} .top10c{color:var(--ffn-blue);}
+
+/* KO history */
+.ko-table{width:100%;border-collapse:collapse;font-size:11px;}
+.ko-table th{background:var(--ffn-blue);color:#fff;padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;letter-spacing:.08em;}
+.ko-table th:first-child{text-align:left;}
+.ko-table td{padding:4px 8px;border-bottom:1px solid var(--border);text-align:center;}
+.ko-table td:first-child{text-align:left;font-weight:600;}
+.ko-table tr:nth-child(even) td{background:var(--surf2);}
+.rang-badge{display:inline-block;min-width:22px;padding:2px 5px;border-radius:3px;font-weight:800;font-size:12px;}
+.rb-1{background:#fef3c7;color:#92400e;} .rb-2{background:#f3f4f6;color:#374151;} .rb-3{background:#fdf2f2;color:#c53030;}
+.rb-top{background:#eef3fa;color:var(--ffn-blue);} .rb-out{color:#aaa;}
+
+/* Progression chart */
+.prog-chart{display:block;width:100%;height:auto;}
+
+.p-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60%;gap:10px;color:var(--txt-dim);font-size:12px;text-align:center;padding:24px;}
+.p-empty-icon{font-size:40px;opacity:.2;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+.mx-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,48,135,.09);max-width:700px;margin:20px auto;}
+.mx-card-hdr{background:var(--ffn-blue);color:#fff;padding:12px 16px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.mx-card-hdr-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;}
+.mx-card-hdr-sub{font-size:9px;color:rgba(255,255,255,.45);margin-top:2px;}
+.mx-heure-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;padding:5px 14px;text-align:center;flex-shrink:0;}
+.mx-heure-label{font-size:20px;font-weight:900;line-height:1;}
+.mx-heure-sub{font-size:9px;color:rgba(255,255,255,.5);margin-top:2px;}
+.mx-conditions{display:flex;background:#1a2e5a;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.mx-cond-item{display:flex;align-items:center;gap:8px;padding:8px 14px;
+  border-right:1px solid rgba(255,255,255,.08);flex:1;min-width:110px;}
+.mx-cond-icon{font-size:16px;flex-shrink:0;}
+.mx-cond-val{font-size:13px;font-weight:800;color:#fff;line-height:1;}
+.mx-cond-lbl{font-size:9px;color:rgba(255,255,255,.4);margin-top:2px;}
+.mx-cond-item.mx-temp .mx-cond-val{color:#fbbf24;}
+.mx-cond-item.mx-vent .mx-cond-val{color:#93c5fd;}
+.mx-cond-item.mx-houle .mx-cond-val{color:#67e8f9;}
+.mx-cond-item.mx-mer .mx-cond-val{color:#7dd3fc;}
+.mx-vtabs{display:flex;background:#eaf0f9;border-bottom:1px solid var(--border);}
+.mx-vtab{flex:1;padding:8px;font-size:11px;font-weight:700;border:none;cursor:pointer;
+  background:transparent;color:var(--txt-dim);transition:all .15s;}
+.mx-vtab.on{background:var(--ffn-blue);color:#fff;}
+.mx-carte-wrap{position:relative;background:#1a3a5c;line-height:0;display:none;}
+.mx-carte-wrap.on{display:block;}
+.mx-carte-wrap img{width:100%;display:block;object-fit:contain;}
+.mx-carte-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.mx-slider-wrap{padding:12px 20px 8px;background:#f0f4f8;border-top:1px solid var(--border);}
+.mx-slider-row{display:flex;align-items:center;gap:12px;}
+.mx-slider-lbl{font-size:10px;font-weight:700;color:var(--txt-dim);white-space:nowrap;width:32px;}
+input[type=range]{flex:1;-webkit-appearance:none;height:6px;border-radius:3px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;
+  border-radius:50%;background:var(--ffn-blue);border:3px solid #fff;
+  box-shadow:0 1px 5px rgba(0,48,135,.35);cursor:pointer;}
+.mx-slider-ticks{display:flex;justify-content:space-between;margin-top:5px;}
+.mx-slider-ticks span{font-size:9px;color:var(--txt-dim);}
+.mx-slider-ticks span.now{color:var(--ffn-red);font-weight:800;}
+.mx-legende{padding:8px 14px;background:#fff;border-top:1px solid var(--border);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.mx-leg-item{display:flex;align-items:center;gap:5px;font-size:10px;}
+.mx-leg-note{margin-left:auto;font-size:9px;color:var(--txt-dim);font-style:italic;}
+</style>
+</head>
+<body>
+
+<div class="hdr" id="hdr">
+  <div>
+    <div class="hdr-title">🏊 Ponton KO · 3km Knockout Sprint · Cancún 2026</div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.6);font-size:10px;text-decoration:none;padding:3px 8px;border:1px solid rgba(255,255,255,.2);border-radius:3px;margin-bottom:4px">← Accueil</a>
+    <div class="hdr-sub">World Cup 2026/27 · Cancún · 7 novembre 2026 · FFN Service Performance</div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" id="tf" onclick="switchGender('f')">♀ Femmes</button>
+    <button class="tab" id="th" onclick="switchGender('h')">♂ Hommes</button>
+  </div>
+</div>
+
+<div class="serie-tabs" id="serie-tabs">
+  <div class="serie-tab on" id="serie-tab-1" onclick="switchSerie(1)">🔵 Série 1</div>
+  <div class="serie-tab" id="serie-tab-2" onclick="switchSerie(2)">🔴 Série 2</div>
+</div>
+
+<div class="filters" id="fbar">
+  <span class="flabel">Tri :</span>
+  <select class="fsel" id="sort" onchange="renderHist()">
+    <option value="bib">BIB</option>
+    <option value="v15" selected>Vitesse 1500 ↑</option>
+    <option value="v400">Vitesse 400 ↓</option>
+    <option value="exp">Expérience ↓</option>
+    <option value="noc">Nation</option>
+  </select>
+  <span class="flabel">Nation :</span>
+  <div id="chips" style="display:flex;gap:4px;flex-wrap:nowrap;"></div>
+</div>
+
+<div class="main-layout" id="main-layout">
+  <div class="left-col">
+    <div style="font-size:10px;color:#9ab0c8;margin-bottom:4px;" id="serie-count"></div>
+    <div class="ponton-info" id="ponton-info"></div>
+    <div id="hist-container" style="width:100%;"></div>
+  </div>
+
+  <div class="panel-overlay" id="overlay" onclick="closePanel()"></div>
+  <div class="panel" id="panel">
+    <div class="panel-close">
+      <span class="close-label" id="panel-title">Fiche nageur</span>
+      <button class="close-btn" onclick="closePanel()">✕</button>
+    </div>
+    <div class="panel-vtabs">
+      <div class="panel-vtab on" id="pvtab-profil" onclick="setPanelView('profil')">👤 Profil</div>
+      <div class="panel-vtab" id="pvtab-ko-hist" onclick="setPanelView('ko-hist')">🏊 Historique KO</div>
+    </div>
+    <div class="p-empty" id="pempty">
+      <div class="p-empty-icon">🎯</div>
+      <div>Cliquez sur une barre<br>pour voir la fiche</div>
+    </div>
+    <div id="fiche-content"></div>
+  </div>
+</div>
+
+<script>
+'use strict';
+Promise.all([
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_ko_el.json').then(function(r){return r.json();}),
+  fetch('https://raw.githubusercontent.com/PierreH-07/app-el/data/resultats_10km_nageurs_el.json').then(function(r){return r.json();}).catch(function(){return null;})
+]).then(function(parts){
+  var json=parts[0], nagJson=parts[1];
+  var nagF={}, nagH={};
+  if(nagJson){
+    (nagJson.DATA_F||[]).forEach(function(s){ nagF[s.nom.toLowerCase().trim()]=s; });
+    (nagJson.DATA_H||[]).forEach(function(s){ nagH[s.nom.toLowerCase().trim()]=s; });
+  }
+  var NOC_FLAGS = Object.assign({MEX:'🇲🇽',GUA:'🇬🇹',URU:'🇺🇾',VEN:'🇻🇪',CRC:'🇨🇷',ISR:'🇮🇱',BOL:'🇧🇴',ECU:'🇪🇨',BRA:'🇧🇷'}, json.KO_FLAGS);
+  var DATA_F = json.DATA_F.map(function(s){
+    s.ko_hist = json.KO_HF[s.nom] || [];
+    return s;
+  });
+  var DATA_H = json.DATA_H.map(function(s){
+    s.ko_hist = json.KO_HH[s.nom] || [];
+    return s;
+  });
+
+    var BIB_ASSIGNED=false;
+    var STARTLIST_F=[
+      {nom:'IMWINKELRIED Romina Soledad',noc:'ARG',annee:1994,t800:'9:04.40',t1500:'17:01.81',v800:1.4695,v1500:1.468},
+      {nom:'DAVISON-MCGOVERN Jacqueline',noc:'AUS',annee:2004},
+      {nom:'JOHNSON Moesha',noc:'AUS',annee:1997,t400:'4:05.97',t800:'8:24.46',t1500:'15:53.49',v400:1.6262,v800:1.5859,v1500:1.5732},
+      {nom:'JUNGBLUT Cibelle',noc:'BRA',annee:2003,t800:'9:11.91',t1500:'17:01.29',v800:1.4495,v1500:1.4687},
+      {nom:'SOBRAL Lizian',noc:'BRA',annee:2007,t400:'4:27.02',t800:'9:06.40',t1500:'17:24.99',v400:1.498,v800:1.4641,v1500:1.4354},
+      {nom:'PLESKOTOVA Julie',noc:'CZE',annee:2002,t400:'4:26.20',t800:'9:05.87',t1500:'17:21.06',v400:1.5026,v800:1.4656,v1500:1.4408},
+      {nom:'COELLO Rafaela',noc:'ECU',annee:2008,t400:'4:24.03',t800:'9:29.52',t1500:'17:55.67',v400:1.515,v800:1.4047,v1500:1.3945},
+      {nom:'MARTINEZ Danna',noc:'ECU',annee:2006,t400:'4:32.03',t800:'9:17.16',t1500:'17:36.15',v400:1.4704,v800:1.4359,v1500:1.4203},
+      {nom:'DE VALDES Maria',noc:'ESP',annee:1998},
+      {nom:'MARTINEZ GUILLEN Angela',noc:'ESP',annee:2004,t400:'4:10.95',t800:'8:29.08',t1500:'16:14.95',v400:1.5939,v800:1.5715,v1500:1.5385},
+      {nom:'SANCHEZ LORA Candela',noc:'ESP',annee:2003,t400:'4:18.54',t800:'8:42.11',t1500:'16:33.90',v400:1.5471,v800:1.5322,v1500:1.5092},
+      {nom:'KASVIO Louna',noc:'FIN',annee:2006,t400:'4:19.69',t800:'8:49.61',t1500:'16:51.30',v400:1.5403,v800:1.5105,v1500:1.4832},
+      {nom:'COCCORDANO Clemence',noc:'FRA',annee:2005,t400:'4:19.33',t800:'8:49.55',t1500:'16:31.83',v400:1.5424,v800:1.5107,v1500:1.5124},
+      {nom:'DELACROIX Ines',noc:'FRA',annee:2003,t400:'4:15.31',t800:'8:43.64',t1500:'16:29.24',v400:1.5667,v800:1.5278,v1500:1.5163},
+      {nom:'BOY Lea',noc:'GER',annee:2000,t400:'4:10.49',t800:'8:37.58',t1500:'16:27.91',v400:1.5969,v800:1.5457,v1500:1.5184},
+      {nom:'SPIWOKS Jeannette',noc:'GER',annee:1998,t400:'4:12.56',t800:'8:32.22',t1500:'16:16.90',v400:1.5838,v800:1.5618,v1500:1.5355},
+      {nom:'VANEGAS Yanci',noc:'GUA',annee:2003,t400:'4:33.15',t800:'9:20.10',t1500:'17:54.16',v400:1.4644,v800:1.4283,v1500:1.3964},
+      {nom:'FABIAN Bettina',noc:'HUN',annee:2004,t400:'4:08.86',t800:'8:37.33',t1500:'16:27.39',v400:1.6073,v800:1.5464,v1500:1.5192},
+      {nom:'BERTON Giulia',noc:'ITA',annee:2001,t400:'4:18.98',t800:'8:46.57',t1500:'16:38.68',v400:1.5445,v800:1.5193,v1500:1.502},
+      {nom:'CAPONI Linda',noc:'ITA',annee:1998,t400:'4:11.64',t800:'8:48.35',t1500:'16:51.09',v400:1.5896,v800:1.5141,v1500:1.4835},
+      {nom:'CESARANO Antonietta',noc:'ITA',annee:2003,t400:'4:11.13',t800:'8:33.02',v400:1.5928,v800:1.5594},
+      {nom:'CESARANO Noemi',noc:'ITA',annee:2003,t400:'4:10.81',t800:'8:33.72',t1500:'16:08.39',v400:1.5948,v800:1.5573,v1500:1.549},
+      {nom:'GABBRIELLESCHI Giulia',noc:'ITA',annee:1996},
+      {nom:'POZZOBON Barbara',noc:'ITA',annee:1993,t400:'4:20.73',t800:'8:45.73',t1500:'16:30.47',v400:1.5342,v800:1.5217,v1500:1.5144},
+      {nom:'RIMOLDI Rebecca',noc:'ITA',annee:2006,t400:'4:12.91',t800:'8:47.79',t1500:'16:46.59',v400:1.5816,v800:1.5158,v1500:1.4902},
+      {nom:'TADDEUCCI Ginevra',noc:'ITA',annee:1997,t400:'4:15.30',t800:'8:34.31',t1500:'16:08.35',v400:1.5668,v800:1.5555,v1500:1.549},
+      {nom:'EBINA Airi',noc:'JPN',annee:2001,t400:'4:11.95',t800:'8:29.24',t1500:'16:02.22',v400:1.5876,v800:1.571,v1500:1.5589},
+      {nom:'KAJIMOTO Ichika',noc:'JPN',annee:2004,t400:'4:06.61',t800:'8:23.11',t1500:'15:58.59',v400:1.622,v800:1.5901,v1500:1.5648},
+      {nom:'ALANIS HERNANDEZ Paulina',noc:'MEX',annee:2004,t400:'4:28.07',t800:'9:10.10',t1500:'17:25.07',v400:1.4921,v800:1.4543,v1500:1.4353},
+      {nom:'CUEVAS ORTIZ Regina',noc:'MEX',annee:2007},
+      {nom:'ESCOBAR FALCON Marisela',noc:'MEX',annee:2009,t400:'4:26.56',t800:'9:15.08',v400:1.5006,v800:1.4412},
+      {nom:'MERCADO Katherine',noc:'MEX',annee:2008},
+      {nom:'MORA OLIVARES Citlalli Montserrat',noc:'MEX',annee:2004,t400:'4:31.70',t800:'9:16.87',t1500:'17:46.30',v400:1.4722,v800:1.4366,v1500:1.4067},
+      {nom:'MORENO VELASCO Dalia Berenice',noc:'MEX',annee:2002},
+      {nom:'NIEVES ZUBIETA Camila',noc:'MEX',annee:2009,t400:'4:38.51',t800:'9:30.93',t1500:'18:07.94',v400:1.4362,v800:1.4012,v1500:1.3788},
+      {nom:'PEREZ ARMENTA Andrea Ximena',noc:'MEX',annee:2007,t400:'4:24.24',t800:'9:04.90',t1500:'17:06.07',v400:1.5138,v800:1.4682,v1500:1.4619},
+      {nom:'RUBIO DE LA ROSA Sharon',noc:'MEX',annee:2005,t400:'4:59.14',t800:'9:39.70',t1500:'18:24.66',v400:1.3372,v800:1.38,v1500:1.3579},
+      {nom:'SALGADO GONZALEZ Yuritzi',noc:'MEX',annee:2005},
+      {nom:'TOLEDO Dana',noc:'MEX',annee:2007},
+      {nom:'POU Lisa',noc:'MON',annee:1999,t400:'4:17.60',t800:'8:40.02',t1500:'16:34.73',v400:1.5528,v800:1.5384,v1500:1.5079},
+      {nom:'TARASIEWICZ Klaudia',noc:'POL',annee:2004,t400:'4:11.13',t800:'8:33.93',t1500:'16:26.58',v400:1.5928,v800:1.5566,v1500:1.5204},
+      {nom:'ANDRE Angelica',noc:'POR',annee:1994,t1500:'17:15.67',v1500:1.4483},
+      {nom:'MENDES Mariana',noc:'POR',annee:2002,t400:'4:28.94',t800:'9:00.56',t1500:'16:55.62',v400:1.4873,v800:1.4799,v1500:1.4769},
+      {nom:'ROSA Mafalda',noc:'POR',annee:2003},
+      {nom:'LOTTER Callan',noc:'RSA',annee:2006,t400:'4:13.21',t800:'8:40.49',t1500:'16:36.99',v400:1.5797,v800:1.537,v1500:1.5045},
+      {nom:'SLAMOVA Lucia',noc:'SVK',annee:2010,t400:'4:54.12',t800:'9:45.52',t1500:'18:44.08',v400:1.36,v800:1.3663,v1500:1.3344},
+      {nom:'VALKO Karolina Ann',noc:'SVK',annee:2010,t400:'4:22.76',t800:'8:59.77',t1500:'17:11.40',v400:1.5223,v800:1.4821,v1500:1.4543},
+      {nom:'INAL Su',noc:'TUR',annee:2010,t400:'4:20.38',t800:'8:58.25',t1500:'17:43.20',v400:1.5362,v800:1.4863,v1500:1.4108},
+      {nom:'CANEDO Pilar',noc:'URU',annee:2004,t400:'4:42.44',t800:'9:42.51',t1500:'18:15.21',v400:1.4162,v800:1.3734,v1500:1.3696},
+      {nom:'GENDARMI Alessandra Liviana',noc:'USA',annee:2008,t400:'4:24.15',t800:'9:08.06',t1500:'17:19.49',v400:1.5143,v800:1.4597,v1500:1.443},
+      {nom:'MANN Becca',noc:'USA',annee:1997,t400:'4:07.09',t800:'8:21.77',t1500:'16:05.42',v400:1.6188,v800:1.5944,v1500:1.5537},
+      {nom:'TEGER Chloe',noc:'USA',annee:2009,t400:'4:19.96',t800:'8:45.81',t1500:'16:33.66',v400:1.5387,v800:1.5215,v1500:1.5096},
+      {nom:'PEREZ Paola',noc:'VEN',annee:1991},
+    ];
+    var STARTLIST_H=[
+      {nom:'ALBA Lucas Ezequiel',noc:'ARG',annee:2000},
+      {nom:'MORENO Joaquin',noc:'ARG',annee:1997,t400:'4:02.28',t800:'8:16.39',t1500:'15:55.05',v400:1.651,v800:1.6116,v1500:1.5706},
+      {nom:'ARMSTRONG Bailey',noc:'AUS',annee:1999,t400:'4:02.04',t800:'8:27.17',t1500:'16:11.25',v400:1.6526,v800:1.5774,v1500:1.5444},
+      {nom:'ESCOBAR Percy',noc:'BOL',annee:1999},
+      {nom:'AGUIAR Arthur',noc:'BRA',annee:2007},
+      {nom:'BRANDT DE MACEDO Leonardo',noc:'BRA',annee:2006},
+      {nom:'MELECCHI Matheus',noc:'BRA',annee:2005,t400:'4:03.14',t800:'8:07.06',t1500:'15:15.68',v400:1.6451,v800:1.6425,v1500:1.6381},
+      {nom:'MORENO Victor',noc:'BRA',annee:2006,t400:'3:53.06',t800:'8:04.52',t1500:'15:22.54',v400:1.7163,v800:1.6511,v1500:1.6259},
+      {nom:'MUSTAFA Eduardo Lima',noc:'BRA',annee:2008,t400:'4:05.49',t800:'8:34.38',t1500:'16:02.87',v400:1.6294,v800:1.5553,v1500:1.5578},
+      {nom:'ROJAS Jeison',noc:'CRC',annee:2003},
+      {nom:'BOROVKA Denis',noc:'CZE',annee:2005,t400:'4:09.82',t800:'8:50.65',t1500:'16:44.43',v400:1.6012,v800:1.5076,v1500:1.4934},
+      {nom:'KOZUBEK Matej',noc:'CZE',annee:1996,t400:'4:03.99',t800:'8:31.33',t1500:'16:07.81',v400:1.6394,v800:1.5645,v1500:1.5499},
+      {nom:'MORAVEK Petr',noc:'CZE',annee:2007},
+      {nom:'STRAKA Martin',noc:'CZE',annee:2000,t400:'4:08.69',t800:'8:27.86',t1500:'16:11.43',v400:1.6084,v800:1.5752,v1500:1.5441},
+      {nom:'FARINANGO David',noc:'ECU',annee:2000},
+      {nom:'OLIVIER Marc-Antoine',noc:'FRA',annee:1996,t400:'3:49.10',t800:'7:49.14',t1500:'14:55.19',v400:1.746,v800:1.7052,v1500:1.6756},
+      {nom:'PARKER Ethan',noc:'FRA',annee:2007,t400:'3:56.02',t800:'8:02.51',t1500:'15:18.08',v400:1.6948,v800:1.658,v1500:1.6338},
+      {nom:'VELLY Sacha',noc:'FRA',annee:2005,t400:'3:49.58',t800:'7:53.91',t1500:'14:45.75',v400:1.7423,v800:1.6881,v1500:1.6935},
+      {nom:'KLEMET Oliver',noc:'GER',annee:2002,t400:'3:42.81',t800:'7:44.61',t1500:'14:39.03',v400:1.7953,v800:1.7219,v1500:1.7064},
+      {nom:'WELLBROCK Florian',noc:'GER',annee:1997,t400:'3:45.29',t800:'7:39.63',t1500:'14:34.89',v400:1.7755,v800:1.7405,v1500:1.7145},
+      {nom:'BARRIOS Jose',noc:'GUA',annee:2008,t400:'4:12.16',t800:'8:39.01',v400:1.5863,v800:1.5414},
+      {nom:'BETLEHEM David',noc:'HUN',annee:2003,t400:'3:47.86',t800:'7:47.02',t1500:'14:40.91',v400:1.7555,v800:1.713,v1500:1.7028},
+      {nom:'AHDUT Yonatan',noc:'ISR',annee:2003,t400:'4:02.02',t800:'8:17.38',t1500:'15:42.38',v400:1.6528,v800:1.6084,v1500:1.5917},
+      {nom:'ACERENZA Domenico',noc:'ITA',annee:1995,t400:'3:51.94',t800:'7:57.66',t1500:'15:12.56',v400:1.7246,v800:1.6748,v1500:1.6437},
+      {nom:'DALU Fabio',noc:'ITA',annee:2000},
+      {nom:'FILADELLI Andrea',noc:'ITA',annee:2001,t400:'3:54.12',t800:'8:06.24',t1500:'15:35.14',v400:1.7085,v800:1.6453,v1500:1.604},
+      {nom:'GIORDANO Pasquale',noc:'ITA',annee:2004,t400:'3:59.06',t800:'8:08.07',t1500:'15:27.58',v400:1.6732,v800:1.6391,v1500:1.6171},
+      {nom:'GIOVANNONI Ivan',noc:'ITA',annee:2002},
+      {nom:'GUIDI Marcello',noc:'ITA',annee:1997,t400:'4:01.70',t800:'8:04.78',t1500:'14:58.30',v400:1.6549,v800:1.6502,v1500:1.6698},
+      {nom:'MARCHELLO Davide',noc:'ITA',annee:2001,t400:'3:47.430',t800:'7:50.090',t1500:'15:06.950',v400:1.7588,v800:1.7018,v1500:1.6539},
+      {nom:'VERANI Dario',noc:'ITA',annee:1995,t400:'3:56.16',t800:'8:05.12',t1500:'15:25.88',v400:1.6938,v800:1.6491,v1500:1.6201},
+      {nom:'EZAWA Riku',noc:'JPN',annee:2003,t400:'3:52.95',t800:'8:04.54',t1500:'15:21.23',v400:1.7171,v800:1.6511,v1500:1.6283},
+      {nom:'MINAMIDE Taishin',noc:'JPN',annee:1996,t400:'4:04.20',t800:'8:16.60',t1500:'15:41.52',v400:1.638,v800:1.611,v1500:1.5932},
+      {nom:'TSUJIMORI Kaito',noc:'JPN',annee:2006,t400:'3:51.30',t800:'7:54.50',t1500:'15:08.30',v400:1.7294,v800:1.686,v1500:1.6514},
+      {nom:'ALMANZA CHAVEZ Emiliano',noc:'MEX',annee:2008,t1500:'17:17.47',v1500:1.4458},
+      {nom:'ARREDONDO Jonatha',noc:'MEX',annee:2004},
+      {nom:'BETANZOS Fernando',noc:'MEX',annee:1992},
+      {nom:'CORONA MARTINEZ Luis Eduardo',noc:'MEX',annee:2006,t400:'4:00.59',t800:'8:20.12',t1500:'16:03.20',v400:1.6626,v800:1.5996,v1500:1.5573},
+      {nom:'DUCOURTIL ANCONA Alessio',noc:'MEX',annee:2009},
+      {nom:'GARCIA SANTA CRUZ Juan Pablo',noc:'MEX',annee:2007},
+      {nom:'MARTINEZ Santiago',noc:'MEX',annee:2010},
+      {nom:'MELENDEZ HERNANDEZ Marco Antonio',noc:'MEX',annee:2007},
+      {nom:'MIRANDA VIDAL Ramses',noc:'MEX',annee:2004,t400:'4:09.84',t800:'8:40.52',t1500:'16:36.38',v400:1.601,v800:1.5369,v1500:1.5054},
+      {nom:'OBELE CISNEROS Diego',noc:'MEX',annee:2001},
+      {nom:'STREHLKE DELGADO Paulo',noc:'MEX',annee:2006},
+      {nom:'VALDES OCHOA Roberto',noc:'MEX',annee:2006,t400:'4:03.34',t800:'8:16.58',t1500:'15:36.80',v400:1.6438,v800:1.611,v1500:1.6012},
+      {nom:'VEGA CUEVAS Maximiliano',noc:'MEX',annee:2003},
+      {nom:'FAURE Esteban',noc:'MON',annee:2008},
+      {nom:'KAPALA Bartosz',noc:'POL',annee:2006,t400:'3:54.31',t800:'8:01.18',t1500:'15:15.69',v400:1.7071,v800:1.6626,v1500:1.6381},
+      {nom:'AMARAL Francisco',noc:'POR',annee:2002,t400:'3:58.62',t800:'8:15.26',t1500:'15:43.04',v400:1.6763,v800:1.6153,v1500:1.5906},
+      {nom:'CARDOSO Diogo',noc:'POR',annee:2001,t400:'4:04.57',t800:'8:16.45',t1500:'15:30.36',v400:1.6355,v800:1.6114,v1500:1.6123},
+      {nom:'CARREL Nolan',noc:'SUI',annee:2005},
+      {nom:'SCHREIBER Christian',noc:'SUI',annee:2002,t400:'4:01.21',t800:'8:17.37',t1500:'15:39.83',v400:1.6583,v800:1.6085,v1500:1.596},
+      {nom:'CACIK Rastislav',noc:'SVK',annee:2008},
+      {nom:'URBAN Richard',noc:'SVK',annee:2007},
+      {nom:'ULAC Dogukan',noc:'TUR',annee:1996,t400:'4:02.58',t800:'8:14.12',t1500:'15:46.26',v400:1.6489,v800:1.619,v1500:1.5852},
+      {nom:'LABAYRU GOMEZ Jose Maria',noc:'URU',annee:2005,t400:'4:29.57',t800:'8:51.99',t1500:'16:48.29',v400:1.4838,v800:1.5038,v1500:1.4877},
+      {nom:'BROWN Joshua',noc:'USA',annee:2003,t400:'3:53.15',t800:'7:58.00',t1500:'15:18.14',v400:1.7156,v800:1.6736,v1500:1.6337},
+      {nom:'GRAVLEY Dylan',noc:'USA',annee:2002,t400:'4:07.36',t800:'8:15.08',t1500:'15:40.07',v400:1.6171,v800:1.6159,v1500:1.5956},
+      {nom:'PISHKO Jacob',noc:'USA',annee:2003},
+      {nom:'PUSKOVITCH Ivan',noc:'USA',annee:2001,t400:'4:04.50',t800:'7:59.45',t1500:'15:10.91',v400:1.636,v800:1.6686,v1500:1.6467},
+      {nom:'BRISENO GONZALEZ Raul Alberto',noc:'VEN',annee:2004,t400:'3:58.910',t800:'8:16.120',t1500:'15:55.510',v400:1.6743,v800:1.6125,v1500:1.5698},
+      {nom:'SEGOVIA Johndry',noc:'VEN',annee:1987},
+      {nom:'ZAMBRANO SANCHEZ Ronaldo Eduardo',noc:'VEN',annee:2001},
+    ];
+    function buildStartlist(dataArr,sl,speedMap){
+      function matchNom(a,b){
+        a=a.toLowerCase().trim(); b=b.toLowerCase().trim();
+        if(a===b)return true;
+        if(a.startsWith(b+' ')||b.startsWith(a+' '))return true;
+        var at=a.split(' '),bt=b.split(' ');
+        if(at[0]!==bt[0]||at.length<2||bt.length<2)return false;
+        if(at[1]===bt[1])return true;
+        var ai=at[1],bi=bt[1];
+        if(ai.length<=2&&ai.endsWith('.')&&bt[1].startsWith(ai[0]))return true;
+        if(bi.length<=2&&bi.endsWith('.')&&at[1].startsWith(bi[0]))return true;
+        return false;
+      }
+      function findSpeed(nom){
+        var nL=nom.toLowerCase().trim();
+        if(speedMap[nL])return speedMap[nL];
+        for(var k in speedMap){if(matchNom(nL,k))return speedMap[k];}
+        return null;
+      }
+      return sl.map(function(e,i){
+        var found=dataArr.find(function(s){return matchNom(e.nom,s.nom);});
+        var base=found?Object.assign({},found):{nom:e.nom,noc:e.noc,annee:e.annee,experience:0,v400:null,v800:null,v1500:null,t400:null,t800:null,t1500:null,ko_hist:[]};
+        if(base.v1500==null||base.v400==null){
+          var sp=findSpeed(e.nom);
+          if(sp){
+            if(base.v1500==null)base.v1500=sp.v1500;
+            if(base.v400==null)base.v400=sp.v400;
+            if(base.v800==null)base.v800=sp.v800;
+            if(base.t1500==null)base.t1500=sp.t1500;
+            if(base.t400==null)base.t400=sp.t400;
+            if(!base.annee)base.annee=sp.annee;
+          }
+        }
+        if(e.v400!=null&&base.v400==null){base.v400=e.v400;base.t400=e.t400||null;}
+        if(e.v800!=null&&base.v800==null){base.v800=e.v800;base.t800=e.t800||null;}
+        if(e.v1500!=null&&base.v1500==null){base.v1500=e.v1500;base.t1500=e.t1500||null;}
+        base.bib=i+1; base.serie=(i<Math.ceil(sl.length/2)?1:2);
+        if(!base.ko_hist)base.ko_hist=[];
+        return base;
+      });
+    }
+    DATA_F=buildStartlist(DATA_F,STARTLIST_F,nagF);
+    DATA_H=buildStartlist(DATA_H,STARTLIST_H,nagH);
+
+let G='f', SEL=null, NOC_FILT=null, SERIE=1, PANEL_VIEW='profil';
+
+const data = () => {
+  const all = G==='f' ? DATA_F : DATA_H;
+  if(!BIB_ASSIGNED) return all;
+  return all.filter(d => d.serie === SERIE);
+};
+const allData = () => G==='f' ? DATA_F : DATA_H;
+
+function expColor(e){
+  const t=Math.min(1,(e||0)/80);
+  return 'rgb('+Math.round(109-t*109)+','+Math.round(168-t*120)+','+Math.round(212-t*76)+')';
+}
+function vColor(v,g){
+  if(!v) return '#6da8d4';
+  const max=g==='f'?1.65:1.82, min=g==='f'?1.35:1.50;
+  const t=Math.max(0,Math.min(1,(v-min)/(max-min)));
+  return 'rgb('+Math.round(230-t*190)+','+Math.round(48+t*60)+','+Math.round(90+t*165)+')';
+}
+function rangCls(r){return r===1?'top1c':r<=3?'top3c':r<=10?'top10c':'';}
+function typeBadge(type){
+  const c={CDM:'#eef3fa',CHM:'#fff3e0',JO:'#ffe0e0',CHE:'#e0f5e0'}[type]||'#eef3fa';
+  const t={CDM:type,CHM:type,JO:type,CHE:type}[type]||type;
+  return '<span style="font-size:9px;padding:2px 5px;border-radius:10px;background:'+c+';font-weight:700;">'+t+'</span>';
+}
+
+function setTop(){
+  const hh=document.getElementById('hdr').offsetHeight;
+  const sh=document.getElementById('serie-tabs').offsetHeight;
+  const fh=document.getElementById('fbar').offsetHeight;
+  const total=hh+sh+fh;
+  document.getElementById('main-layout').style.paddingTop=total+'px';
+  document.getElementById('serie-tabs').style.top=hh+'px';
+  document.getElementById('fbar').style.top=(hh+sh)+'px';
+}
+
+function buildChips(){
+  const d=data();
+  const nocs=[...new Set(d.map(x=>x.noc))].sort();
+  const wrap=document.getElementById('chips');
+  wrap.innerHTML='';
+  const mk=(lbl,noc)=>{
+    const b=document.createElement('button');
+    b.className='chip'+(NOC_FILT===noc?' on':'');
+    b.textContent=lbl;
+    b.onclick=()=>{NOC_FILT=NOC_FILT===noc?null:noc;buildChips();renderHist();};
+    wrap.appendChild(b);
+  };
+  mk('Tous',null);
+  nocs.forEach(n=>mk((NOC_FLAGS[n]||'')+' '+n,n));
+}
+
+function sorted(){
+  let d=[...data()];
+  if(NOC_FILT) d=d.filter(x=>x.noc===NOC_FILT);
+  const s=document.getElementById('sort').value;
+  if(s==='bib') d.sort((a,b)=>a.bib-b.bib);
+  else if(s==='v15') d.sort((a,b)=>{if(!a.v1500&&!b.v1500)return 0;if(!a.v1500)return 1;if(!b.v1500)return -1;return a.v1500-b.v1500;});
+  else if(s==='v400') d.sort((a,b)=>(b.v400||0)-(a.v400||0));
+  else if(s==='exp') d.sort((a,b)=>(b.experience||0)-(a.experience||0));
+  else d.sort((a,b)=>a.noc.localeCompare(b.noc)||a.bib-b.bib);
+  return d;
+}
+
+function renderHist(){
+  const d=sorted();
+  const nb_s=allData().filter(x=>x.bib%2!==0).length;
+  const nb_s2=allData().filter(x=>x.bib%2===0).length;
+  document.getElementById('ponton-info').textContent=
+    d.length+' nageur'+(G==='h'?'s':'ses')+(NOC_FILT?' · '+NOC_FILT:'');
+  document.getElementById('serie-count').textContent=
+    (BIB_ASSIGNED?'Série 1 : '+nb_s+' | Série 2 : '+nb_s2:'BIBs non attribués · '+allData().length+' inscrit(e)s · Vitesse 1500 lent→rapide');
+
+  const container=document.getElementById('hist-container');
+  const W=Math.max(container.clientWidth||600, d.length*12+80);
+  const marginL=48,marginR=12,marginT=28,marginB=170;
+  const chartW=W-marginL-marginR, chartH=240;
+  const svgH=chartH+marginT+marginB;
+
+  const allV=d.flatMap(x=>[x.v1500,x.v400].filter(v=>v!=null));
+  const vMin=allV.length?Math.max(1.20,Math.min(...allV)-0.05):1.20;
+  const vMax=allV.length?Math.min(1.90,Math.max(...allV)+0.05):1.90;
+  const barW=Math.max(6,Math.min(28,(chartW/d.length)-2));
+  const gap=chartW/d.length;
+  const yScale=v=>chartH-((v-vMin)/(vMax-vMin))*chartH;
+  const xCenter=i=>marginL+gap*i+gap/2;
+
+  const yTicks=[];
+  let tick=Math.ceil(vMin*10)/10;
+  while(tick<=vMax+0.001){yTicks.push(+tick.toFixed(2));tick=+(tick+0.1).toFixed(2);}
+
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" viewBox="0 0 '+W+' '+svgH+'" style="display:block">';
+  svg+='<rect width="'+W+'" height="'+svgH+'" fill="#f5f8fc"/>';
+  svg+='<rect x="'+marginL+'" y="'+marginT+'" width="'+chartW+'" height="'+chartH+'" fill="white" rx="2"/>';
+
+  yTicks.forEach(v=>{
+    const y=marginT+yScale(v);
+    svg+='<line x1="'+marginL+'" y1="'+y+'" x2="'+(marginL+chartW)+'" y2="'+y+'" stroke="#dde5f0" stroke-width="1" stroke-dasharray="3,2"/>';
+    svg+='<text x="'+(marginL-5)+'" y="'+(y+4)+'" text-anchor="end" font-family="Arial,sans-serif" font-size="9" fill="#6b7f9e">'+v.toFixed(1)+'</text>';
+  });
+  svg+='<text transform="rotate(-90,16,'+(marginT+chartH/2)+')" x="16" y="'+(marginT+chartH/2)+'" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#6b7f9e" font-weight="600">Vitesse (m/s)</text>';
+
+  d.forEach((ng,i)=>{
+    const cx=xCenter(i);
+    const isSel=ng.bib===SEL;
+    const isFR=ng.noc==='FRA';
+    const bColor=expColor(ng.experience||0);
+    const bStroke=isSel?'#C8102E':isFR?'#C8102E':'#7aaecf';
+    const bStrokeW=isSel||isFR?1.5:0.8;
+
+    if(ng.v1500){
+      const bY=marginT+yScale(ng.v1500), bH=chartH-yScale(ng.v1500);
+      svg+='<rect x="'+(cx-barW/2)+'" y="'+bY+'" width="'+barW+'" height="'+bH+'"'
+        +' fill="'+bColor+'" stroke="'+bStroke+'" stroke-width="'+bStrokeW+'" rx="1"'
+        +' style="cursor:pointer" data-bib="'+ng.bib+'"/>';
+    }
+    if(ng.v400){
+      const dy=marginT+yScale(ng.v400);
+      const baseY=ng.v1500?(marginT+yScale(ng.v1500)):(marginT+chartH);
+      svg+='<line x1="'+cx+'" y1="'+dy+'" x2="'+cx+'" y2="'+baseY+'" stroke="#003087" stroke-width="1" stroke-dasharray="3,2"/>';
+      svg+='<circle cx="'+cx+'" cy="'+dy+'" r="3.5" fill="#003087" style="cursor:pointer" data-bib="'+ng.bib+'"/>';
+    }
+    // Pastille KO finale si nageur a atteint une finale KO
+    const hasFinal=ng.ko_hist&&ng.ko_hist.some(k=>k.rang_finale<=3);
+    if(hasFinal){
+      const topY=ng.v1500?(marginT+yScale(ng.v1500)-4):(marginT+chartH-4);
+      svg+='<text x="'+cx+'" y="'+topY+'" text-anchor="middle" font-size="10">🏅</text>';
+    }
+    if(isFR){
+      const topY2=(ng.v1500?(marginT+yScale(ng.v1500)):marginT+chartH)-(hasFinal?16:4);
+      svg+='<text x="'+cx+'" y="'+topY2+'" text-anchor="middle" font-size="10">🇫🇷</text>';
+    }
+    if(isSel) svg+='<rect x="'+(cx-barW/2-2)+'" y="'+marginT+'" width="'+(barW+4)+'" height="'+chartH+'" fill="rgba(200,16,46,0.06)" rx="2"/>';
+    svg+='<rect x="'+(cx-gap/2)+'" y="'+marginT+'" width="'+gap+'" height="'+chartH+'" fill="transparent" style="cursor:pointer" data-bib="'+ng.bib+'"/>';
+
+    const lblY=marginT+chartH+14;
+    const sn=ng.nom.length>16?ng.nom.split(' ')[0]:ng.nom;
+    const nameY=marginT+chartH+22;
+    svg+='<text transform="rotate(-55,'+cx+','+(nameY+8)+')" x="'+cx+'" y="'+(nameY+8)+'"'
+      +' text-anchor="end" font-family="Arial,sans-serif" font-size="8.5" fill="'+(isSel?'#C8102E':isFR?'#C8102E':'#4a5f7a')+'"'
+      +' font-weight="'+(isFR?'700':'400')+'">'+sn+'</text>';
+  });
+  svg+='<rect x="'+marginL+'" y="'+marginT+'" width="'+chartW+'" height="'+chartH+'" fill="none" stroke="#c5d4e8" stroke-width="1" rx="2"/>';
+
+  // Légende
+  const legY1=marginT+chartH+126, legY2=legY1+24, legX=marginL;
+  svg+='<rect x="'+(legX-4)+'" y="'+(legY1-14)+'" width="'+(chartW+8)+'" height="46" rx="4" fill="#eef3fa" stroke="#d0dce8" stroke-width="0.8"/>';
+  svg+='<rect x="'+legX+'" y="'+(legY1-10)+'" width="12" height="12" rx="1" fill="#6da8d4" stroke="#7aaecf" stroke-width="0.8"/>';
+  svg+='<text x="'+(legX+16)+'" y="'+legY1+'" font-family="Arial,sans-serif" font-size="9.5" fill="#1a2a4a" font-weight="600">Vitesse 1500</text>';
+  const sepX=legX+120;
+  svg+='<line x1="'+sepX+'" y1="'+(legY1-6)+'" x2="'+sepX+'" y2="'+(legY1+2)+'" stroke="#003087" stroke-width="1.2" stroke-dasharray="2.5,2"/>';
+  svg+='<circle cx="'+sepX+'" cy="'+(legY1-8)+'" r="3.5" fill="#003087"/>';
+  svg+='<text x="'+(sepX+9)+'" y="'+legY1+'" font-family="Arial,sans-serif" font-size="9.5" fill="#1a2a4a" font-weight="600">Vitesse 400</text>';
+  svg+='<text x="'+(legX+230)+'" y="'+legY1+'" font-size="10">🏅</text>';
+  svg+='<text x="'+(legX+244)+'" y="'+legY1+'" font-family="Arial,sans-serif" font-size="9.5" fill="#b8860b" font-weight="600">Podium KO</text>';
+  svg+='<text x="'+(legX+340)+'" y="'+legY1+'" font-size="10">🇫🇷</text>';
+  svg+='<text x="'+(legX+354)+'" y="'+legY1+'" font-family="Arial,sans-serif" font-size="9.5" fill="#C8102E" font-weight="600">Français(e)</text>';
+  svg+='<text x="'+legX+'" y="'+legY2+'" font-family="Arial,sans-serif" font-size="9.5" fill="#1a2a4a" font-weight="600">Expérience :</text>';
+  const gradX=legX+74, steps=10, stepW=14;
+  for(let ei=0;ei<=steps;ei++){svg+='<rect x="'+(gradX+ei*stepW)+'" y="'+(legY2-10)+'" width="'+stepW+'" height="10" fill="'+expColor(ei*8)+'"/>';}
+  svg+='<rect x="'+gradX+'" y="'+(legY2-10)+'" width="'+(steps*stepW+stepW)+'" height="10" fill="none" stroke="#c0cfe0" stroke-width="0.8"/>';
+  svg+='<text x="'+gradX+'" y="'+(legY2+8)+'" font-family="Arial,sans-serif" font-size="8" fill="#6b7f9e">0</text>';
+  svg+='<text x="'+(gradX+steps*stepW+stepW)+'" y="'+(legY2+8)+'" font-family="Arial,sans-serif" font-size="8" fill="#003087" font-weight="600" text-anchor="end">80+</text>';
+  svg+='<text x="'+(legX+350)+'" y="'+legY1+'" font-family="Arial,sans-serif" font-size="9" fill="#7aaecf" font-style="italic">← cliquer pour la fiche</text>';
+  svg+='</svg>';
+
+  container.innerHTML=svg;
+  container.style.minWidth=W+'px';
+  container.onclick=function(e){const el=e.target.closest('[data-bib]');if(el)tap(+el.dataset.bib);};
+}
+
+function tap(bib){
+  const ng=allData().find(x=>x.bib===bib);
+  if(!ng) return;
+  if(SEL===bib){closePanel();return;}
+  SEL=bib; PANEL_VIEW='profil';
+  renderHist();
+  showPanel(ng);
+}
+
+function closePanel(){
+  SEL=null; renderHist();
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('panel').classList.remove('show');
+  document.getElementById('fiche-content').innerHTML='';
+  document.getElementById('pempty').style.display='flex';
+}
+
+function showPanel(ng){
+  document.getElementById('panel-title').textContent=ng.nom;
+  document.getElementById('pempty').style.display='none';
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('panel').classList.add('show');
+  setPanelView(PANEL_VIEW, ng);
+}
+
+function setPanelView(view, ngArg){
+  PANEL_VIEW=view;
+  const ng=ngArg||(allData().find(x=>x.bib===SEL));
+  if(!ng) return;
+  ['profil','ko-hist'].forEach(v=>{
+    const el=document.getElementById('pvtab-'+v);
+    if(el) el.classList.toggle('on',v===view);
+  });
+  if(view==='profil') renderProfil(ng);
+  else if(view==='ko-hist') renderKOHist(ng);
+}
+
+function renderProfil(ng){
+  const flag=NOC_FLAGS[ng.noc]||'';
+  const annee=ng.annee||'—';
+  const age=ng.annee?(2026-ng.annee)+' ans':'';
+  const isF=G==='f';
+  const expPct=Math.min(100,(ng.experience||0)/80*100);
+  const ko=ng.ko_hist||[];
+  const nbFin=ko.filter(k=>k.rang_finale!=null).length;
+  const nbPodium=ko.filter(k=>k.rang_finale!=null&&k.rang_finale<=3).length;
+  const rangMoyF=nbFin>0?Math.round(ko.filter(k=>k.rang_finale!=null).reduce((s,k)=>s+k.rang_finale,0)/nbFin):null;
+
+  const tcell=(l,v)=>'<div class="tcell"><div class="tlabel">'+l+'</div><div class="tval'+(v?'':' nd')+'">'+(v||'—')+'</div></div>';
+  const vtcell=(l,v)=>v?'<div class="tcell" style="border:1px solid #003087;background:#eef3fa"><div class="tlabel">'+l+'</div><div class="tval" style="color:#003087">'+v.toFixed(4)+'</div></div>':'';
+  const times=isF
+    ?tcell('100 NL',ng.t100)+tcell('200 NL',ng.t200)+tcell('400 NL',ng.t400)+tcell('800 NL',ng.t800)+tcell('1500 NL',ng.t1500)+vtcell('V. 400',ng.v400)+vtcell('V. 1500',ng.v1500)
+    :tcell('400 NL',ng.t400)+tcell('800 NL',ng.t800)+tcell('1500 NL',ng.t1500)+vtcell('V. 400',ng.v400)+vtcell('V. 1500',ng.v1500);
+
+  const respHtml=ng.respiration?('<div class="resp-badge"><span class="resp-icon">'+(ng.respiration.includes('Gauche et')?'↔':ng.respiration.includes('Gauche')?'←':'→')+'</span><span class="resp-label">Respiration '+ng.respiration+'</span></div>'):'';
+
+  document.getElementById('fiche-content').innerHTML=
+    '<div class="fiche">'+
+    '<div class="fiche-hdr"><div class="bib-badge">'+ng.bib+'</div>'+
+    '<div><div class="fiche-name">'+ng.nom+'</div>'+
+    '<div class="fiche-meta">'+flag+' '+ng.noc+(annee!=='—'?' · '+annee+(age?' ('+age+')':''):'')+'</div>'+
+    respHtml+'</div></div>'+
+    '<div class="sect"><div class="sect-title">🏊 Stats KO</div>'+
+    '<div class="stat-row">'+
+    '<div class="stat-pill"><div class="stat-val">'+ko.length+'</div><div class="stat-lbl">KO joués</div></div>'+
+    (nbFin?'<div class="stat-pill"><div class="stat-val top10c">'+nbFin+'</div><div class="stat-lbl">Finales</div></div>':'')+
+    (nbPodium?'<div class="stat-pill"><div class="stat-val top3c">'+nbPodium+'</div><div class="stat-lbl">Podiums</div></div>':'')+
+    (rangMoyF?'<div class="stat-pill"><div class="stat-val">'+rangMoyF+'e</div><div class="stat-lbl">Rang moy. finale</div></div>':'')+
+    '</div></div>'+
+    '<div class="sect"><div class="sect-title">⏱ Vitesse piscine</div><div class="tgrid">'+times+'</div></div>'+
+    '<div class="sect"><div class="sect-title">📈 Expérience</div>'+
+    '<div class="exp-wrap"><div class="exp-row"><span>'+(ng.experience||0)+' courses EL</span><span style="font-size:10px;color:#aaa">/ 80 ref.</span></div>'+
+    '<div class="exp-bar-bg"><div class="exp-bar" style="width:'+expPct+'%;background:linear-gradient(90deg,#c6ddf0,#003087)"></div></div>'+
+    '</div></div>'+
+    '</div>';
+}
+
+function renderKOHist(ng){
+  const ko=ng.ko_hist||[];
+  if(!ko.length){
+    document.getElementById('fiche-content').innerHTML='<div class="fiche"><p style="color:#aaa;font-size:11px;font-style:italic">Pas d\'historique KO dans la base.</p></div>';
+    return;
+  }
+
+  // Tableau des rangs par manche
+  const rows=ko.map(k=>{
+    const rs=k.rang_series!=null?'<span class="rang-badge rb-top">'+k.rang_series+'e</span>':'<span class="rang-badge rb-out">—</span>';
+    const rd=k.rang_demi!=null?'<span class="rang-badge rb-top">'+k.rang_demi+'e</span>':'<span class="rang-badge rb-out">DNS/—</span>';
+    const rf=k.rang_finale!=null
+      ?'<span class="rang-badge '+(k.rang_finale===1?'rb-1':k.rang_finale<=3?'rb-3':'rb-top')+'">'+k.rang_finale+'e</span>'
+      :'<span class="rang-badge rb-out">—</span>';
+    return '<tr><td>'+typeBadge(k.type)+' '+k.label+'</td><td>'+rs+'</td><td>'+rd+'</td><td>'+rf+'</td></tr>';
+  }).join('');
+
+  // Graphique de progression
+  const W=300, H=140, padL=28, padR=10, padT=16, padB=24;
+  const chartW=W-padL-padR, chartH=H-padT-padB;
+  const MANCHES=['Séries','Demi','Finale'];
+  const MX=[0,1,2];
+
+  // Max rang
+  const allRangs=ko.flatMap(k=>[k.rang_series,k.rang_demi,k.rang_finale].filter(r=>r!=null));
+  const posMax=Math.max(...allRangs,10);
+  const yS=p=>padT+((p-1)/(posMax-1))*chartH;
+  const xM=i=>padL+(i/2)*chartW;
+
+  let prog='<svg xmlns="http://www.w3.org/2000/svg" class="prog-chart" viewBox="0 0 '+W+' '+H+'">';
+  prog+='<rect width="'+W+'" height="'+H+'" fill="#f5f8fc"/>';
+  prog+='<rect x="'+padL+'" y="'+padT+'" width="'+chartW+'" height="'+chartH+'" fill="white" rx="2"/>';
+
+  // Grille horizontale
+  [1,3,5,10,posMax].forEach(p=>{if(p>posMax)return;
+    const y=yS(p);
+    prog+='<line x1="'+padL+'" y1="'+y+'" x2="'+(padL+chartW)+'" y2="'+y+'" stroke="#dde5f0" stroke-width="0.8"/>';
+    prog+='<text x="'+(padL-2)+'" y="'+(y+3)+'" text-anchor="end" font-size="7" fill="#9ab0c8">'+p+'</text>';
+  });
+
+  // Ligne MOYENNE des rangs par manche
+  const moyS=ko.filter(k=>k.rang_series!=null);
+  const moyD=ko.filter(k=>k.rang_demi!=null);
+  const moyF=ko.filter(k=>k.rang_finale!=null);
+  const avgS=moyS.length?moyS.reduce((s,k)=>s+k.rang_series,0)/moyS.length:null;
+  const avgD=moyD.length?moyD.reduce((s,k)=>s+k.rang_demi,0)/moyD.length:null;
+  const avgF=moyF.length?moyF.reduce((s,k)=>s+k.rang_finale,0)/moyF.length:null;
+
+  const avgPts=[];
+  if(avgS!=null) avgPts.push([xM(0),yS(avgS),avgS]);
+  if(avgD!=null) avgPts.push([xM(1),yS(avgD),avgD]);
+  if(avgF!=null) avgPts.push([xM(2),yS(avgF),avgF]);
+
+  if(avgPts.length>=2){
+    prog+='<polyline points="'+avgPts.map(p=>p[0]+','+p[1]).join(' ')+'" fill="none" stroke="#003087" stroke-width="2.5" stroke-linejoin="round"/>';
+    // Zone de dispersion (min/max)
+    [[moyS,0],[moyD,1],[moyF,2]].forEach(([arr,mi])=>{
+      if(!arr.length) return;
+      const vals=arr.map(k=>mi===0?k.rang_series:mi===1?k.rang_demi:k.rang_finale);
+      const mn=Math.min(...vals), mx=Math.max(...vals);
+      if(mn<mx){
+        prog+='<rect x="'+(xM(mi)-6)+'" y="'+yS(mx)+'" width="12" height="'+(yS(mn)-yS(mx))+'" fill="#003087" opacity="0.12" rx="3"/>';
+      }
+    });
+    avgPts.forEach(([x,y,r])=>{
+      const col=r<=1?'#b8860b':r<=3?'#cd7c3a':r<=10?'#003087':'#6b7f9e';
+      prog+='<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+col+'" stroke="white" stroke-width="1.5"/>';
+      prog+='<text x="'+x+'" y="'+(y-8)+'" text-anchor="middle" font-size="8" fill="'+col+'" font-weight="700">'+r.toFixed(1)+'</text>';
+    });
+  }
+  // Mini barres pour nb de courses utilisées
+  [[moyS,0,'S'],[moyD,1,'D'],[moyF,2,'F']].forEach(([arr,mi,lbl])=>{
+    if(!arr.length) return;
+    prog+='<text x="'+xM(mi)+'" y="'+(H-padB+2)+'" text-anchor="middle" font-size="7" fill="#9ab0c8">n='+arr.length+'</text>';
+  });
+
+  MANCHES.forEach((m,i)=>{
+    prog+='<text x="'+xM(i)+'" y="'+(H-8)+'" text-anchor="middle" font-size="8" fill="#6b7f9e">'+m+'</text>';
+  });
+  prog+='<text x="'+(padL-2)+'" y="'+(padT+3)+'" text-anchor="end" font-size="7" fill="#003087" font-weight="700">1</text>';
+  prog+='<rect x="'+padL+'" y="'+padT+'" width="'+chartW+'" height="'+chartH+'" fill="none" stroke="#c5d4e8" stroke-width="0.8" rx="2"/>';
+  prog+='</svg>';
+
+  document.getElementById('fiche-content').innerHTML=
+    '<div class="fiche">'+
+    '<div class="sect"><div class="sect-title">📈 Progression par manche</div>'+prog+
+    '<p style="font-size:9px;color:#9ab0c8;margin-top:4px">Rang moyen par manche · Zone bleue = dispersion min/max · n = nb de courses</p></div>'+
+    '<div class="sect"><div class="sect-title">📋 Historique détaillé</div>'+
+    '<table class="ko-table"><thead><tr><th>Compétition</th><th>Séries</th><th>Demi</th><th>Finale</th></tr></thead>'+
+    '<tbody>'+rows+'</tbody></table></div>'+
+    '</div>';
+}
+
+function switchGender(g){
+  G=g; SEL=null; NOC_FILT=null; SERIE=1;
+  document.getElementById('tf').className='tab'+(g==='f'?' on':'');
+  document.getElementById('th').className='tab'+(g==='h'?' on':'');
+  document.getElementById('serie-tab-1').className='serie-tab on';
+  document.getElementById('serie-tab-2').className='serie-tab';
+  closePanel();
+  buildChips(); renderHist();
+  switchMeteoGender(g);
+}
+
+function switchSerie(s){
+  SERIE=s; SEL=null; NOC_FILT=null;
+  document.getElementById('serie-tab-1').className='serie-tab'+(s===1?' on':'');
+  document.getElementById('serie-tab-2').className='serie-tab'+(s===2?' on':'');
+  closePanel();
+  buildChips(); renderHist();
+}
+
+    window.switchGender=switchGender;
+    window.switchSerie=switchSerie;
+    window.setPanelView=setPanelView;
+    window.closePanel=closePanel;
+    window.renderHist=renderHist;
+    if(document.readyState==='loading'){
+      window.addEventListener('load',function(){setTop();switchGender('f');});
+    } else {
+      requestAnimationFrame(function(){setTop();switchGender('f');});
+    }
+window.addEventListener('resize',()=>{setTop();renderHist();});
+  })
+  .catch(function(e){
+    document.body.innerHTML='<p style="color:red;padding:2rem">Erreur chargement données : '+e+'</p>';
+  });
+</script>
+
+<!-- ══ CARTE PARCOURS ══════════════════════════════════════════ -->
+<div id="meteo-section" style="padding:16px;font-family:'Helvetica Neue',Arial,sans-serif;">
+<div class="mx-card">
+
+  <div class="mx-card-hdr">
+    <div>
+      <div class="mx-card-hdr-title">🗺️ Parcours KO &amp; Météo — Cancún 2026</div>
+      <div class="mx-card-hdr-sub" id="mx-card-sub">3km KO · séries H 09h00 · F 11h00 (heure locale) · Playa Langosta · Source : Open-Meteo</div>
+    </div>
+    <div class="mx-heure-badge">
+      <div class="mx-heure-label" id="mx-heure-label">H</div>
+      <div class="mx-heure-sub" id="mx-heure-time">08h00</div>
+    </div>
+  </div>
+
+  <div class="mx-conditions">
+    <div class="mx-cond-item mx-temp">
+      <div class="mx-cond-icon">🌡️</div>
+      <div><div class="mx-cond-val" id="mx-c-temp">—</div><div class="mx-cond-lbl">Temp. air</div></div>
+    </div>
+    <div class="mx-cond-item mx-vent">
+      <div class="mx-cond-icon">💨</div>
+      <div><div class="mx-cond-val" id="mx-c-vent">— km/h · —</div><div class="mx-cond-lbl" id="mx-l-vent">Vent · raf. — km/h</div></div>
+    </div>
+    <div id="mx-marees-block"></div>
+  </div>
+
+  <!-- Onglets vues -->
+  <div class="mx-vtabs">
+    <button class="mx-vtab on" id="mx-tab-parcours" onclick="showVue('parcours',this)">Vue d'ensemble</button>
+    <button class="mx-vtab" id="mx-tab-finish" onclick="showVue('finish',this)">Ponton arrivée</button>
+  </div>
+
+  <!-- Vue parcours -->
+  <div class="mx-carte-wrap on" id="mx-vue-parcours">
+    <img src="img/parcours_ko_cancun2026.jpg" alt="Parcours KO Cancún 2026" style="width:100%;height:100%;object-fit:contain">
+    <svg class="mx-carte-overlay" id="mx-svg-parcours" viewBox="0 0 1264 827" preserveAspectRatio="xMidYMid meet">
+      <g id="mx-svg-parcours-vent"></g>
+    </svg>
+  </div>
+
+  <!-- Vue arrivée -->
+  <div class="mx-carte-wrap" id="mx-vue-finish">
+    <img src="img/parcours_ko_cancun2026.jpg" alt="Parcours KO Cancún 2026" style="width:100%;height:100%;object-fit:contain">
+    <svg class="mx-carte-overlay" id="mx-svg-finish" viewBox="0 0 1264 827" preserveAspectRatio="xMidYMid meet">
+      <g id="mx-svg-finish-vent"></g>
+    </svg>
+  </div>
+
+  <div class="mx-slider-wrap">
+    <div class="mx-slider-row">
+      <span class="mx-slider-lbl" id="mx-slider-start">H−3</span>
+      <input type="range" id="mx-time-slider" min="0" max="6" value="3" step="1" oninput="updateMeteo(+this.value)">
+      <span class="mx-slider-lbl" id="mx-slider-end" style="text-align:right">H+3</span>
+    </div>
+    <div class="mx-slider-ticks" id="mx-slider-ticks"></div>
+  </div>
+
+  <div class="mx-legende">
+    <div class="mx-leg-item">
+      <svg width="40" height="12"><line x1="2" y1="6" x2="30" y2="6" stroke="#93c5fd" stroke-width="2.5"/>
+        <polygon points="30,6 21,2 21,10" fill="#93c5fd"/>
+        <line x1="4" y1="6" x2="10" y2="1" stroke="#93c5fd" stroke-width="2"/>
+        <line x1="9" y1="6" x2="15" y2="1" stroke="#93c5fd" stroke-width="2"/>
+      </svg><span style="color:#1e3a8a;font-weight:700">Vent</span>
+    </div>
+    <span class="mx-leg-note">Trait court=15 km/h · Trait long=30 km/h · ▲=60 km/h &nbsp;·&nbsp; Carte orientée nord en haut · Source : <a href="https://open-meteo.com/" target="_blank" style="color:var(--txt-dim)">Open-Meteo</a></span>
+  </div>
+
+</div>
+</div>
+
+
+<script>
+
+
+function showVue(v,btn){
+  var p=document.getElementById('mx-vue-parcours');
+  var f=document.getElementById('mx-vue-finish');
+  if(p) p.className='mx-carte-wrap'+(v==='parcours'?' on':'');
+  if(f) f.className='mx-carte-wrap'+(v==='finish'?' on':'');
+  document.querySelectorAll('.mx-vtab').forEach(function(t){t.classList.remove('on');});
+  if(btn) btn.classList.add('on');
+}
+
+// ── Météo & marées · Cancún, Playa Langosta · 7 novembre 2026 ─────────────
+// Vent / température : Open-Meteo forecast (live, navigateur). Marées : Open-Meteo Marine,
+// sea_level_height_msl (modèle, maille ~8 km, hauteur / niveau moyen). Pas de valeurs inventées :
+// si l'API ne répond pas, les cases restent « — ».
+// Carte du parcours orientée nord en haut (ponton de départ orienté nord).
+var LAT=21.1451,LON=-86.7817,DATE_COURSE='2026-11-07',TZ='America%2FCancun';
+var DEPART_F=11,DEPART_H=9;
+var MX_G='f'; // genre actif (météo)
+function emptySlice(dep){var o=[];for(var h=dep-3;h<=dep+5;h++)o.push({h:h+'h'+(h===dep?(dep===DEPART_F?'♀':'♂'):''),t:null,v:null,r:null,dir:null});return o;}
+var METEO_F=emptySlice(DEPART_F), METEO_H=emptySlice(DEPART_H);
+var METEO=METEO_F;
+
+// Niveau de la mer horaire (m, / niveau moyen) — Open-Meteo Marine, chargé en direct (aucune valeur de repli)
+var MAREE_NIVEAUX=null;
+var MAREE_SOURCE='Open-Meteo Marine';
+
+function pad2(n){return (n<10?'0':'')+n;}
+function fmtH(x){var h=Math.floor(x),m=Math.round((x-h)*60);if(m===60){h++;m=0;}return pad2(h)+'h'+pad2(m);}
+// Extrêmes (PM/BM) par interpolation parabolique sur les valeurs horaires
+function mareeEvents(lv){
+  var ev=[];
+  for(var i=1;i<lv.length-1;i++){
+    var a=lv[i-1],b=lv[i],c=lv[i+1];
+    var isMax=b>=a&&b>c, isMin=b<=a&&b<c;
+    if(!isMax&&!isMin)continue;
+    var den=a-2*b+c, off=den!==0?0.5*(a-c)/den:0;
+    if(off<-0.5)off=-0.5; if(off>0.5)off=0.5;
+    var hv=b-0.25*(a-c)*off;
+    ev.push({h:fmtH(i+off),type:isMax?'PM':'BM',hauteur:(Math.abs(hv)<0.005?0:hv).toFixed(2)});
+  }
+  return ev;
+}
+function renderMarees(){
+  var lv=MAREE_NIVEAUX; if(!lv||!lv.length)return'';
+  var evts=mareeEvents(lv).map(function(e){
+    var col=e.type==='PM'?'#5bc4f5':'#a0c8e8';
+    return'<span style="margin-right:10px;color:'+col+'">'+(e.type==='PM'?'▲':'▼')+' '+e.h+' <b>'+e.hauteur+'m</b></span>';
+  }).join('');
+  var dep=MX_G==='f'?DEPART_F:DEPART_H, chips='';
+  for(var h=dep-1;h<=dep+3&&h<23;h++){
+    var d=lv[h+1]-lv[h];
+    var sens=Math.abs(d)<0.005?'étale':(d>0?'montante':'descendante');
+    var ic=sens==='montante'?'↑':(sens==='descendante'?'↓':'·');
+    var bg=sens==='montante'?'#bfe3f7':(sens==='descendante'?'#f5d87a':'#ddd');
+    chips+='<span style="display:inline-block;padding:2px 5px;margin:1px;border-radius:3px;font-size:10px;background:'+bg+';color:#1a2a3a" title="'+sens+'">'+h+'h '+ic+' '+lv[h].toFixed(2)+'m</span>';
+  }
+  var mn=Math.min.apply(null,lv),mx=Math.max.apply(null,lv);
+  return'<div class="mx-cond-item" style="flex-direction:column;align-items:flex-start;padding:8px 14px;min-width:260px;border-left:1px solid rgba(255,255,255,.15)">'
+    +'<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:4px">⚓ Marées · Cancún · 7 nov. 2026 · marnage du jour '+(mx-mn).toFixed(2)+' m · '+MAREE_SOURCE+'</div>'
+    +'<div style="font-size:11px;margin-bottom:6px">'+evts+'</div>'
+    +'<div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:3px">Niveau / niveau moyen pendant la course · ↑ montante · ↓ descendante</div>'
+    +'<div>'+chips+'</div>'
+    +'</div>';
+}
+
+function cardToDeg(s){
+  var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+  var i=c.indexOf(s); return i>=0?i*22.5:0;
+}
+function dirCard(d){
+  var c=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+  return c[Math.round(((d%360)+360)%360/22.5)%16];
+}
+function parallelPts(cx,cy,fromDeg,spacing){
+  var rad=((fromDeg+180)%360)*Math.PI/180;
+  var px=-Math.cos(rad), py=Math.sin(rad);
+  var len=Math.sqrt(px*px+py*py)||1; px/=len; py/=len;
+  return [[cx-px*spacing,cy-py*spacing],[cx,cy],[cx+px*spacing,cy+py*spacing]];
+}
+function windArrow(x,y,fromDeg,kt,col,sc){
+  sc=sc||1;
+  var len=110*sc;
+  var rad=((fromDeg+180)%360)*Math.PI/180;
+  var dx=Math.sin(rad),dy=-Math.cos(rad);
+  var ex=x+dx*len,ey=y+dy*len;
+  var px=-dy,py=dx;
+  var s='<line x1="'+x+'" y1="'+y+'" x2="'+ex+'" y2="'+ey+'" stroke="'+col+'" stroke-width="'+(2.5*sc)+'" stroke-linecap="round"/>';
+  var ah=16*sc,aw=8*sc;
+  s+='<polygon points="'+ex+','+ey+' '+(ex-dx*ah+px*aw)+','+(ey-dy*ah+py*aw)+' '+(ex-dx*ah-px*aw)+','+(ey-dy*ah-py*aw)+'" fill="'+col+'"/>';
+  var blen=24*sc,bstep=10*sc,rem=kt,bx=x,by=y;
+  while(rem>=60){var nx=bx+dx*bstep,ny=by+dy*bstep;s+='<polygon points="'+bx+','+by+' '+nx+','+ny+' '+(bx+px*blen)+','+(by+py*blen)+'" fill="'+col+'"/>';bx=nx;by=ny;rem-=60;}
+  while(rem>=30){s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen)+'" y2="'+(by+py*blen)+'" stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';bx+=dx*bstep;by+=dy*bstep;rem-=30;}
+  if(rem>=15){s+='<line x1="'+bx+'" y1="'+by+'" x2="'+(bx+px*blen*0.55)+'" y2="'+(by+py*blen*0.55)+'" stroke="'+col+'" stroke-width="'+(2*sc)+'" stroke-linecap="round"/>';}
+  return s;
+}
+function bgLbl(x,y,txt,col,sz){
+  var w=txt.length*sz*0.62+10;
+  return '<rect x="'+(x-4)+'" y="'+(y-sz)+'" width="'+w+'" height="'+(sz+5)+'" rx="3" fill="rgba(6,12,36,0.68)"/>'
+    +'<text x="'+x+'" y="'+y+'" font-size="'+sz+'" font-weight="700" fill="'+col+'" font-family="Arial,sans-serif">'+txt+'</text>';
+}
+// Flèche nord (carte orientée nord en haut)
+function northArrow(x,y){
+  return '<polygon points="'+x+','+(y-26)+' '+(x-9)+','+(y+4)+' '+x+','+(y-4)+' '+(x+9)+','+(y+4)+'" fill="#fff" opacity=".9"/>'
+    +'<text x="'+(x-6)+'" y="'+(y+22)+'" font-size="18" font-weight="800" fill="#fff" font-family="Arial,sans-serif">N</text>';
+}
+function renderSVG(svgId,vCx,vCy,m){
+  var s=northArrow(1225,110);
+  if(m.v!=null&&m.dir){
+    var deg=cardToDeg(m.dir);
+    parallelPts(vCx,vCy,deg,90).forEach(function(pt){s+=windArrow(pt[0],pt[1],deg,m.v,'#93c5fd',1.4);});
+    var vrad=((deg+180)%360)*Math.PI/180;
+    var vLx=vCx-Math.sin(vrad)*30, vLy=vCy+Math.cos(vrad)*30;
+    s+=bgLbl(vLx-2,vLy-18,'VENT','#bfdbfe',15);
+    s+=bgLbl(vLx-2,vLy,m.v+'km/h '+m.dir,'#93c5fd',13);
+  }
+  document.getElementById(svgId+'-vent').innerHTML=s;
+}
+
+function updateMeteo(idx){
+  var arr=METEO;
+  if(idx<0||idx>=arr.length)idx=Math.min(3,arr.length-1);
+  var m=arr[idx];
+  var pct=(arr.length>1?(idx/(arr.length-1)*100):50).toFixed(1);
+  document.getElementById('mx-heure-label').textContent=m.h||'';
+  document.getElementById('mx-heure-time').textContent=(m.h||'').replace('h','h00').replace('♀','').replace('♂','');
+  document.getElementById('mx-time-slider').style.background=
+    'linear-gradient(to right,#003087 0%,#003087 '+pct+'%,#c8d8ea '+pct+'%,#c8d8ea 100%)';
+  document.getElementById('mx-c-temp').textContent=(m.t!=null?m.t+'°C':'—');
+  document.getElementById('mx-c-vent').textContent=(m.v!=null?m.v+' km/h':'—')+' · '+(m.dir||'—');
+  document.getElementById('mx-l-vent').innerHTML='Vent · raf. '+(m.r!=null?m.r.toFixed(1)+' km/h':'—');
+  try{
+    renderSVG('mx-svg-parcours',630,420,m);
+    renderSVG('mx-svg-finish',630,420,m);
+  }catch(e){ console.warn('renderSVG error',e); }
+}
+
+function renderSliderTicks(){
+  var ticks=document.getElementById('mx-slider-ticks');
+  if(!ticks) return;
+  var html='';
+  METEO.forEach(function(m){
+    var lbl=m.h||'';
+    html+=(lbl.indexOf('♀')>=0||lbl.indexOf('♂')>=0)?'<span style="color:#C8102E;font-weight:800">'+lbl+'</span>':'<span>'+lbl+'</span>';
+  });
+  ticks.innerHTML=html;
+  document.getElementById('mx-slider-start').textContent=(METEO[0].h||'').replace('♀','').replace('♂','');
+  document.getElementById('mx-slider-end').textContent=(METEO[METEO.length-1].h||'').replace('♀','').replace('♂','');
+}
+
+var MX_SUB='3km KO · séries H 09h00 · F 11h00 (heure locale) · Playa Langosta · Source : Open-Meteo';
+function switchMeteoGender(g){
+  MX_G=g;
+  METEO=(g==='f')?METEO_F:METEO_H;
+  var slider=document.getElementById('mx-time-slider');
+  if(slider){slider.max=METEO.length-1;slider.value=3;}
+  renderSliderTicks();
+  updateMeteo(3);
+  document.getElementById('mx-marees-block').innerHTML=renderMarees();
+}
+
+function fetchMeteoOpenMeteo(){
+  var urlWind='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON
+    +'&hourly=temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m'
+    +'&timezone='+TZ+'&start_date='+DATE_COURSE+'&end_date='+DATE_COURSE;
+  var urlMarine='https://marine-api.open-meteo.com/v1/marine?latitude='+LAT+'&longitude='+LON
+    +'&hourly=sea_level_height_msl&timezone='+TZ+'&start_date='+DATE_COURSE+'&end_date='+DATE_COURSE;
+  function slice(wind,dep){
+    var out=[],times=wind.hourly.time;
+    for(var i=0;i<times.length;i++){
+      var h=parseInt(times[i].split('T')[1]);
+      if(h<dep-3||h>dep+5)continue;
+      var t=wind.hourly.temperature_2m[i],v=wind.hourly.windspeed_10m[i],r=wind.hourly.windgusts_10m[i],d=wind.hourly.winddirection_10m[i];
+      out.push({h:h+'h'+(h===dep?(dep===DEPART_F?'♀':'♂'):''),t:t,v:v!=null?+v.toFixed(1):null,r:r!=null?+r.toFixed(1):null,dir:d!=null?dirCard(d):null});
+    }
+    return out;
+  }
+  fetch(urlWind).then(function(r){return r.json();}).then(function(wind){
+    if(!wind||!wind.hourly)throw new Error(wind&&wind.reason||'pas de données');
+    METEO_F=slice(wind,DEPART_F); METEO_H=slice(wind,DEPART_H);
+    switchMeteoGender(MX_G);
+    var el=document.getElementById('mx-card-sub');
+    if(el) el.textContent=MX_SUB+' live · '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  }).catch(function(e){ console.warn('Open-Meteo vent indisponible',e); });
+  fetch(urlMarine).then(function(r){return r.json();}).then(function(mar){
+    var lv=mar&&mar.hourly&&mar.hourly.sea_level_height_msl;
+    if(lv&&lv.length===24&&lv.every(function(x){return x!=null;})){
+      MAREE_NIVEAUX=lv; MAREE_SOURCE='Open-Meteo Marine live';
+      document.getElementById('mx-marees-block').innerHTML=renderMarees();
+    }
+  }).catch(function(e){ console.warn('Open-Meteo marine indisponible',e); });
+}
+
+document.getElementById('mx-card-sub').textContent=MX_SUB;
+switchMeteoGender('f');
+fetchMeteoOpenMeteo();
+
+
+</script>
+</div>
+</body>
+</html>
