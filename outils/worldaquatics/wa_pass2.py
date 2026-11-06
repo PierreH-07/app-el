@@ -3,6 +3,9 @@ import json, time, random
 from wa_collect import BASE, HEADERS, DIST_RE, norm, split_nom, get, OUT
 import requests
 
+# Bannières neutres (athlètes russes/biélorusses) : pas de filtre ni de bonus de nation
+NEUTRES = ('NAB', 'AIN', 'ROC')
+
 
 def name_ok(c, sw):
     last, first = split_nom(sw['nom'])
@@ -30,7 +33,7 @@ def score(c, sw):
         s += 2
     if 'OW' in (c.get('disciplines') or []):
         s += 1
-    noc = sw.get('noc') if sw.get('noc') not in ('NAB', 'AIN') else None
+    noc = sw.get('noc') if sw.get('noc') not in NEUTRES else None
     if noc and c.get('nationality') == noc:
         s += 3
     elif noc and c.get('nationality'):
@@ -48,7 +51,7 @@ def search_all(sess, sw):
     seen = {}
     for q in dict.fromkeys(qs):
         for page in range(3):
-            res, _ = get(sess, f'{BASE}/athletes', {'gender': '', 'discipline': '', 'nationality': (sw.get('noc') if sw.get('noc') not in ('NAB', 'AIN') else '') or '',
+            res, _ = get(sess, f'{BASE}/athletes', {'gender': '', 'discipline': '', 'nationality': (sw.get('noc') if sw.get('noc') not in NEUTRES else '') or '',
                                                      'name': q, 'page': page, 'pageSize': 50})
             if not res:
                 break

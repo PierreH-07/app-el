@@ -109,6 +109,24 @@ BETANZOS Fernando (MEX, 25m seulement), OBELE CISNEROS Diego (MEX, 25m seulement
 ROJAS Jeison (CRC), MARTINEZ Santiago (MEX), GARCIA SANTA CRUZ Juan Pablo (MEX, 25m seulement),
 DUCOURTIL ANCONA Alessio (MEX), MELENDEZ HERNANDEZ Marco Antonio (MEX), AGUIAR Arthur (BRA).
 
+## Correction des noms (06/11/2026)
+
+Fiches à noms inversés (« Prénom NOM », sans nation) = erreurs de saisie des PDF, vérifiées sur les
+résultats WA de chaque course : 'Kyle LEE' et 'Peixin LIU' regroupaient plusieurs nageurs (répartis
+course par course : LEE Kyle, RAMAKRISHNA Dhrupad, LEE Changmin / LIU Peixin, LIU Zhi-Rui, LIU Hao) ;
+les autres ont été fusionnées dans la fiche existante (anciens noms en `alias`). Prénoms alignés sur WA
+quand l'orthographe empêchait le rapprochement (LUZIN Saveliy, SLOMAN Nicholas, MANTEUFEL Gabe,
+HSIAO Tzu-Huan). `wa_pass2.py` : nation `ROC` traitée comme bannière neutre (comme NAB/AIN).
+
+Toujours introuvables sur WA : MROZ Adam (POL), BOBANOVIC Mauro (CRO), KHALIL Gael Marcel (LBN),
+FERREIRA Henrique (BRA) — aucun profil ; BONSALL Rob (AUS dans la base, profil WA « Rob BONSALL » BRN,
+non rattaché faute de certitude) ; ELHAMAYDA Tameem (QAT, WA écrit « Tameea ») ; RAMAKRISHNA Dhrupad
+(IND, nom WA sans nom de famille).
+
+**Régénération de `historique_bassin_el.json`** : `wa_report.py` ne reconstruit que les nageurs de
+l'univers de collecte (fiches + STARTLIST). Fusionner avec l'ancien fichier (garder les entrées et les
+participants de courses que la nouvelle collecte ne couvre pas), sinon ~260 nageurs sont perdus.
+
 ## Contrôle des temps bassin via World Aquatics (`outils/worldaquatics/`)
 
 Règles appliquées :
