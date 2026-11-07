@@ -12,6 +12,7 @@
 |---|---|
 | `Ponton10km.html` | Ponton course 10 km (World Cup Stop 4, Sétubal 2026) |
 | `ponton_ko_setubal2026.html` | Ponton course KO (World Cup Stop 4, Sétubal 2026) |
+| `ponton_ko_cancun2026.html` | Ponton course KO (World Cup 2026/27, Cancún, 7 nov. 2026 ; dossards et séries WA) |
 | `ponton_ko_ibiza2026.html` | Ponton course KO (Stop précédent, Ibiza) |
 | `Analyse_KO_Eau_libre.html` | Analyse tactique courses KO |
 | `analyse_course_el.html` | Analyse course 10 km |
@@ -126,6 +127,17 @@ non rattaché faute de certitude) ; ELHAMAYDA Tameem (QAT, WA écrit « Tameea �
 **Régénération de `historique_bassin_el.json`** : `wa_report.py` ne reconstruit que les nageurs de
 l'univers de collecte (fiches + STARTLIST). Fusionner avec l'ancien fichier (garder les entrées et les
 participants de courses que la nouvelle collecte ne couvre pas), sinon ~260 nageurs sont perdus.
+
+## CdM Cancún 2026 (6 nov. 2026) — contexte à prendre en compte dans toute analyse
+
+- **Course en mer** (mer des Caraïbes), Playa Langosta, Bahía de Mujeres : plage au sud, boucle de
+  1 666 m × 6 (plan officiel), départ ponton orienté nord. Clé `CdM_Cancun26` (CF/CH), `vit_type: 'tour'`.
+- **Eau chaude : ~29 °C** (Open-Meteo Marine) → combinaison interdite, effet probable sur les allures.
+- Hommes 9h00 : 26→29 °C, vent nul au départ puis ENE ~11 km/h, marée descendante (0,17 → 0,10 m).
+- Femmes 12h00 : 30 °C, vent NE 9–11 km/h, quasi étale (basse mer ~13h, 0,07 m).
+- Marnage du jour ≈ 0,2 m ; courant modélisé ≤ 0,6 km/h ; vagues modèle 0,7 m au large (surestimées
+  pour la baie, abritée). Vent = METAR aéroport MMUN (intérieur, ~15 km) : probablement sous-estimé à la plage.
+- Détail dans `conditions` de la course (champ `source` = provenance de chaque donnée).
 
 ## Contrôle des temps bassin via World Aquatics (`outils/worldaquatics/`)
 

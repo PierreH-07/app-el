@@ -23,18 +23,18 @@ H = {'origin': 'https://www.worldaquatics.com', 'referer': 'https://www.worldaqu
 SESS = requests.Session(); SESS.headers.update(H)
 
 # distances par tour lues dans les bulletins d'information WA (rubrique « Venue & course information »)
-BULLETINS = {('Setubal', 2026): 1660}
+BULLETINS = {('Setubal', 2026): 1660, ('Cancún', 2026): 1666}  # Cancún : plan officiel « 1,666 m - 10 km »
 KO_NOUVEAUX = [('Setubal', 2025), ('Setubal', 2026)]
 SEUIL_GROUPE = 3.0
 SANITY = []
 CITY_FR = {'Setubal': 'Sétubal', 'Somabay': 'Soma Bay', 'Golfo Aranci': 'Golfo Aranci', 'Singapore': 'Singapour',
            'Hong Kong': 'Hong Kong', 'NEOM': 'Neom', 'Abu Dhabi': 'Abu Dhabi', 'Mahé': 'Mahé', 'Alghero': 'Alghero',
            'Santa Fe': 'Santa Fe', 'Budapest': 'Budapest', 'Fukuoka': 'Fukuoka', 'Doha': 'Doha', 'Paris': 'Paris',
-           'Tokyo': 'Tokyo', 'Eilat': 'Eilat', 'Funchal': 'Funchal', 'Ibiza': 'Ibiza', 'Ohrid': 'Ohrid'}
+           'Tokyo': 'Tokyo', 'Eilat': 'Eilat', 'Funchal': 'Funchal', 'Ibiza': 'Ibiza', 'Ohrid': 'Ohrid', 'Cancún': 'Cancún'}
 APPCITY = {'somabay': 'Somabay', 'golfoaranci': 'Golfo Aranci', 'golfo': 'Golfo Aranci', 'singapour': 'Singapore',
            'setubal': 'Setubal', 'tokoyo': 'Tokyo', 'tokyo': 'Tokyo', 'paris': 'Paris', 'doha': 'Doha', 'budapest': 'Budapest',
            'fukuoka': 'Fukuoka', 'funchal': 'Funchal', 'eilat': 'Eilat', 'ohrid': 'Ohrid', 'abudhabi': 'Abu Dhabi',
-           'hkg': 'Hong Kong', 'neom': 'NEOM', 'ibiza': 'Ibiza'}
+           'hkg': 'Hong Kong', 'neom': 'NEOM', 'ibiza': 'Ibiza', 'cancun': 'Cancún'}
 
 
 # ---------------------------------------------------------------- utilitaires
