@@ -138,6 +138,8 @@ participants de courses que la nouvelle collecte ne couvre pas), sinon ~260 nage
 - Marnage du jour ≈ 0,2 m ; courant modélisé ≤ 0,6 km/h ; vagues modèle 0,7 m au large (surestimées
   pour la baie, abritée). Vent = METAR aéroport MMUN (intérieur, ~15 km) : probablement sous-estimé à la plage.
 - Détail dans `conditions` de la course (champ `source` = provenance de chaque donnée).
+- KO 7 nov. : `KO_DATA['cancun26_h']` (importé avec `ow_import.build_ko`, hors `KO_NOUVEAUX` : la clé
+  générée par `ow_import` pour « Cancún » serait `cancn26_*` à cause de l'accent). Hommes 9h00, femmes 11h00.
 
 ## Contrôle des temps bassin via World Aquatics (`outils/worldaquatics/`)
 
