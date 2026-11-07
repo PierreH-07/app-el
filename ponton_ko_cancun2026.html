@@ -472,8 +472,8 @@ function sorted(){
 
 function renderHist(){
   const d=sorted();
-  const nb_s=allData().filter(x=>x.bib%2!==0).length;
-  const nb_s2=allData().filter(x=>x.bib%2===0).length;
+  const nb_s=allData().filter(x=>x.serie===1).length;
+  const nb_s2=allData().filter(x=>x.serie===2).length;
   document.getElementById('ponton-info').textContent=
     d.length+' nageur'+(G==='h'?'s':'ses')+(NOC_FILT?' · '+NOC_FILT:'');
   document.getElementById('serie-count').textContent=
